@@ -25,6 +25,10 @@ public class Client {
         this.email = email;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -49,7 +53,8 @@ public class Client {
         this.email = email;
     }
 
+    @Override
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.email;
+        return this.firstName + " " + this.lastName + " " + this.email + this.id;
     }
 }
