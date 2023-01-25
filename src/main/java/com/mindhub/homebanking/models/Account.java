@@ -19,8 +19,7 @@ public class Account {
 
     public Account() { }
 
-    public Account(long id, String number, LocalDateTime creationDate, double balance) {
-        this.id = id;
+    public Account(String number, LocalDateTime creationDate, double balance) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
