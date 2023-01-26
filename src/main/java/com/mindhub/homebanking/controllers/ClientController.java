@@ -21,4 +21,5 @@ public class ClientController {
     public List<ClientDTO> getClients() {
         return clientRepository.findAll().stream().map(ClientDTO::new).collect(toList());
     }
+
 }

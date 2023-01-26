@@ -57,15 +57,11 @@ public class Client {
 
     @Override
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.email + this.id;
+        return this.firstName + " " + this.lastName + " " + this.email + " " + this.id;
     }
 
     public Set<Account> getAccounts() {
         return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
     }
 
     public void addAccount(Account account) {
