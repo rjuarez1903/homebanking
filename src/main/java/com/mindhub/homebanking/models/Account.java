@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,8 +15,8 @@ public class Account {
     private LocalDateTime creationDate;
     private double balance;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id")
-    private Client owner;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public Account() { }
 
@@ -27,10 +28,6 @@ public class Account {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNumber() {
@@ -57,11 +54,12 @@ public class Account {
         this.balance = balance;
     }
 
-    public Client getOwner() {
-        return owner;
+    @JsonIgnore
+    public Client getClient() {
+        return client;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
