@@ -11,7 +11,7 @@ createApp({
     },
     methods: {
         loadData() {
-            axios('/api/clients/4')
+            axios('/api/clients/1')
                 .then(response => {
                     this.client = response.data
                 })

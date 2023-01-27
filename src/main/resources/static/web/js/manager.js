@@ -20,14 +20,16 @@ createApp({
     },
     methods: {
         loadData() {
-            axios.get('/clients')
+            axios.get('/rest/clients')
                 .then(response => {
+
                     this.json    = response
                     this.clients = response.data._embedded.clients
                 })
                 .catch(error => console.log(error))
         },
         getClientId(client) {
+            console.log(client._links.client.href.split("/").slice(-1).toString())
             return client._links.client.href.split("/").slice(-1).toString()
         },
         addClient() {
@@ -36,7 +38,7 @@ createApp({
             }
         },
         postClient() {
-            axios.post('/clients', {
+            axios.post('/rest/clients', {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 email:    this.email
@@ -47,7 +49,7 @@ createApp({
         },
         showClient(id) {
             this.clientDetail = this.clients.filter(client => this.getClientId(client) == id)[0]
-            axios.get(`/clients/${id}`)
+            axios.get(`/rest/clients/${id}`)
                 .then(response => {
                     this.firstNameEdit = response.data.firstName
                     this.lastNameEdit = response.data.lastName
@@ -56,7 +58,7 @@ createApp({
         },
         editClient(id) {
             if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
-                axios.put(`/clients/${id}`, {
+                axios.put(`/rest/clients/${id}`, {
                     firstName: this.firstNameEdit,
                     lastName: this.lastNameEdit,
                     email:    this.emailEdit,
@@ -66,7 +68,7 @@ createApp({
             }
         },
         deleteClient(id) {
-            axios.delete(`/clients/${id}`)
+            axios.delete(`/rest/clients/${id}`)
                 .then(() => this.loadData())
                 .catch(error => console.log(error))
         }

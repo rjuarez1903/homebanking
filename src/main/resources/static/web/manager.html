@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="app">
-  <div class="container">
+  <main class="container">
     <div class="row">
 
       <!-- EDIT CLIENT MODAL -->
@@ -42,7 +42,7 @@
                 <button
                   type="submit"
                   class="btn btn-warning"
-                  @click="editClient(clientDetail.id)"
+                  @click="editClient(getClientId(clientDetail))"
                 >
                   Save changes
                 </button>
@@ -81,11 +81,11 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+<!--                <th scope="col">Delete</th>-->
               </tr>
             </thead>
             <tbody>
-              <tr v-for="client of clients" :key="client.id">
+              <tr v-for="client of clients" :key="getClientId(client)">
                 <td>{{ client.firstName }}</td>
                 <td>{{ client.lastName }}</td>
                 <td>{{ client.email }}</td>
@@ -95,16 +95,16 @@
                     class="btn"
                     data-bs-toggle="modal"
                     data-bs-target="#editModal"
-                    @click="showClient(client.id)"
+                    @click="showClient(getClientId(client))"
                   >
                     <i class="fa-solid fa-pen"></i>
                   </button>
                 </td>
-                <td>
-                  <button class="btn" @click="deleteClient(client.id)">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
+<!--                <td>-->
+<!--                  <button class="btn" @click="deleteClient(getClientId(client))">-->
+<!--                    <i class="fa-solid fa-trash"></i>-->
+<!--                  </button>-->
+<!--                </td>-->
               </tr>
             </tbody>
           </table>
@@ -115,11 +115,11 @@
         <pre>{{ json }}}</pre>
       </div>
     </div>
-  </div>
+  </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="manager.js"></script>
+<script src="js/manager.js"></script>
 </body>
 </html>
