@@ -42,7 +42,7 @@
                 <button
                   type="submit"
                   class="btn btn-warning"
-                  @click="editClient(getClientId(clientDetail))"
+                  @click="editClient(clientDetail.id)"
                 >
                   Save changes
                 </button>
@@ -85,7 +85,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="client of clients" :key="getClientId(client)">
+              <tr v-for="client of clients" :key="client.id">
                 <td>{{ client.firstName }}</td>
                 <td>{{ client.lastName }}</td>
                 <td>{{ client.email }}</td>
@@ -95,13 +95,13 @@
                     class="btn"
                     data-bs-toggle="modal"
                     data-bs-target="#editModal"
-                    @click="showClient(getClientId(client))"
+                    @click="showClient(client.id)"
                   >
                     <i class="fa-solid fa-pen"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn" @click="deleteClient(getClientId(client))">
+                  <button class="btn" @click="deleteClient(client.id)">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>

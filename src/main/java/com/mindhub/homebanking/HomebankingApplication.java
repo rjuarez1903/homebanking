@@ -23,6 +23,8 @@ public class HomebankingApplication {
 		return (args) -> {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
 			Client client2 = new Client("Rodrigo", "Juarez", "lic.rodrigojuarez@gmail.com");
+			Client client3 = new Client("Marina", "Calandra", "marinacalandra@gmail.com");
+
 			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000);
 			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500);
 
@@ -31,6 +33,7 @@ public class HomebankingApplication {
 
 			clientRepository.save(client1);
 			clientRepository.save(client2);
+			clientRepository.save(client3);
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);
