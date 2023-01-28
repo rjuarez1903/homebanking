@@ -54,10 +54,12 @@
                                 </div>
                                 <ul class="list-group">
                                     <li v-for="account of client.accounts" class="list-group-item">
-                                        <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
-                                            <p class="mb-0 "><span class="">Número de cuenta:</span> <span class="account-number fs-4">{{ account.number }}</span></p>
-                                            <p class="mb-0 "><span class="">Balance:</span> <span class="balance fs-4">${{ account.balance }}</span></p>
+                                        <a :href=`./account.html?id=${account.id}` class="account-link">
+                                        <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap account-link-container">
+                                            <p class="mb-0 ">Número de cuenta: <span class="account-number fs-4">{{ account.number }}</span></p>
+                                            <p class="mb-0 ">Balance: <span class="balance fs-4">${{ account.balance }}</span></p>
                                         </div>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

@@ -59,7 +59,7 @@ public class Account {
         this.balance = balance;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public Client getClient() {
         return client;
     }
