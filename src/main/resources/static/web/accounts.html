@@ -52,6 +52,7 @@
                                     <h2 class="text-center fw-bold">{{ client.firstName }} {{client.lastName }}</h2>
                                     <p class="fs-5 text-center mb-0">{{ client.email }}</p>
                                 </div>
+                                <h3 class="text-center mt-3">Cuentas</h3>
                                 <ul class="list-group">
                                     <li v-for="account of client.accounts" class="list-group-item">
                                         <a :href=`./account.html?id=${account.id}` class="account-link">
@@ -62,6 +63,18 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <h3 class="text-center mt-3">Préstamos</h3>
+                                <ul class="list-group" v-if="client.loans.length > 0">
+                                    <li v-for="loan of client.loans" class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap account-link-container">
+                                            <p class="mb-0 ">Nombre: <span class="loan-data fs-4">{{ loan.name }}</span></p>
+                                            <p class="mb-0 ">Monto: <span class="loan-data fs-4">${{ loan.amount }}</span></p>
+                                            <p class="mb-0 ">Cuotas: <span class="loan-data fs-4">{{ loan.payments }}</span></p>
+                                        </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3 v-else class="mt-4 text-center">No se registran préstamos para esta cliente.</h3>
                             </div>
                         </article>
                     </div>

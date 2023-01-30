@@ -37,7 +37,8 @@ body {
 }
 
 .account-number, 
-.balance {
+.balance,
+.loan-data {
     color: #12b886;
     font-weight: 700;
 }

@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Loan {
@@ -15,8 +18,10 @@ public class Loan {
     private String name;
     private double maxAmount;
     @ElementCollection
-    @Column(name="payment")
-    private List<Integer> payments = new ArrayList<>();
+    @Column(name="payments")
+    List<Integer> payments = new ArrayList<>();
+    @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
+    Set<ClientLoan> clientLoans;
 
     public Loan() { }
 
@@ -53,4 +58,14 @@ public class Loan {
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
     }
+
+    public List<Client> getClients() {
+        return clientLoans.stream().map(clientLoan -> clientLoan.getClient()).collect(toList());
+    }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
+    }
+
 }

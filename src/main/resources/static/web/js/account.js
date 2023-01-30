@@ -4,7 +4,7 @@ createApp({
     data() {
         return {
             account:      {},
-            transactions: []
+            transactions: [],
         }
     },
     created() {
