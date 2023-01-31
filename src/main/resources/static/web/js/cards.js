@@ -15,7 +15,10 @@ createApp({
                 .then(response => this.cards = response.data.cards)
                 .then(() => console.log(this.cards))
                 .catch(error => console.log(error))
-
+        },
+        formatCardNumber(number) {
+            return number.match(/.{1,4}/g).join(" ")
+            
         }
     }
 }).mount('#app')
