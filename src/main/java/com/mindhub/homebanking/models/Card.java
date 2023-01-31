@@ -15,7 +15,7 @@ public class Card {
     private CardType type;
     private CardColor color;
     private String number;
-    private String ccv;
+    private String cvv;
     private LocalDateTime fromDate;
     private LocalDateTime thruDate;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -24,12 +24,12 @@ public class Card {
 
     public Card() {};
 
-    public Card(CardType type, CardColor color, String number, String ccv, LocalDateTime fromDate, LocalDateTime thruDate, Client client) {
+    public Card(CardType type, CardColor color, String number, String cvv, LocalDateTime fromDate, LocalDateTime thruDate, Client client) {
         this.cardholder = client.getFirstName() + " " + client.getLastName();
         this.type = type;
         this.color = color;
         this.number = number;
-        this.ccv = ccv;
+        this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
         this.client = client;
@@ -71,12 +71,12 @@ public class Card {
         this.number = number;
     }
 
-    public String getCcv() {
-        return ccv;
+    public String getCvv() {
+        return cvv;
     }
 
-    public void setCcv(String ccv) {
-        this.ccv = ccv;
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 
     public LocalDateTime getFromDate() {
