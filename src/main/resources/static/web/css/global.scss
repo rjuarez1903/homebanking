@@ -1,0 +1,46 @@
+body {
+    background-color: #1F2023;
+    font-family: 'Overpass', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li, p, a {
+    font-size: 1.25rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-color-hover);
+}
+
+i {
+    font-size: 1.25rem;
+    color: #FFF;
+}
+
+svg {
+    width: 100%;
+}
+
+.hide-mobile {
+    display: none;
+}
+
+.toggle-menu {
+    transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+    .hide-tablet {
+        display: none;
+    }
+}
