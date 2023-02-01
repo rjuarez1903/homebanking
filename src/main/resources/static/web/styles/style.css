@@ -387,13 +387,14 @@ ion-icon {
 }
 
 .card__plast:after {
-    content: "www.lightbank-plast.com";
+    content: "https://mindhubweb.com/";
     position: absolute;
     transform: rotate(270deg) translateY(-50%);
     text-align: center;
     width: 15px;
     white-space: nowrap;
     bottom: 30%;
+    left: 0.3rem;
     font-size: 6px;
 }
 
