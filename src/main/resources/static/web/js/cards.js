@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            client: {},
             cards: []
         }
     },
@@ -12,12 +13,19 @@ createApp({
     methods: {
         loadData() {
             axios("/api/clients/1")
-                .then(response => this.cards = response.data.cards)
+                .then(response => {
+                    this.client = response.data
+                    this.cards  = response.data.cards
+                })
                 .catch(error => console.log(error))
         },
+        toggleMenu(e) {
+            const menu = document.querySelector('aside')
+            e.preventDefault()
+            menu.classList.toggle('toggle-menu')
+        },
         formatCardNumber(number) {
-            return number.match(/.{1,4}/g).join(" ")
-            
+            return number.match(/.{1,4}/g)
         }, 
         getStringDate(date) {
             const year = new Date(date).getFullYear().toString().slice(2)
