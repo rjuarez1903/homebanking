@@ -45,6 +45,19 @@ svg {
   transform: translateX(0);
 }
 
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--colorFooter);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+}
+
 @media (min-width: 768px) {
   .hide-tablet {
     display: none;
@@ -60,9 +73,9 @@ svg {
 }
 
 /*
-   ******
-   HEADER
-   ******
+    ******
+    HEADER
+    ******
 */
 header {
   background-color: #1F2023;
@@ -74,9 +87,9 @@ header {
 }
 
 /*
-   **********
-   MOBILE NAV
-   ********** 
+    **********
+    MOBILE NAV
+    **********
 */
 aside {
   position: fixed;
@@ -98,6 +111,7 @@ aside img {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  margin-top: 1rem;
 }
 aside ul {
   margin-top: 3rem;
@@ -110,6 +124,9 @@ aside ul {
   .signout {
     background-color: var(--secondary-color);
     border: 1px solid var(--border-color);
+    display: block;
+  }
+  .user {
     display: block;
   }
   aside {
@@ -158,9 +175,9 @@ aside ul {
   }
 }
 /*
-   ********
-   ACCOUNTS
-   ********
+    ********
+    ACCOUNTS
+    ********
 */
 .account {
   border: 1px solid var(--border-color);
@@ -170,6 +187,70 @@ aside ul {
 
 .account-name {
   background-color: var(--primary-color);
+}
+
+/*
+    ******************
+    TRANSACTIONS TABLE
+    ******************
+*/
+.content-table {
+  border-collapse: collapse;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+.content-table thead tr {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid var(--);
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #F5F5F5;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+  background-color: #FFFFFF;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #1F2023;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=main.css.map */

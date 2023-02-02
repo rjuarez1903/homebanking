@@ -13,11 +13,11 @@ createApp({
     },
     methods: {
         loadData() {
+            const urlParams = new URLSearchParams(window.location.search)
+            const id =  urlParams.get('id')
             axios('/api/clients/1')
                 .then(response => this.client = response.data)
                 .catch(error => console.log(error))
-            const urlParams = new URLSearchParams(window.location.search)
-            const id =  urlParams.get('id')
             axios(`/api/accounts/${id}`)
                 .then(response => this.account = response.data)
                 .then(() => this.transactions = this.account.transactions)

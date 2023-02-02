@@ -45,6 +45,19 @@ svg {
     transform: translateX(0);
 }
 
+body::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--colorFooter);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
 @media (min-width: 768px) {
     .hide-tablet {
         display: none;

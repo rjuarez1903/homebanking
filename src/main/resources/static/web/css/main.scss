@@ -43,6 +43,7 @@ aside {
         width: 30px;
         height: 30px;
         cursor: pointer;
+        margin-top: 1rem;
     }
 
     ul {
@@ -58,6 +59,10 @@ aside {
     .signout {
         background-color: var(--secondary-color);
         border: 1px solid var(--border-color);
+        display: block;
+    }
+
+    .user {
         display: block;
     }
 
@@ -129,24 +134,23 @@ aside {
 .account-name {
     background-color: var(--primary-color);
 }
+
 /*
-    *****
-    TABLE
-    *****
+    ******************
+    TRANSACTIONS TABLE
+    ******************
 */
 
 .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
+    font-size: 1rem;
+    width: 100%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .content-table thead tr {
-    background-color: #009879;
+    background-color: var(--primary-color);
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -158,18 +162,40 @@ aside {
 }
 
 .content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid var(--);
 }
 
 .content-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+  background-color: #F5F5F5;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+    background-color: #FFFFFF;
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .content-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #1F2023;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
 }
