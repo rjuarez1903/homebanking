@@ -12,9 +12,7 @@ createApp({
     methods: {
         loadData() {
             axios('/api/clients/1')
-                .then(response => {
-                    this.client = response.data
-                })
+                .then(response => this.client = response.data)
                 .catch(error => console.log(error))
         },
         toggleMenu(e) {

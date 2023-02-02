@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/mh-logo.png" type="image/png">
     <link rel="stylesheet" href="css/main.css">
     <title>Accounts</title>
 </head>
@@ -38,7 +39,7 @@
             </div>
         </header>
 
-        <div class="container">
+        <div class="container my-4">
             <div class="row" >
                 <aside class="col-5 col-md-12 col-lg-2 py-2 px-4 p-lg-0 m-lg-0">
                     <img src="./assets/mobile-exit.svg" alt="Exit mobile nav" class="exit hide-tablet rounded-2" @click="toggleMenu">
@@ -65,7 +66,7 @@
                 </aside>
 
                 <main class="col-12 col-md-12 col-lg-10">
-                    <div class="container" v-if="client">
+                    <div class="container" v-if="client.accounts">
                         <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
                             <div class="col-12 col-md-3 text-center account-name d-flex align-items-center justify-content-center rounded-2">
                                 <h3 class="fw-bold mb-0 py-4">{{ account.number }}</h3>
