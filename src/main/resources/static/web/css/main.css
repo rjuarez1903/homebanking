@@ -136,14 +136,6 @@ input:focus {
   color: white;
 }
 
-::-moz-placeholder {
-  color: white;
-}
-
-:-ms-input-placeholder {
-  color: white;
-}
-
 ::placeholder {
   color: white;
 }
@@ -180,39 +172,26 @@ input:focus {
 @media (min-width: 576px) {
   #welcome {
     font-size: 6rem !important;
-    color: #F5F5F5 !important;
-    line-height: 0.9;
-    text-align: center;
   }
   .sub-heading {
     font-size: 2.5rem;
-    color: var(--primary-color);
-    text-align: center;
   }
 }
 @media (min-width: 768px) {
   #welcome {
     font-size: 6rem !important;
-    color: #F5F5F5 !important;
-    line-height: 0.9;
-    text-align: center;
   }
   .sub-heading {
     font-size: 2rem;
-    color: var(--primary-color);
-    text-align: center;
   }
 }
 @media (min-width: 991px) {
   #welcome {
     font-size: 8rem !important;
-    color: #F5F5F5 !important;
-    line-height: 0.9;
     text-align: left;
   }
   .sub-heading {
     font-size: 3rem;
-    color: var(--primary-color);
     text-align: left;
   }
 }
@@ -310,7 +289,6 @@ aside ul {
     padding: 0 !important;
   }
   aside nav {
-    position: -webkit-sticky;
     position: sticky;
   }
   aside nav ul {
@@ -676,4 +654,6 @@ aside ul {
   50% {
     transform: rotateY(180deg);
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

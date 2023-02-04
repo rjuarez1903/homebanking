@@ -103,44 +103,30 @@ input:focus {
 @media (min-width: 576px) {
     #welcome {
         font-size: 6rem !important;
-        color: #F5F5F5 !important;
-        line-height: 0.90;
-        text-align: center;
     }
     
     .sub-heading {
         font-size: 2.5rem;
-        color: var(--primary-color);
-        text-align: center;
     }
 }
 
 @media (min-width: 768px) {
     #welcome {
-        font-size: 6rem !important;
-        color: #F5F5F5 !important;
-        line-height: 0.90;
-        text-align: center;
+        font-size: 6rem !important;        
     }
     
     .sub-heading {
-        font-size: 2rem;
-        color: var(--primary-color);
-        text-align: center;
-    }
+        font-size: 2rem;    }
 }
 
 @media (min-width: 991px) {
     #welcome {
         font-size: 8rem !important;
-        color: #F5F5F5 !important;
-        line-height: 0.90;
         text-align: left;
     }
     
     .sub-heading {
         font-size: 3rem;
-        color: var(--primary-color);
         text-align: left;
     }
 }
