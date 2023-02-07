@@ -95,6 +95,10 @@ body::-webkit-scrollbar-thumb {
   text-align: center;
 }
 
+.ti-cursor {
+  font-size: 1.5rem !important;
+}
+
 .form {
   max-width: 26rem;
   background-color: rgba(41, 39, 39, 0.3);
@@ -175,6 +179,9 @@ input:focus {
   .sub-heading {
     font-size: 2.5rem;
   }
+  .ti-cursor {
+    font-size: 2.5rem !important;
+  }
 }
 @media (min-width: 768px) {
   #welcome {
@@ -182,6 +189,9 @@ input:focus {
   }
   .sub-heading {
     font-size: 2rem;
+  }
+  .ti-cursor {
+    font-size: 2rem !important;
   }
 }
 @media (min-width: 991px) {
@@ -192,6 +202,9 @@ input:focus {
   .sub-heading {
     font-size: 3rem;
     text-align: left;
+  }
+  .ti-cursor {
+    font-size: 3rem !important;
   }
 }
 /*

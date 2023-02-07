@@ -18,7 +18,6 @@ createApp({
         }
     },
     created() {
-
     },
     methods: {
         toggleLogin() {
@@ -27,7 +26,7 @@ createApp({
         logUser() {
             axios.post('/api/login',
                 {
-                    email: this.email,
+                    email:    this.email,
                     password: this.password
                 },
                 {
@@ -72,11 +71,33 @@ createApp({
                 console.log('Nope')
             }
         },
+        typingEffect() {
+            document.addEventListener("DOMContentLoaded", function () {
+                new TypeIt("#typed", {
+                    loop: true,
+                    speed: 300,
+                    startDelay: 900,
+                })
+                    .type("life")
+                    .pause(1000)
+                    .delete()
+                    .type("finances")
+                    .pause(1000)
+                    .delete()
+                    .type("business")
+                    .pause(1000)
+                    .delete()
+                    .go();
+            });
+        }
     },
     validations() {
         return {
             email: { required, email },
             password: { required }
         }
+    },
+    mounted() {
+        this.typingEffect()
     }
 }).mount('#app')
