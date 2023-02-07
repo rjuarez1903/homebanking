@@ -11,7 +11,7 @@ createApp({
     },
     methods: {
         loadData() {
-            axios('/api/clients/1')
+            axios('/api/clients/current')
                 .then(response => this.client = response.data)
                 .catch(error => console.log(error))
         },
@@ -22,6 +22,11 @@ createApp({
         },
         getStringDate(date) {
             return new Date(date).toLocaleDateString()
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 

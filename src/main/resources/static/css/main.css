@@ -62,7 +62,7 @@ body::-webkit-scrollbar-thumb {
   .hide-tablet {
     display: none;
   }
-}
+} 
 :root {
   --primary-color: #5E85F8;
   --secondary-color: #292B31;

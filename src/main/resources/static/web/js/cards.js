@@ -12,7 +12,7 @@ createApp({
     },
     methods: {
         loadData() {
-            axios("/api/clients/1")
+            axios("/api/clients/current")
                 .then(response => {
                     this.client = response.data
                     this.cards  = response.data.cards
@@ -36,6 +36,11 @@ createApp({
                 month = month.toString()
             }
             return `${month}/${year}`
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 }).mount('#app')

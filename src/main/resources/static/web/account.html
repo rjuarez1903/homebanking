@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/mh-logo.png" type="image/png">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <title>Accounts</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
                         <i class="fa-solid fa-user"></i>
                         <p class="mb-0 fw-bold user hide-mobile" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
                     </div>
-                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2">Sign out</a>
+                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
                 </nav>
                 <a href="#" class="menu hide-tablet" @click="toggleMenu">
                     <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="42">

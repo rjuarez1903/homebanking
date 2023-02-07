@@ -15,7 +15,7 @@ createApp({
         loadData() {
             const urlParams = new URLSearchParams(window.location.search)
             const id =  urlParams.get('id')
-            axios('/api/clients/1')
+            axios('/api/clients/current')
                 .then(response => this.client = response.data)
                 .catch(error => console.log(error))
             axios(`/api/accounts/${id}`)
@@ -34,6 +34,11 @@ createApp({
         },
         sortByDate(transactions) {
             transactions.sort((a,b) => new Date(b.date) - new Date(a.date))
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 
