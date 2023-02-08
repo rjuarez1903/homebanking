@@ -189,6 +189,29 @@ aside ul {
   background-color: var(--primary-color);
 }
 
+.account-name {
+  background-color: var(--border-color);
+}
+
+.btn-transactions {
+  color: #FFFFFF;
+  background-color: var(--primary-color);
+}
+
+.btn-transactions:hover {
+  border: 1px solid var(--primary-color);
+}
+
+.list-group-item {
+  background-color: var(--inner-panel-color) !important;
+  color: #FFFFFF;
+  padding: 0 0.7rem !important;
+}
+
+.loan-name {
+  background-color: var(--border-color);
+}
+
 /*
     ******************
     TRANSACTIONS TABLE
