@@ -34,10 +34,10 @@ public class HomebankingApplication {
 			Account account3 = new Account("VIN003", LocalDateTime.now().plusDays(1), 8500);
 
 			Transaction transaction1 = new Transaction(CREDIT, 7510.25, "Transacción de prueba", LocalDateTime.now().plusMinutes(75));
-			Transaction transaction2 = new Transaction(DEBIT, 1500.99, "Transacción de prueba 2", LocalDateTime.now().plusMinutes(30));
-			Transaction transaction3 = new Transaction(DEBIT, 1580.69, "Transacción de prueba 3", LocalDateTime.now().plusDays(20));
+			Transaction transaction2 = new Transaction(DEBIT, -1500.99, "Transacción de prueba 2", LocalDateTime.now().plusMinutes(30));
+			Transaction transaction3 = new Transaction(DEBIT, -1580.69, "Transacción de prueba 3", LocalDateTime.now().plusDays(20));
 			Transaction transaction4 = new Transaction(CREDIT, 2580.69, "Transacción de prueba 4", LocalDateTime.now());
-			Transaction transaction5 = new Transaction(DEBIT, 4580.69, "Transacción de prueba 5", LocalDateTime.now().plusDays(10));
+			Transaction transaction5 = new Transaction(DEBIT, -4580.69, "Transacción de prueba 5", LocalDateTime.now().plusDays(10));
 
 			client1.addAccount(account1);
 			client1.addAccount(account2);

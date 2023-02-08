@@ -34,6 +34,13 @@ createApp({
         },
         sortByDate(transactions) {
             transactions.sort((a,b) => new Date(b.date) - new Date(a.date))
+        },
+        getTransactionIcon(transaction) {
+            if (transaction === "CREDIT") {
+                return "up text-success fw-bold"
+            } else {
+                return "down text-danger fw-bold"
+            }
         }
     }
 

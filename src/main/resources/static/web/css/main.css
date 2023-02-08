@@ -186,7 +186,16 @@ aside ul {
 }
 
 .account-name {
+  background-color: var(--border-color);
+}
+
+.btn-transactions {
+  color: #FFFFFF;
   background-color: var(--primary-color);
+}
+
+.btn-transactions:hover {
+  border: 1px solid var(--primary-color);
 }
 
 /*
