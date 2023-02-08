@@ -40,8 +40,8 @@ createApp({
         postClient() {
             axios.post('/rest/clients', {
                 firstName: this.firstName,
-                lastName:  this.lastName,
-                email:     this.email
+                lastName: this.lastName,
+                email:    this.email
             })
                 .then(() => this.loadData()
                 )
@@ -52,16 +52,16 @@ createApp({
             axios.get(`/rest/clients/${id}`)
                 .then(response => {
                     this.firstNameEdit = response.data.firstName
-                    this.lastNameEdit  = response.data.lastName
-                    this.emailEdit     = response.data.email
+                    this.lastNameEdit = response.data.lastName
+                    this.emailEdit    = response.data.email
                 })
         },
         editClient(id) {
             if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
                 axios.put(`/rest/clients/${id}`, {
                     firstName: this.firstNameEdit,
-                    lastName:  this.lastNameEdit,
-                    email:     this.emailEdit,
+                    lastName: this.lastNameEdit,
+                    email:    this.emailEdit,
                 })
                     .then(() => this.loadData())
                     .catch(error => console.log(error))
