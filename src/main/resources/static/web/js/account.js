@@ -19,9 +19,11 @@ createApp({
                 .then(response => this.client = response.data)
                 .catch(error => console.log(error))
             axios(`/api/accounts/${id}`)
-                .then(response => this.account = response.data)
-                .then(() => this.transactions = this.account.transactions)
-                .then(() => this.sortByDate(this.transactions))
+                .then(response => {
+                    this.account = response.data
+                    this.transactions = this.account.transactions
+                    this.sortByDate(this.transactions)
+                })
                 .catch(error => console.log(error))
         },
         toggleMenu(e) {
