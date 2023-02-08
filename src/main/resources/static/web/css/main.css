@@ -198,6 +198,16 @@ aside ul {
   border: 1px solid var(--primary-color);
 }
 
+.list-group-item {
+  background-color: var(--inner-panel-color) !important;
+  color: #FFFFFF;
+  padding: 0 0.7rem !important;
+}
+
+.loan-name {
+  background-color: var(--primary-color);
+}
+
 /*
     ******************
     TRANSACTIONS TABLE
