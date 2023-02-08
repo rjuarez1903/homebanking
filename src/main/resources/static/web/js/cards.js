@@ -3,8 +3,10 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client: {},
-            cards: []
+            client:      {},
+            cards:       [],
+            creditCards: [],
+            debitCards:  []
         }
     },
     created() {
@@ -16,6 +18,9 @@ createApp({
                 .then(response => {
                     this.client = response.data
                     this.cards  = response.data.cards
+                    this.creditCards = this.filterCards(this.cards, "CREDIT")
+                    this.debitCards = this.filterCards(this.cards, "DEBIT")
+
                 })
                 .catch(error => console.log(error))
         },
@@ -36,6 +41,9 @@ createApp({
                 month = month.toString()
             }
             return `${month}/${year}`
+        },
+        filterCards(cards, filter) {
+            return this.cards.filter(card => card.type == filter)
         }
     }
 }).mount('#app')
