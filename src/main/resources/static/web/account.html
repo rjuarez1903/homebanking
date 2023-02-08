@@ -81,12 +81,14 @@
                             </thead>
                             <tbody>
                                 <tr v-for="transaction of transactions"
-                                  :index="transaction.id"
-                                  :class="transaction.type == 'DEBIT'? 'text-danger' : 'text-success'"
+                                    :index="transaction.id"
                                 >
                                     <td>{{ transaction.id }}</td>
-                                    <td>{{ transaction.type }}</td>
-                                    <td>{{ transaction.amount }}</td>
+                                    <td :class="transaction.type == 'DEBIT'? 'text-danger' : 'text-success'" width="120">
+                                        {{ transaction.type }}
+                                        <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
+                                    </td>
+                                    <td>${{ transaction.amount }}</td>
                                     <td>{{ transaction.description }}</td>
                                     <td>{{ getDate(transaction.date) }}</td>
                                 </tr>
