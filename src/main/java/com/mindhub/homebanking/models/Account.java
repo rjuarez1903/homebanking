@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ public class Account {
     private Client client;
 
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
-    Set<Transaction> transactions = new HashSet<>();
+    private Set<Transaction> transactions = new HashSet<>();
 
     public Account() { }
 
@@ -59,7 +58,6 @@ public class Account {
         this.balance = balance;
     }
 
-//    @JsonIgnore
     public Client getClient() {
         return client;
     }

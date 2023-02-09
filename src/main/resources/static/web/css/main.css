@@ -135,7 +135,7 @@ aside ul {
     width: auto;
     background-color: var(--inner-panel-color);
     border-radius: 0.375rem;
-    padding: 1.5rem;
+    padding: 0;
     margin-top: 2rem;
     margin-bottom: 1rem;
     transform: unset;
@@ -150,6 +150,9 @@ aside ul {
   }
   aside nav ul li i {
     display: block !important;
+  }
+  .active-custom {
+    border-bottom: 4px solid #F5F5F5;
   }
 }
 @media (min-width: 992px) {

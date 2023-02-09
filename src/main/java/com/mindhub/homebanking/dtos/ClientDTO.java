@@ -14,8 +14,8 @@ public class ClientDTO {
     private String firstName;
     private String lastName;
     private String email;
-    Set<AccountDTO> accounts = new HashSet<>();
-    Set<ClientLoanDTO> loans = new HashSet<>();
+    private Set<AccountDTO> accounts = new HashSet<>();
+    private Set<ClientLoanDTO> loans = new HashSet<>();
 
     public ClientDTO(Client client) {
         this.id = client.getId();

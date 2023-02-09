@@ -19,9 +19,9 @@ public class Loan {
     private double maxAmount;
     @ElementCollection
     @Column(name="payments")
-    List<Integer> payments = new ArrayList<>();
+    private List<Integer> payments = new ArrayList<>();
     @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
-    Set<ClientLoan> clientLoans;
+    private Set<ClientLoan> clientLoans;
 
     public Loan() { }
 
@@ -29,6 +29,11 @@ public class Loan {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+    }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
     }
 
     public long getId() {
@@ -39,33 +44,30 @@ public class Loan {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getMaxAmount() {
         return maxAmount;
-    }
-
-    public void setMaxAmount(double maxAmount) {
-        this.maxAmount = maxAmount;
-    }
-
-    public List<Integer> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(List<Integer> payments) {
-        this.payments = payments;
     }
 
     public List<Client> getClients() {
         return clientLoans.stream().map(clientLoan -> clientLoan.getClient()).collect(toList());
     }
 
-    public void addClientLoan(ClientLoan clientLoan) {
-        clientLoan.setLoan(this);
-        clientLoans.add(clientLoan);
+    public List<Integer> getPayments() {
+        return payments;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMaxAmount(double maxAmount) {
+        this.maxAmount = maxAmount;
+    }
+
+    public void setPayments(List<Integer> payments) {
+        this.payments = payments;
+    }
+
+
 
 }
