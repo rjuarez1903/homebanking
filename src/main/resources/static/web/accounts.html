@@ -68,7 +68,7 @@
 
             <main class="col-12 col-md-12 col-lg-10">
                 <div class="container" v-if="client.accounts">
-                    <h2 class="text-white text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
+                    <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
                     <div class="mt-5">
                     <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
                         <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
@@ -87,7 +87,7 @@
                                         <p class="text-uppercase mb-0">Date of creation</p>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center">
-                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-5 w-100 p-3">
+                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
                                             See transactions
                                         </a>
                                     </div>
@@ -98,7 +98,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-center text-white mt-5">Loans</h3>
+                <h3 class="text-center mt-5">Loans</h3>
                 <ul class="list-group loans-list" v-if="client.loans">
                     <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
                         <div class="row text-center">
