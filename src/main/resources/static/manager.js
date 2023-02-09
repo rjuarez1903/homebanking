@@ -66,11 +66,6 @@ createApp({
                     .then(() => this.loadData())
                     .catch(error => console.log(error))
             }
-        },
-        // deleteClient(id) {
-        //     axios.delete(`/rest/clients/${id}`)
-        //         .then(() => this.loadData())
-        //         .catch(error => console.log(error))
-        // }
+        }
     }
 }).mount('#app')
