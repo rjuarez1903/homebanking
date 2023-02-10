@@ -49,6 +49,11 @@ aside {
     }
 }
 
+.signout-manager {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+}
+
 .active-custom {
     color: lightgrey !important;
 }
@@ -61,6 +66,10 @@ aside {
     .signout {
         background-color: var(--secondary-color);
         border: 1px solid var(--border-color);
+        display: block;
+    }
+
+    .mindhub-bros {
         display: block;
     }
 
@@ -138,6 +147,29 @@ aside {
 
 }
 
+/*  *******
+    MANAGER
+    *******
+ */
+
+pre::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+pre::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
 /*
     ********
     ACCOUNTS
@@ -154,11 +186,13 @@ aside {
     background-color: var(--border-color);
 }
 
+.btn-add-client,
 .btn-transactions {
     color: #FFF;
     background-color: var(--primary-color);
 }
 
+.btn-add-client:hover,
 .btn-transactions:hover {
     border: 1px solid var(--primary-color);
     color: #C4161B;

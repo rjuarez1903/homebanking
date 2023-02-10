@@ -29,7 +29,6 @@ createApp({
                 .catch(error => console.log(error))
         },
         getClientId(client) {
-            console.log(client._links.client.href.split("/").slice(-1).toString())
             return client._links.client.href.split("/").slice(-1).toString()
         },
         addClient() {
@@ -56,21 +55,21 @@ createApp({
                     this.emailEdit     = response.data.email
                 })
         },
-        editClient(id) {
-            if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
-                axios.put(`/rest/clients/${id}`, {
-                    firstName: this.firstNameEdit,
-                    lastName:  this.lastNameEdit,
-                    email:     this.emailEdit,
-                })
-                    .then(() => this.loadData())
-                    .catch(error => console.log(error))
-            }
-        },
-        deleteClient(id) {
-            axios.delete(`/rest/clients/${id}`)
-                .then(() => this.loadData())
-                .catch(error => console.log(error))
-        }
+        // editClient(id) {
+        //     if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
+        //         axios.put(`/rest/clients/${id}`, {
+        //             firstName: this.firstNameEdit,
+        //             lastName:  this.lastNameEdit,
+        //             email:     this.emailEdit,
+        //         })
+        //             .then(() => this.loadData())
+        //             .catch(error => console.log(error))
+        //     }
+        // },
+        // deleteClient(id) {
+        //     axios.delete(`/rest/clients/${id}`)
+        //         .then(() => this.loadData())
+        //         .catch(error => console.log(error))
+        // }
     }
 }).mount('#app')
