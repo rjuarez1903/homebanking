@@ -18,7 +18,6 @@ public class Account {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
-
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
@@ -30,6 +29,11 @@ public class Account {
         this.balance = balance;
     }
 
+    public void addTransaction(Transaction transaction) {
+        transaction.setAccount(this);
+        transactions.add(transaction);
+    }
+
     public long getId() {
         return id;
     }
@@ -38,40 +42,39 @@ public class Account {
         return number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public LocalDateTime getCreationDate() {
         return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public Client getClient() {
         return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public Set<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void addTransaction(Transaction transaction) {
-        transaction.setAccount(this);
-        transactions.add(transaction);
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
