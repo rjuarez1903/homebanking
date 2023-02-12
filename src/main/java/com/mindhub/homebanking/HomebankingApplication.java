@@ -55,13 +55,11 @@ public class HomebankingApplication {
 			ClientLoan clientLoan3 = new ClientLoan(100_000.0, (byte) 24, client2, loan2);
 			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36, client2, loan3);
 
-			Card card1 = new Card(CardType.DEBIT, CardColor.GOLD, "1111222233334444", "123", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card2 = new Card(CardType.CREDIT, CardColor.TITANIUM, "4444333322221111", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card2a = new Card(CardType.CREDIT, CardColor.TITANIUM, "4444333322221111", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card2b = new Card(CardType.CREDIT, CardColor.TITANIUM, "4444333322221111", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card2c = new Card(CardType.CREDIT, CardColor.TITANIUM, "4444333322221111", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card2d = new Card(CardType.CREDIT, CardColor.TITANIUM, "4444333322221111", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
-			Card card3 = new Card(CardType.CREDIT, CardColor.SILVER, "5555666677778888", "567", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client2);
+			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+			Card card2 = new Card(CardType.CREDIT, CardColor.SILVER, "4444333322221111", "456", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+			Card card3 = new Card(CardType.CREDIT, CardColor.TITANIUM, "3232414154546565", "789", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+			Card card4 = new Card(CardType.DEBIT, CardColor.GOLD, "2020989810102929", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+			Card card5 = new Card(CardType.CREDIT, CardColor.SILVER, "5555666677778888", "567", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client2);
 
 			client1.addAccount(account1);
 			client1.addAccount(account2);
@@ -97,11 +95,9 @@ public class HomebankingApplication {
 
 			cardRepository.save(card1);
 			cardRepository.save(card2);
-			cardRepository.save(card2a);
-			cardRepository.save(card2b);
-			cardRepository.save(card2c);
-			cardRepository.save(card2d);
 			cardRepository.save(card3);
+			cardRepository.save(card4);
+			cardRepository.save(card5);
 		};
 	}
 
