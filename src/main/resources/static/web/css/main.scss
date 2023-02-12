@@ -332,9 +332,23 @@ pre::-webkit-scrollbar-thumb {
     position: absolute;
     right: 0;
     height: inherit;
-    background-image: linear-gradient(to bottom, #ff6767, #ff4545);
+    //background-image: linear-gradient(to bottom, #ff6767, #ff4545);
     box-shadow: 0 0 10px 0px rgba(0,0,0,0.5);
 }
+
+.titanium {
+    background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+}
+
+.gold {
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+
+.silver {
+    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+}
+
 
 .strip-bottom {
     width: 200px;
