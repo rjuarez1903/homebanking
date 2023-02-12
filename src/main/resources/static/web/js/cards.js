@@ -18,6 +18,8 @@ createApp({
                 .then(response => {
                     this.client = response.data
                     this.cards  = response.data.cards
+                    console.log(this.client)
+                    console.log(this.cards)
                     this.creditCards = this.filterCards(this.cards, "CREDIT")
                     this.debitCards = this.filterCards(this.cards, "DEBIT")
 
