@@ -69,10 +69,10 @@
                         <table class="content-table mt-4">
                             <thead>
                             <tr>
-                                <th scope="col">Id</th>
+                                <th scope="col" class="hide-mobile transactions-id">Id</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Description</th>
+                                <th scope="col" class="hide-mobile transactions-description">Description</th>
                                 <th scope="col">Date</th>
                             </tr>
                             </thead>
@@ -80,13 +80,13 @@
                             <tr v-for="transaction of transactions"
                                 :index="transaction.id"
                             >
-                                <td>{{ transaction.id }}</td>
+                                <td class="hide-mobile transactions-id">{{ transaction.id }}</td>
                                 <td :class="transaction.type == 'DEBIT'? 'text-danger' : 'text-success'" width="120">
                                     {{ transaction.type }}
                                     <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
                                 </td>
                                 <td>${{ transaction.amount }}</td>
-                                <td>{{ transaction.description }}</td>
+                                <td class="hide-mobile transactions-description">{{ transaction.description }}</td>
                                 <td>{{ getDate(transaction.date) }}</td>
                             </tr>
                             </tbody>
