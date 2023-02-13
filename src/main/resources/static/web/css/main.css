@@ -257,6 +257,10 @@ pre::-webkit-scrollbar-thumb {
     TRANSACTIONS TABLE
     ******************
 */
+.page-link {
+  color: var(--primary-color);
+}
+
 .content-table {
   border-collapse: collapse;
   font-size: 1rem;
@@ -317,8 +321,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 @media (min-width: 768px) {
-  .transactions-description,
-  .transactions-id {
+  .transactions-data {
     display: block;
   }
 }
