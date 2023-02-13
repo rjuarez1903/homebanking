@@ -185,13 +185,15 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .btn-add-client,
-.btn-transactions {
+.btn-transactions,
+.btn-accounts {
     color: #FFF;
     background-color: var(--primary-color);
 }
 
 .btn-add-client:hover,
-.btn-transactions:hover {
+.btn-transactions:hover,
+.btn-accounts {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
 }
@@ -212,9 +214,9 @@ pre::-webkit-scrollbar-thumb {
     ******************
 */
 
-.page-link {
-    color: var(--primary-color);
-}
+//.page-link {
+//    color: var(--primary-color);
+//}
 
 .content-table {
     border-collapse: collapse;
