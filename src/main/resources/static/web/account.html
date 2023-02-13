@@ -63,7 +63,19 @@
 
             <main class="col-12 col-md-12 col-lg-10">
                 <section class="container">
-                    <h2 class="fs-5">Account <span class="fw-bold">{{ account.number }}</span> / Transactions</h2>
+                    <div class="d-flex justify-content-between align-content-center gap-4 flex-wrap">
+                        <h2 class="fs-5">Account <span class="fw-bold">{{ account.number }}</span> / Transactions</h2>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Accounts
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li v-for="account of client.accounts">
+                                    <a class="dropdown-item" :href=`./account.html?id=${account.id}`>{{ account.number }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="table-responsive" v-if="transactions.length > 0">
                         <table class="content-table mt-4">
                             <thead>
