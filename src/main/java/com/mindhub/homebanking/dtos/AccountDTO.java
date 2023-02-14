@@ -14,7 +14,6 @@ public class AccountDTO {
     private String number;
     private LocalDateTime creationDate;
     private double balance;
-//    private ClientDTO client;
     Set<TransactionDTO> transactions = new HashSet<>();
 
 
@@ -41,7 +40,6 @@ public class AccountDTO {
     public double getBalance() {
         return balance;
     }
-
 
     public Set<TransactionDTO> getTransactions() {
         return transactions;
