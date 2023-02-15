@@ -16,13 +16,10 @@ createApp({
         loadData() {
             axios("/api/clients/current")
                 .then(response => {
-                    this.client = response.data
-                    this.cards  = response.data.cards
-                    console.log(this.client)
-                    console.log(this.cards)
+                    this.client      = response.data
+                    this.cards       = response.data.cards
                     this.creditCards = this.filterCards(this.cards, "CREDIT")
-                    this.debitCards = this.filterCards(this.cards, "DEBIT")
-
+                    this.debitCards  = this.filterCards(this.cards, "DEBIT")
                 })
                 .catch(error => console.log(error))
         },
@@ -36,7 +33,7 @@ createApp({
         }, 
         getStringDate(date) {
             const year = new Date(date).getFullYear().toString().slice(2)
-            let month = new Date(date).getMonth() + 1
+            let month  = new Date(date).getMonth() + 1
             if (month < 10) {
                 month = month.toString().padStart(2, '0');
             } else {
@@ -49,7 +46,6 @@ createApp({
         },
         signOutUser() {
             axios.post('/api/logout')
-                .then(response => console.log('Signed out'))
                 .then(response => location.replace("/index.html"))
         }
     }
