@@ -55,6 +55,9 @@
                             <input type="password" id="newClientPassword" placeholder="Password" name="newClientPassword" v-model="newClientPassword" class="mb-1">
                             <small class="text-warning" v-if="v$.newClientPassword.$error">{{ v$.newClientPassword.$errors[0].$message }}</small>
                         </div>
+                        <div class="text-center mb-4">
+                            <small class="text-warning" v-if="emailInUse">Email already in use.</small>
+                        </div>
                         <div class="formGroup d-flex justify-content-center">
                             <button class="btn2 rounded-2" @click="submitSignUpForm">Register</button>
                         </div>

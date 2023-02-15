@@ -15,6 +15,7 @@ createApp({
             newClientEmail:       "",
             newClientPassword:    "",
             invalidCredentials:   false,
+            emailInUse:           false
         }
     },
     created() {
@@ -58,6 +59,12 @@ createApp({
                     this.email    = this.newClientEmail
                     this.password = this.newClientPassword
                     this.logUser()
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                    if (error.response.data == "Email already in use") {
+                        this.emailInUse = true
+                    }
                 })
         },
         submitLoginForm(e) {
