@@ -30,7 +30,7 @@ public class Client {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.email = password;
+        this.password = password;
     }
 
     public void addAccount(Account account) {
