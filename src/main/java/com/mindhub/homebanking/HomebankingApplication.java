@@ -15,6 +15,8 @@ import static com.mindhub.homebanking.models.TransactionType.DEBIT;
 
 @SpringBootApplication
 public class HomebankingApplication {
+
+
 	private final CardRepository cardRepository;
 
 	public HomebankingApplication(CardRepository cardRepository) {
@@ -33,8 +35,9 @@ public class HomebankingApplication {
 									  ClientLoanRepository clientLoanRepository,
 									  CardRepository cardRepository) {
 		return (args) -> {
-			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
-			Client client2 = new Client("Rodrigo", "Juarez", "lic.rodrigojuarez@gmail.com");
+			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("pass1234"));
+			Client client2 = new Client("Rodrigo", "Juarez", "lic.rodrigojuarez@gmail.com", passwordEncoder.encode("pass4321"));
+			Client client3 = new Client("Admin", "Admin", "admin@admin.com", passwordEncoder.encode("admin"));
 
 			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000);
 			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500);
