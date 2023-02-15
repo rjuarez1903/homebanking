@@ -79,27 +79,27 @@
                     <div class="table-responsive" v-if="transactions.length > 0">
                         <table class="content-table mt-4">
                             <thead>
-                            <tr>
-                                <th scope="col" class="hide-mobile transactions-data">Id</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col" class="hide-mobile transactions-data">Description</th>
-                                <th scope="col">Date</th>
-                            </tr>
+                                <tr class="text-end">
+                                    <th scope="col" class="hide-mobile transactions-data">Id</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col" class="hide-mobile transactions-data">Description</th>
+                                    <th scope="col">Date</th>
+                                </tr>
                             </thead>
-                            <tbody>
-                            <tr v-for="transaction of transactions"
-                                :index="transaction.id"
-                            >
-                                <td class="hide-mobile transactions-data">{{ transaction.id }}</td>
-                                <td :class="transaction.type == 'DEBIT'? 'text-warning' : 'text-green'" width="120">
-                                    {{ transaction.type }}
-                                    <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
-                                </td>
-                                <td>{{ transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</td>
-                                <td class="hide-mobile transactions-data">{{ transaction.description }}</td>
-                                <td>{{ getDate(transaction.date) }}</td>
-                            </tr>
+                            <tbody class="text-end">
+                                <tr v-for="transaction of transactions"
+                                    :index="transaction.id"
+                                >
+                                    <td class="hide-mobile transactions-data">{{ transaction.id }}</td>
+                                    <td :class="transaction.type == 'DEBIT'? 'text-warning' : 'text-green'" width="120">
+                                        {{ transaction.type }}
+                                        <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
+                                    </td>
+                                    <td>{{ transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</td>
+                                    <td class="hide-mobile transactions-data">{{ transaction.description }}</td>
+                                    <td>{{ getDate(transaction.date) }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
