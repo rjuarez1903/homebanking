@@ -55,6 +55,11 @@ createApp({
                     this.emailEdit     = response.data.email
                 })
         },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
+        }
         // editClient(id) {
         //     if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
         //         axios.put(`/rest/clients/${id}`, {

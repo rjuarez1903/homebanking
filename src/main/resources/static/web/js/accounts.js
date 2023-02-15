@@ -22,6 +22,11 @@ createApp({
         },
         getStringDate(date) {
             return new Date(date).toLocaleDateString()
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 

@@ -40,9 +40,13 @@ createApp({
         getTransactionIcon(transaction) {
             if (transaction === "CREDIT") {
                 return "up text-green fw-bold"
-            } else {
-                return "down text-warning fw-bold"
             }
+                return "down text-warning fw-bold"
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 

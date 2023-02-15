@@ -46,6 +46,11 @@ createApp({
         },
         filterCards(cards, filter) {
             return this.cards.filter(card => card.type == filter)
+        },
+        signOutUser() {
+            axios.post('/api/logout')
+                .then(response => console.log('Signed out'))
+                .then(response => location.replace("/index.html"))
         }
     }
 }).mount('#app')
