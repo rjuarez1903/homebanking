@@ -42,17 +42,14 @@ public class AccountController {
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(Authentication authentication) {
         Client client = clientRepository.findByEmail(authentication.getName());
-        System.out.println(client);
-//        if (client.getAccounts().size() < 3) {
-//            int randomNum = ThreadLocalRandom.current().nextInt(0, 99999999 + 1);
-//            System.out.println(randomNum);
-//            Account account =  new Account("VIN" + randomNum, LocalDateTime.now(), 0);
-//            client.addAccount(account);
-//            accountRepository.save(account);
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        } else {
-//            return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
-//        }
-        return new ResponseEntity<>("Working fine.", HttpStatus.OK);
+        if (client.getAccounts().size() < 3) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0, 99999999 + 1);
+            Account account =  new Account("VIN" + randomNum, LocalDateTime.now(), 0);
+            client.addAccount(account);
+            accountRepository.save(account);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
+        }
     }
 }

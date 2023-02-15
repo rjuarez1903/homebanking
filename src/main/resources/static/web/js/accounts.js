@@ -17,6 +17,9 @@ createApp({
                     this.client = response.data
                     this.loans  = this.client.loans
                     this.sortById(this.client.accounts)
+                    if (this.client.accounts.length === 0) {
+                        this.createAccount()
+                    }
                 })
                 .catch(error => console.log(error))
         },
@@ -34,6 +37,10 @@ createApp({
         signOutUser() {
             axios.post('/api/logout')
                 .then(response => location.replace("/index.html"))
+        },
+        createAccount() {
+            axios.post('/api/clients/current/accounts')
+                .then(() => this.loadData())
         }
     }
 

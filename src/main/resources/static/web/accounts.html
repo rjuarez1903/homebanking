@@ -65,32 +65,33 @@
                 <div class="container" v-if="client.accounts">
                     <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
                     <div class="mt-5">
-                    <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
-                        <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
-                            <h3 class="fw-bold mb-0">{{ account.number }}</h3>
-                            <p class="text-uppercase mb-0">Account</p>
-                        </div>
-                        <div class="col-12 col-md-9 p-3">
-                            <div class="container">
-                                <div class="row account-data g-4">
-                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
-                                        <p class="text-uppercase mb-0">Balance</p>
-                                    </div>
-                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
-                                        <p class="text-uppercase mb-0">Date of creation</p>
-                                    </div>
-                                    <div class="col-12 col-md-4 d-flex align-items-center">
-                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
-                                            See transactions
-                                        </a>
+                        <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
+                            <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
+                                <h3 class="fw-bold mb-0">{{ account.number }}</h3>
+                                <p class="text-uppercase mb-0">Account</p>
+                            </div>
+                            <div class="col-12 col-md-9 p-3">
+                                <div class="container">
+                                    <div class="row account-data g-4">
+                                        <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                            <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
+                                            <p class="text-uppercase mb-0">Balance</p>
+                                        </div>
+                                        <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                            <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
+                                            <p class="text-uppercase mb-0">Date of creation</p>
+                                        </div>
+                                        <div class="col-12 col-md-4 d-flex align-items-center">
+                                            <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
+                                                See transactions
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div>
+                    <button class="btn text-white text-end fs-1" @click="createAccount" v-if="client.accounts.length < 3">+</button>
                 </div>
 
                 <h2 class="text-center mt-5">Loans</h2>
