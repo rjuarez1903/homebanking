@@ -41,7 +41,7 @@ createApp({
             if (transaction === "CREDIT") {
                 return "up text-green fw-bold"
             } else {
-                return "down text-red fw-bold"
+                return "down text-warning fw-bold"
             }
         }
     }
