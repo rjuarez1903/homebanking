@@ -29,7 +29,6 @@ createApp({
         },
         signOutUser() {
             axios.post('/api/logout')
-                .then(response => console.log('Signed out'))
                 .then(response => location.replace("/index.html"))
         }
     }
