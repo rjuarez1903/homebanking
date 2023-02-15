@@ -20,8 +20,9 @@ createApp({
     },
     methods: {
         loadData() {
-            axios.get('/clients')
+            axios.get('/rest/clients')
                 .then(response => {
+
                     this.json    = response
                     this.clients = response.data._embedded.clients
                 })
@@ -36,10 +37,10 @@ createApp({
             }
         },
         postClient() {
-            axios.post('/clients', {
+            axios.post('/rest/clients', {
                 firstName: this.firstName,
-                lastName: this.lastName,
-                email:    this.email
+                lastName:  this.lastName,
+                email:     this.email
             })
                 .then(() => this.loadData()
                 )
@@ -47,28 +48,28 @@ createApp({
         },
         showClient(id) {
             this.clientDetail = this.clients.filter(client => this.getClientId(client) == id)[0]
-            axios.get(`/clients/${id}`)
+            axios.get(`/rest/clients/${id}`)
                 .then(response => {
                     this.firstNameEdit = response.data.firstName
-                    this.lastNameEdit = response.data.lastName
-                    this.emailEdit    = response.data.email
+                    this.lastNameEdit  = response.data.lastName
+                    this.emailEdit     = response.data.email
                 })
         },
-        editClient(id) {
-            if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
-                axios.put(`/clients/${id}`, {
-                    firstName: this.firstNameEdit,
-                    lastName: this.lastNameEdit,
-                    email:    this.emailEdit,
-                })
-                    .then(() => this.loadData())
-                    .catch(error => console.log(error))
-            }
-        },
-        deleteClient(id) {
-            axios.delete(`/clients/${id}`)
-                .then(() => this.loadData())
-                .catch(error => console.log(error))
-        }
+        // editClient(id) {
+        //     if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
+        //         axios.put(`/rest/clients/${id}`, {
+        //             firstName: this.firstNameEdit,
+        //             lastName:  this.lastNameEdit,
+        //             email:     this.emailEdit,
+        //         })
+        //             .then(() => this.loadData())
+        //             .catch(error => console.log(error))
+        //     }
+        // },
+        // deleteClient(id) {
+        //     axios.delete(`/rest/clients/${id}`)
+        //         .then(() => this.loadData())
+        //         .catch(error => console.log(error))
+        // }
     }
 }).mount('#app')

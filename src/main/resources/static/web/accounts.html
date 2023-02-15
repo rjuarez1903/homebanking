@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/2cd05a3c76.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/mh-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/main.css">
+    <title>MindHub Bros. | Accounts</title>
+</head>
+<body>
+<div id="app">
+
+    <header class="p-4">
+        <div class="container d-flex justify-content-between align-items-center py-4">
+            <a href="#" class="logo d-flex gap-2 align-items-center">
+                <img src="./assets/mh-logo.png" alt="MindHub Logo" width="50">
+                <h1 class="fs-4 mb-0 text-white">MindHub Bros.</h1>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <nav class="d-flex gap-2 align-items-center">
+                    <div class="d-flex gap-2">
+                        <i class="fa-solid fa-user text-white"></i>
+                        <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
+                    </div>
+                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2">Sign out</a>
+                </nav>
+                <a href="#" class="menu hide-tablet" @click="toggleMenu">
+                    <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="42">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 21C34.5625 20.2751 33.9749 19.6875 33.25 19.6875H8.75C8.02513 19.6875 7.4375 20.2751 7.4375 21C7.4375 21.7249 8.02513 22.3125 8.75 22.3125H33.25C33.9749 22.3125 34.5625 21.7249 34.5625 21Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 12.25C34.5625 11.5251 33.9749 10.9375 33.25 10.9375H8.75C8.02513 10.9375 7.4375 11.5251 7.4375 12.25C7.4375 12.9749 8.02513 13.5625 8.75 13.5625H33.25C33.9749 13.5625 34.5625 12.9749 34.5625 12.25Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 29.75C34.5625 29.0251 33.9749 28.4375 33.25 28.4375H8.75C8.02513 28.4375 7.4375 29.0251 7.4375 29.75C7.4375 30.4749 8.02513 31.0625 8.75 31.0625H33.25C33.9749 31.0625 34.5625 30.4749 34.5625 29.75Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4 text-white">
+        <div class="row" >
+            <aside class="col-5 col-md-12 col-lg-2 py-2 px-4 p-lg-0 m-lg-0">
+                <img src="./assets/mobile-exit.svg" alt="Exit mobile nav" class="exit hide-tablet rounded-2" @click="toggleMenu">
+                <nav class="p-lg-0">
+                    <ul class="d-flex flex-column flex-md-row flex-lg-column navbar-nav">
+                        <li class="nav-item d-md-flex align-items-center gap-2 mt-lg-3 active-custom-lg">
+                            <i class="fa-solid fa-address-card hide-mobile active-custom"></i>
+                            <a href="#" class="nav-link active-custom">Accounts</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                            <i class="fa-brands fa-cc-visa hide-mobile"></i>
+                            <a href="./cards.html" class="nav-link">Cards</a>
+                        </li>
+                        <li class="nav-item gap-2 hide-tablet">
+                            <a href="#" class="nav-link">Sign out</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="col-12 col-md-12 col-lg-10">
+                <div class="container" v-if="client.accounts">
+                    <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
+                    <div class="mt-5">
+                    <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
+                        <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
+                            <h3 class="fw-bold mb-0">{{ account.number }}</h3>
+                            <p class="text-uppercase mb-0">Account</p>
+                        </div>
+                        <div class="col-12 col-md-9 p-3">
+                            <div class="container">
+                                <div class="row account-data g-4">
+                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                        <p class="mb-0 fw-bold fs-3">${{ account.balance }}</p>
+                                        <p class="text-uppercase mb-0">Balance</p>
+                                    </div>
+                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                        <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
+                                        <p class="text-uppercase mb-0">Date of creation</p>
+                                    </div>
+                                    <div class="col-12 col-md-4 d-flex align-items-center">
+                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
+                                            See transactions
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <h3 class="text-center mt-5">Loans</h3>
+                <ul class="list-group loans-list" v-if="client.loans">
+                    <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
+                        <div class="row text-center">
+                            <div class="mb-0 col-md-12 loan-name rounded-2 py-4">
+                                <p class="loan-data text-uppercase fs-4 fw-bold mb-0">{{ loan.name }}</p>
+                                <p class="text-uppercase mb-0">Loan</p>
+                            </div>
+                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">${{ loan.amount }}</span></p>
+                            <p class="mb-0 col-md-6 py-2">Payments: <span class="loan-data fs-4">{{ loan.payments }}</span></p>
+                        </div>
+                    </li>
+                </ul>
+                <h3 v-else class="mt-4 text-center">No loans registered for this client.</h3>
+            </main>
+        </div>
+    </div>
+
+    <footer class="mt-auto">
+        <div class="container text-center mt-auto py-3">
+            <small>®MindHub</small>
+        </div>
+    </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/accounts.js"></script>
+</body>
+</html>
