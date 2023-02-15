@@ -39,9 +39,9 @@ createApp({
         },
         getTransactionIcon(transaction) {
             if (transaction === "CREDIT") {
-                return "up text-success fw-bold"
+                return "up text-green fw-bold"
             } else {
-                return "down text-danger fw-bold"
+                return "down text-red fw-bold"
             }
         }
     }

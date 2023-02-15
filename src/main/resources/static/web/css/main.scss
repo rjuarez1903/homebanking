@@ -251,11 +251,13 @@ ul .dropdown-item:hover {
 }
 
 .content-table tbody tr:nth-of-type(even) {
-  background-color: #F5F5F5;
+    background-color: var(--inner-panel-color);
+    color: white;
 }
 
 .content-table tbody tr:nth-of-type(odd) {
-    background-color: #FFFFFF;
+    background-color: var(--border-color);
+    color: white;
 }
 
 .content-table tbody tr:last-of-type {
@@ -283,6 +285,14 @@ ul .dropdown-item:hover {
 .table-responsive::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 20px;
+}
+
+.text-green {
+    color: #3EB27F;
+}
+
+.text-red {
+    color: #CC6121;
 }
 
 @media (min-width: 768px) {
