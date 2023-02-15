@@ -96,7 +96,7 @@
                                     {{ transaction.type }}
                                     <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
                                 </td>
-                                <td>${{ transaction.amount }}</td>
+                                <td>{{ transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</td>
                                 <td class="hide-mobile transactions-data">{{ transaction.description }}</td>
                                 <td>{{ getDate(transaction.date) }}</td>
                             </tr>

@@ -74,7 +74,7 @@
                             <div class="container">
                                 <div class="row account-data g-4">
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">${{ account.balance }}</p>
+                                        <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
                                         <p class="text-uppercase mb-0">Balance</p>
                                     </div>
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
@@ -101,7 +101,7 @@
                                 <p class="loan-data text-uppercase fs-4 fw-bold mb-0">{{ loan.name }}</p>
                                 <p class="text-uppercase mb-0">Loan</p>
                             </div>
-                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">${{ loan.amount }}</span></p>
+                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">{{ loan.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</span></p>
                             <p class="mb-0 col-md-6 py-2">Payments: <span class="loan-data fs-4">{{ loan.payments }}</span></p>
                         </div>
                     </li>
