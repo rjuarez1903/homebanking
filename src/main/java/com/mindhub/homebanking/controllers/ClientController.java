@@ -20,7 +20,8 @@ import static java.util.stream.Collectors.toList;
 public class ClientController {
 
     @Autowired
-    private ClientRepository clientRepository;
+    ClientRepository clientRepository;
+    @Autowired
     PasswordEncoder passwordEncoder;
 
     @RequestMapping("/clients")

@@ -14,7 +14,7 @@ createApp({
     },
     methods: {
         loadData() {
-            axios("/api/clients/1")
+            axios("/api/clients/current")
                 .then(response => {
                     this.client = response.data
                     this.cards  = response.data.cards
