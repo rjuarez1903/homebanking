@@ -3,12 +3,6 @@ body {
   font-family: "Overpass", sans-serif;
 }
 
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -22,10 +16,6 @@ li, p, a {
 a {
   text-decoration: none;
   color: var(--link-color);
-}
-
-a:hover {
-  color: var(--link-color-hover);
 }
 
 i {
@@ -45,24 +35,11 @@ svg {
   transform: translateX(0);
 }
 
-body::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--colorFooter);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 20px;
-}
-
 @media (min-width: 768px) {
   .hide-tablet {
     display: none;
   }
-}
+} 
 :root {
   --primary-color: #5E85F8;
   --secondary-color: #292B31;
