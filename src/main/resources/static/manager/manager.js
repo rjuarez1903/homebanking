@@ -50,7 +50,7 @@ createApp({
             this.clientDetail = this.clients.filter(client => this.getClientId(client) == id)[0]
             axios.get(`/rest/clients/${id}`)
                 .then(response => {
-                    this.firstNameEdit = response.data.firstName
+                    this.firstNameEdit  = response.data.firstName
                     this.lastNameEdit  = response.data.lastName
                     this.emailEdit     = response.data.email
                 })
