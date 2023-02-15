@@ -54,9 +54,8 @@ createApp({
                                    'content-type':'application/x-www-form-urlencoded'
                                }
                        })
-                .then(response => console.log('Registered'))
                 .then(() => {
-                    this.email = this.newClientEmail
+                    this.email    = this.newClientEmail
                     this.password = this.newClientPassword
                     this.logUser()
                 })
@@ -65,17 +64,14 @@ createApp({
             e.preventDefault()
             this.v$.$validate()
             if (!this.v$.$error) {
-                console.log('Yes!')
                 this.logUser()
-            } else {
-                console.log('Nope')
             }
         },
         typingEffect() {
             document.addEventListener("DOMContentLoaded", function () {
                 new TypeIt("#typed", {
-                    loop: true,
-                    speed: 300,
+                    loop:       true,
+                    speed:      300,
                     startDelay: 900,
                 })
                     .type("life")
