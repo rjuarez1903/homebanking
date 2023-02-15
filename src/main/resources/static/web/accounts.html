@@ -93,8 +93,8 @@
                     </div>
                 </div>
 
-                <h3 class="text-center mt-5">Loans</h3>
-                <ul class="list-group loans-list" v-if="client.loans">
+                <h2 class="text-center mt-5">Loans</h2>
+                <ul class="list-group loans-list" v-if="client.loans.length > 0">
                     <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
                         <div class="row text-center">
                             <div class="mb-0 col-md-12 loan-name rounded-2 py-4">
@@ -106,14 +106,14 @@
                         </div>
                     </li>
                 </ul>
-                <h3 v-else class="mt-4 text-center">No loans registered for this client.</h3>
+                <h2 v-else class="mt-4 text-center">No loans registered for this client.</h2>
             </main>
         </div>
     </div>
 
     <footer class="mt-auto">
         <div class="container text-center mt-auto py-3">
-            <small>®MindHub</small>
+            <small class="text-white">®MindHub</small>
         </div>
     </footer>
 
