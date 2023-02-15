@@ -3,7 +3,8 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client: {}
+            client: {},
+            loans:  {}
         }
     },
     created() {
@@ -12,7 +13,10 @@ createApp({
     methods: {
         loadData() {
             axios('/api/clients/current')
-                .then(response => this.client = response.data)
+                .then(response => {
+                    this.client = response.data
+                    this.loans  = this.client.loans
+                })
                 .catch(error => console.log(error))
         },
         toggleMenu(e) {
