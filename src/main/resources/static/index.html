@@ -39,34 +39,38 @@
                         </button>
                     </div>
                     <form class="signUp" action="" v-if="!login" @submit.prevent>
-                        <div class="formGroup d-flex justify-content-center">
-                            <input type="text" id="newClientFirstName" placeholder="First Name" v-model="newClientFirstName">
+                        <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
+                            <input type="text" id="newClientFirstName" placeholder="First Name" name="newClientFirstName" v-model="newClientFirstName" class="mb-1">
+                            <small class="text-warning" v-if="v$.newClientFirstName.$error">{{ v$.newClientFirstName.$errors[0].$message }}</small>
+                        </div>
+                        <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
+                            <input type="text" id="newClientLastName" placeholder="Last Name" name="newClientLastName" v-model="newClientLastName" class="mb-1">
+                            <small class="text-warning" v-if="v$.newClientLastName.$error">{{ v$.newClientLastName.$errors[0].$message }}</small>
+                        </div>
+                        <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
+                            <input type="email" id="newClientEmail" placeholder="Email" name="newClientEmail" v-model="newClientEmail" class="mb-1">
+                            <small class="text-warning" v-if="v$.newClientEmail.$error">{{ v$.newClientEmail.$errors[0].$message }}</small>
+                        </div>
+                        <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
+                            <input type="password" id="newClientPassword" placeholder="Password" name="newClientPassword" v-model="newClientPassword" class="mb-1">
+                            <small class="text-warning" v-if="v$.newClientPassword.$error">{{ v$.newClientPassword.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex justify-content-center">
-                            <input type="text" id="newClientLastName" placeholder="Last Name" name="lastName" v-model="newClientLastName" required>
-                        </div>
-                        <div class="formGroup d-flex justify-content-center">
-                            <input type="email" id="newClientEmail" placeholder="Email" v-model="newClientEmail" required>
-                        </div>
-                        <div class="formGroup d-flex justify-content-center">
-                            <input type="password" id="newClientPassword" placeholder="Password" v-model="newClientPassword" required>
-                        </div>
-                        <div class="formGroup d-flex justify-content-center">
-                            <button class="btn2 rounded-2" @click="registerUser">Register</button>
+                            <button class="btn2 rounded-2" @click="submitSignUpForm">Register</button>
                         </div>
                     </form>
                     
                     <form class="login" action="" method="get" v-else>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="email" placeholder="Email" id="email" name="email" v-model="email" class="mb-1">
-                            <small class="text-danger" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</small>
+                            <small class="text-warning" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="password" placeholder="Password" id="password" name="password" v-model="password" class="mb-1">
-                            <small class="text-danger" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</small>
+                            <small class="text-warning" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</small>
                         </div>
                         <div class="text-center mb-4">
-                            <small class="text-danger" v-if="invalidCredentials">Invalid email or password.</small>
+                            <small class="text-warning" v-if="invalidCredentials">Invalid email or password.</small>
                         </div>
                         <div class="formGroup d-flex justify-content-center">
                             <button class="btn2 rounded-2" @click="submitLoginForm">Login</button>

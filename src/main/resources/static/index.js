@@ -62,9 +62,23 @@ createApp({
         },
         submitLoginForm(e) {
             e.preventDefault()
-            this.v$.$validate()
-            if (!this.v$.$error) {
-                this.logUser()
+            this.v$.email.$touch();
+            this.v$.password.$touch();
+            if (!this.v$.email.$invalid && !this.v$.password.$invalid) {
+                    this.logUser()
+            }
+        },
+        submitSignUpForm(e) {
+            e.preventDefault()
+            this.v$.newClientFirstName.$touch();
+            this.v$.newClientLastName.$touch();
+            this.v$.newClientEmail.$touch();
+            this.v$.newClientPassword.$touch();
+            if (!this.v$.newClientFirstName.$invalid &&
+                !this.v$.newClientLastName.$invalid &&
+                !this.v$.newClientEmail.$invalid &&
+                !this.v$.newClientPassword.$invalid) {
+                this.registerUser()
             }
         },
         typingEffect() {
@@ -89,8 +103,12 @@ createApp({
     },
     validations() {
         return {
-            email: { required, email },
-            password: { required }
+            email:              { required, email },
+            password:           { required },
+            newClientFirstName: { required },
+            newClientLastName:  { required },
+            newClientEmail:     { required, email },
+            newClientPassword:  { required }
         }
     },
     mounted() {
