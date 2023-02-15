@@ -16,6 +16,7 @@ createApp({
                 .then(response => {
                     this.client = response.data
                     this.loans  = this.client.loans
+                    this.sortById(this.client.accounts)
                 })
                 .catch(error => console.log(error))
         },
@@ -26,6 +27,9 @@ createApp({
         },
         getStringDate(date) {
             return new Date(date).toLocaleDateString()
+        },
+        sortById(accounts) {
+            accounts.sort((a,b) => b.id - a.id)
         },
         signOutUser() {
             axios.post('/api/logout')
