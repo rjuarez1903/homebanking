@@ -14,7 +14,7 @@ createApp({
             newClientLastName:    "",
             newClientEmail:       "",
             newClientPassword:    "",
-            invalidCredentials: false,
+            invalidCredentials:   false,
         }
     },
     created() {
@@ -60,7 +60,7 @@ createApp({
                     this.logUser()
                 })
         },
-        submitForm(e) {
+        submitLoginForm(e) {
             e.preventDefault()
             this.v$.$validate()
             if (!this.v$.$error) {
