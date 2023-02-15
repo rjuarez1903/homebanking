@@ -333,10 +333,6 @@ ul .dropdown-item:hover {
   color: #3EB27F;
 }
 
-.text-red {
-  color: #CC6121;
-}
-
 @media (min-width: 768px) {
   .transactions-data {
     display: block;
