@@ -66,14 +66,15 @@
 
         <div class="form rounded-4 create-card-form">
           <div class="d-flex flex-wrap">
-            <div class="card card-created" v-for="card of debitCards">
+            <div class="card card-created">
               <div class="flip">
                 <div class="front">
                   <div class="strip-bottom"></div>
                   <div class="strip-top"
-                       :class="card.color.toLowerCase()"></div>
+                       :class="`${cardColor.toLowerCase()}`"></div>
                   <img class="card-logo" src="./assets/mh-logo.png" alt="MindHub Logo" width="50">
-                  <div class="investor">{{ card.color }}</div>
+                  <div class="investor">{{ cardColor }}</div>
+                  <div class="investor" v-show="!cardColor">CHOOSE YOUR COLOR</div>
                   <div class="chip">
                     <div class="chip-line"></div>
                     <div class="chip-line"></div>
@@ -93,10 +94,10 @@
                     <div class="section">****</div>
                   </div>
                   <div class="d-flex gap-0">
-                    <div class="end"><span class="end-text">from: </span><span class="end-date">{{ getStringDate(card.fromDate) }}</span></div>
-                    <div class="end ms-2"><span class="end-text">thru: </span><span class="end-date">{{ getStringDate(card.thruDate) }}</span></div>
+                    <div class="end"><span class="end-text">from: </span><span class="end-date">**/**</span></div>
+                    <div class="end ms-2"><span class="end-text">thru: </span><span class="end-date">**/**</span></div>
                   </div>
-                  <div class="card-holder">{{ card.cardholder }}</div>
+                  <div class="card-holder">{{ client.firstName }} {{ client.lastName }}</div>
                   <div class="master">
                     <div class="circle master-red"></div>
                     <div class="circle master-yellow"></div>
@@ -106,7 +107,7 @@
                   <div class="strip-black"></div>
                   <div class="ccv">
                     <label>ccv</label>
-                    <div>{{ card.cvv }}</div>
+                    <div></div>
                   </div>
                   <div class="terms">
                     <p>This card is property of MindHub Bros. Misuse is criminal offence. If found, please return to MindHub Bros or to the nearest bank with MasterCard logo.</p>
