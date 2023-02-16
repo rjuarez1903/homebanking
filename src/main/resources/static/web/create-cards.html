@@ -63,7 +63,22 @@
       </aside>
 
       <main class="col-12 col-md-12 col-lg-10">
-
+        <div class="form rounded-4">
+          <form class="" action="" @submit.prevent>
+            <h2>Card Type</h2>
+            <div class="inputGroup">
+              <input id="credit" name="cardType" type="radio"/>
+              <label for="credit">CREDIT</label>
+            </div>
+            <div class="inputGroup">
+              <input id="debit" name="cardType" type="radio"/>
+              <label for="debit">DEBIT</label>
+            </div>
+            <div class="formGroup d-flex justify-content-center">
+              <button class="btn2 rounded-2" @click="submitSignUpForm">Create Card</button>
+            </div>
+          </form>
+        </div>
       </main>
     </div>
   </div>
