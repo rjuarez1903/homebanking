@@ -118,33 +118,87 @@
             </div>
           </div>
 
-          <form class="p-4" action="" @submit.prevent>
-            <h4 class="text-warning">Card Type</h4>
-            <div class="inputGroup">
-              <input id="credit" name="cardType" type="radio" value="CREDIT" v-model="cardType"/>
-              <label for="credit" class="text-white">CREDIT</label>
-            </div>
-            <div class="inputGroup">
-              <input id="debit" name="cardType" type="radio" value="DEBIT" v-model="cardType"/>
-              <label for="debit" class="text-white">DEBIT</label>
-            </div>
-            <h4 class="text-warning mt-2">Card Color</h4>
-            <div class="inputGroup">
-              <input id="titanium" name="cardColor" type="radio" value="TITANIUM" v-model="cardColor"/>
-              <label for="titanium" class="text-white">TITANIUM</label>
-            </div>
-            <div class="inputGroup">
-              <input id="gold" name="cardColor" type="radio" value="GOLD" v-model="cardColor"/>
-              <label for="gold" class="text-white">GOLD</label>
-            </div>
-            <div class="inputGroup">
-              <input id="silver" name="cardColor" type="radio" VALUE="SILVER" v-model="cardColor"/>
-              <label for="silver" class="text-white">SILVER</label>
-            </div>
-            <div class="formGroup d-flex justify-content-center">
-              <button class="btn btn-warning rounded-2" @click="submitForm">Create Card</button>
-            </div>
-          </form>
+<!--          <form class="p-4" action="" @submit.prevent>-->
+<!--            <h4 class="text-warning">Card Type</h4>-->
+<!--            <div class="radio">-->
+<!--              <input id="credit" name="cardType" type="radio" value="CREDIT" v-model="cardType"/>-->
+<!--              <label for="credit" class="text-white">CREDIT</label>-->
+<!--              <div class="check"></div>-->
+<!--            </div>-->
+<!--            <div class="inputGroup">-->
+<!--              <input id="debit" name="cardType" type="radio" value="DEBIT" v-model="cardType"/>-->
+<!--              <label for="debit" class="text-white">DEBIT</label>-->
+<!--            </div>-->
+<!--            <h4 class="text-warning mt-2">Card Color</h4>-->
+<!--            <div class="inputGroup">-->
+<!--              <input id="titanium" name="cardColor" type="radio" value="TITANIUM" v-model="cardColor"/>-->
+<!--              <label for="titanium" class="text-white">TITANIUM</label>-->
+<!--            </div>-->
+<!--            <div class="inputGroup">-->
+<!--              <input id="gold" name="cardColor" type="radio" value="GOLD" v-model="cardColor"/>-->
+<!--              <label for="gold" class="text-white">GOLD</label>-->
+<!--            </div>-->
+<!--            <div class="inputGroup">-->
+<!--              <input id="silver" name="cardColor" type="radio" VALUE="SILVER" v-model="cardColor"/>-->
+<!--              <label for="silver" class="text-white">SILVER</label>-->
+<!--            </div>-->
+<!--            <div class="formGroup d-flex justify-content-center">-->
+<!--              <button class="btn btn-warning rounded-2" @click="submitForm">Create Card</button>-->
+<!--            </div>-->
+<!--          </form>-->
+        <div class="container">
+        <div class="row">
+        <div class="radio-container col-md-6">
+
+          <h4 class="text-center text-green fw-bold">Choose type</h4>
+
+          <ul class="radio-list text-center">
+            <li>
+              <input type="radio" id="f-option" name="selector">
+              <label for="f-option" class="text-uppercase card-label">Debit</label>
+
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <input type="radio" id="s-option" name="selector">
+              <label for="s-option" class="text-uppercase card-label">Credit</label>
+
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="radio-container col-md-6">
+
+          <h4 class="text-center text-green fw-bold">Choose color</h4>
+
+          <ul class="radio-list text-center">
+            <li>
+              <input type="radio" id="f-option" name="selector">
+              <label for="f-option" class="text-uppercase card-label">Titanium</label>
+
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <input type="radio" id="s-option" name="selector">
+              <label for="s-option" class="text-uppercase card-label">Gold</label>
+
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+            <li>
+              <input type="radio" id="t-option" name="selector">
+              <label for="t-option" class="text-uppercase card-label">Silver</label>
+
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
         </div>
       </main>
     </div>
