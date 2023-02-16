@@ -476,7 +476,7 @@ ul .dropdown-item:hover {
 /*  *****
     CARDS
     *****
- */
+*/
 *,
 *:before,
 *:after {
@@ -742,6 +742,29 @@ ul .dropdown-item:hover {
 @media (min-width: 768px) {
   .card {
     width: 25rem;
+  }
+}
+/*  ***********
+    CREATE CARD
+    ***********
+*/
+.create-card-form {
+  min-width: 22rem;
+  position: relative;
+  padding-top: 7.8125rem;
+  margin-top: 7.8125rem;
+}
+
+.card-created {
+  position: absolute;
+  top: -7.8125rem;
+  left: 0;
+  right: 0;
+}
+
+@media (min-width: 768px) {
+  .create-card-form {
+    max-width: 36rem;
   }
 }
 
