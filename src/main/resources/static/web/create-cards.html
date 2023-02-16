@@ -64,18 +64,31 @@
 
       <main class="col-12 col-md-12 col-lg-10">
         <div class="form rounded-4">
-          <form class="" action="" @submit.prevent>
-            <h2>Card Type</h2>
+          <form class="p-4" action="" @submit.prevent>
+            <h4 class="text-warning">Card Type</h4>
             <div class="inputGroup">
               <input id="credit" name="cardType" type="radio"/>
-              <label for="credit">CREDIT</label>
+              <label for="credit" class="text-white">CREDIT</label>
             </div>
             <div class="inputGroup">
               <input id="debit" name="cardType" type="radio"/>
-              <label for="debit">DEBIT</label>
+              <label for="debit" class="text-white">DEBIT</label>
+            </div>
+            <h4 class="text-warning mt-2">Card Color</h4>
+            <div class="inputGroup">
+              <input id="titanium" name="cardColor" type="radio"/>
+              <label for="titanium" class="text-white">TITANIUM</label>
+            </div>
+            <div class="inputGroup">
+              <input id="gold" name="cardColor" type="radio"/>
+              <label for="gold" class="text-white">GOLD</label>
+            </div>
+            <div class="inputGroup">
+              <input id="silver" name="cardColor" type="radio"/>
+              <label for="silver" class="text-white">SILVER</label>
             </div>
             <div class="formGroup d-flex justify-content-center">
-              <button class="btn2 rounded-2" @click="submitSignUpForm">Create Card</button>
+              <button class="btn btn-warning rounded-2">Create Card</button>
             </div>
           </form>
         </div>
