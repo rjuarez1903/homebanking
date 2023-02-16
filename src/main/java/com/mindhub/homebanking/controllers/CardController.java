@@ -32,7 +32,7 @@ public class CardController {
     CardRepository cardRepository;
 
     @RequestMapping("/clients/current/cards")
-        public List<CardDTO> getCards(Authentication authentication) {
+        public List<CardDTO> getCurrentCards(Authentication authentication) {
             return clientRepository.findByEmail(authentication.getName()).getCards().stream().map(CardDTO::new).collect(Collectors.toList());
         }
 
