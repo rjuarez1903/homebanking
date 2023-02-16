@@ -1,6 +1,7 @@
 const { createApp } = Vue
 const useVuelidate  = Vuelidate.useVuelidate
 const required      = VuelidateValidators.required
+const minLength     = VuelidateValidators.minLength
 const email         = VuelidateValidators.email
 
 createApp({
@@ -115,7 +116,7 @@ createApp({
             newClientFirstName: { required },
             newClientLastName:  { required },
             newClientEmail:     { required, email },
-            newClientPassword:  { required }
+            newClientPassword:  { required, minLength: minLength(8) }
         }
     },
     mounted() {
