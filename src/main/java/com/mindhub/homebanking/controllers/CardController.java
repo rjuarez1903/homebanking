@@ -29,7 +29,7 @@ public class CardController {
     CardRepository cardRepository;
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
-        public ResponseEntity<Object> createAccount(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
+        public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
         Client client = clientRepository.findByEmail(authentication.getName());
         if (client.getCards().stream().filter(card -> card.getType() == type).count() < 3) {
             Integer cvv = ThreadLocalRandom.current().nextInt(100, 998 + 1);
