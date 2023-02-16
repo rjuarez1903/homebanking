@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
