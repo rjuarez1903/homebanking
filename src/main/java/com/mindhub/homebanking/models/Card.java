@@ -32,7 +32,6 @@ public class Card {
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
-        this.client = client;
     }
 
     public long getId() {
