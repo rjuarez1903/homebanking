@@ -751,8 +751,6 @@ ul .dropdown-item:hover {
 .radio-container {
   display: block;
   position: relative;
-  margin: 40px auto;
-  padding: 20px;
 }
 
 .radio-container ul {
@@ -780,7 +778,6 @@ ul .dropdown-item:hover {
   position: relative;
   font-weight: 300;
   padding: 10px 10px 10px 32px !important;
-  margin: 10px auto;
   z-index: 9;
   cursor: pointer;
   -webkit-transition: all 0.25s linear;
@@ -797,7 +794,7 @@ ul .dropdown-item:hover {
   border-radius: 100%;
   height: 25px;
   width: 25px;
-  top: 18px;
+  top: 8px;
   left: 60px;
   z-index: 5;
   transition: border 0.25s linear;
@@ -840,7 +837,7 @@ input[type=radio]:checked ~ label {
   letter-spacing: 1px;
 }
 
-button {
+.create-btn {
   padding: 0.8em 1.8em;
   border: 2px solid #3EB27F;
   position: relative;
@@ -855,7 +852,7 @@ button {
   color: #3EB27F;
 }
 
-button::before {
+.create-btn::before {
   content: "";
   width: 0;
   height: 300%;
@@ -869,11 +866,11 @@ button::before {
   z-index: -1;
 }
 
-button:hover::before {
+.create-btn:hover::before {
   width: 105%;
 }
 
-button:hover {
+.create-btn:hover {
   color: #111;
 }
 
