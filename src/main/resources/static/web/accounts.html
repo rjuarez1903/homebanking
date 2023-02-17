@@ -91,7 +91,9 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn text-white text-end fs-1" @click="createAccount" v-if="client.accounts.length < 3">+</button>
+                    <div class="text-end" v-if="client.accounts.length < 3">
+                        <button href="./create-cards.html" @click="createAccount" class="green-btn rounded-2 my-4 d-inline-block">Add account</button>
+                    </div>
                 </div>
 
                 <h2 class="text-center mt-5">Loans</h2>

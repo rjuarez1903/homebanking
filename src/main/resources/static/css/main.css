@@ -837,7 +837,8 @@ input[type=radio]:checked ~ label {
   letter-spacing: 1px;
 }
 
-.create-btn {
+.green-btn {
+  width: max-content;
   padding: 0.8em 1.8em;
   border: 2px solid #3EB27F;
   position: relative;
@@ -852,7 +853,7 @@ input[type=radio]:checked ~ label {
   color: #3EB27F;
 }
 
-.create-btn::before {
+.green-btn::before {
   content: "";
   width: 0;
   height: 300%;
@@ -866,11 +867,11 @@ input[type=radio]:checked ~ label {
   z-index: -1;
 }
 
-.create-btn:hover::before {
+.green-btn:hover::before {
   width: 105%;
 }
 
-.create-btn:hover {
+.green-btn:hover {
   color: #111;
 }
 

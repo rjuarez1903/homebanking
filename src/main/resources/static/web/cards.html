@@ -116,7 +116,9 @@
                     </div>
                 </div>
                 <h2 v-else class="text-center text-white my-4">You don't own any credit cards.</h2>
-                <a class="btn btn-warning" href="./create-cards.html" v-if="creditCards.length < 3">Create card</a>
+                <div class="text-center" v-if="creditCards.length < 3">
+                    <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
+                </div>
 
                 <h2 class="fs-5 text-white"><span class="fw-bold">Cards</span> / Debit Cards</h2>
                 <div class="d-flex flex-wrap" v-if="debitCards.length > 0">
@@ -171,7 +173,9 @@
                     </div>
                 </div>
                 <h2 v-else class="text-center text-white my-4">You don't own any debit cards.</h2>
-                <a class="btn btn-warning" href="./create-cards.html" v-if="debitCards.length < 3">Create card</a>
+                <div class="text-center" v-if="debitCards.length < 3">
+                    <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
+                </div>
             </main>
         </div>
     </div>
