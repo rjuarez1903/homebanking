@@ -24,7 +24,7 @@ import static com.mindhub.homebanking.models.TransactionType.DEBIT;
 
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class TransactionsController {
     @Autowired
     ClientRepository clientRepository;
