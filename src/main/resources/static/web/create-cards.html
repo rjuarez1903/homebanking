@@ -146,63 +146,59 @@
 <!--              <button class="btn btn-warning rounded-2" @click="submitForm">Create Card</button>-->
 <!--            </div>-->
 <!--          </form>-->
-        <div class="container">
-        <div class="row">
-        <div class="radio-container col-md-6">
+          <div class="container">
+            <form class="row">
+              <div class="radio-container col-md-6">
 
-          <h4 class="text-center text-green fw-bold">Choose type</h4>
+                <h4 class="text-center text-green fw-bold">Choose type</h4>
 
-          <ul class="radio-list text-center">
-            <li>
-              <input type="radio" id="f-option" name="selector">
-              <label for="f-option" class="text-uppercase card-label">Debit</label>
+                <ul class="radio-list text-center">
+                  <li>
+                    <input type="radio" id="debit" name="cardType" v-model="cardType" value="DEBIT">
+                    <label for="debit" class="text-uppercase card-label">Debit</label>
+                    <div class="check"></div>
+                  </li>
 
-              <div class="check"></div>
-            </li>
+                  <li>
+                    <input type="radio" id="credit" name="cardType" v-model="cardType" value="CREDIT">
+                    <label for="credit" class="text-uppercase card-label">Credit</label>
+                    <div class="check"><div class="inside"></div></div>
+                  </li>
 
-            <li>
-              <input type="radio" id="s-option" name="selector">
-              <label for="s-option" class="text-uppercase card-label">Credit</label>
+                </ul>
+              </div>
 
-              <div class="check"><div class="inside"></div></div>
-            </li>
+              <div class="radio-container col-md-6">
 
-          </ul>
-        </div>
+                <h4 class="text-center text-green fw-bold">Choose color</h4>
 
-        <div class="radio-container col-md-6">
+                <ul class="radio-list text-center">
+                  <li>
+                    <input type="radio" id="titanium" name="cardColor" v-model="cardColor" value="TITANIUM">
+                    <label for="titanium" class="text-uppercase card-label">Titanium</label>
+                    <div class="check"></div>
+                  </li>
 
-          <h4 class="text-center text-green fw-bold">Choose color</h4>
+                  <li>
+                    <input type="radio" id="gold" name="cardColor" v-model="cardColor" value="GOLD">
+                    <label for="gold" class="text-uppercase card-label">Gold</label>
+                    <div class="check"><div class="inside"></div></div>
+                  </li>
 
-          <ul class="radio-list text-center">
-            <li>
-              <input type="radio" id="f-option" name="selector">
-              <label for="f-option" class="text-uppercase card-label">Titanium</label>
+                  <li>
+                    <input type="radio" id="silver" name="cardColor" v-model="cardColor" value="SILVER">
+                    <label for="silver" class="text-uppercase card-label">Silver</label>
+                    <div class="check"><div class="inside"></div></div>
+                  </li>
+                </ul>
 
-              <div class="check"></div>
-            </li>
-
-            <li>
-              <input type="radio" id="s-option" name="selector">
-              <label for="s-option" class="text-uppercase card-label">Gold</label>
-
-              <div class="check"><div class="inside"></div></div>
-            </li>
-
-            <li>
-              <input type="radio" id="t-option" name="selector">
-              <label for="t-option" class="text-uppercase card-label">Silver</label>
-
-              <div class="check"><div class="inside"></div></div>
-            </li>
-          </ul>
-
-        </div>
-        </div>
-        </div>
-          <div class="text-center">
-            <button class="rounded-2 mb-4">Create Card</button>
+              </div>
+              <div class="text-center">
+                <button class="rounded-2 mb-4" @click="submitForm">Create Card</button>
+              </div>
+            </form>
           </div>
+
         </div>
       </main>
     </div>
