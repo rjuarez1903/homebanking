@@ -51,7 +51,7 @@ public class CardController {
             cardRepository.save(card);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Can't generate more than 3 " + type + " cards per client.", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Can't generate more than 3 " + type.toString().toLowerCase() + " cards per client.", HttpStatus.FORBIDDEN);
         }
     }
 }
