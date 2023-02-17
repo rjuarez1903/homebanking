@@ -68,6 +68,7 @@ public class Loan {
         this.payments = payments;
     }
 
-
-
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
 }
