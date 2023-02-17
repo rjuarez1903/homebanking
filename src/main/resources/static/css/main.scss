@@ -496,12 +496,12 @@ ul .dropdown-item:hover {
 .front {
     transform: translateZ(0);
 }
+
 .strip-bottom,
 .strip-top {
     position: absolute;
     right: 0;
     height: inherit;
-    //background-image: linear-gradient(to bottom, #ff6767, #ff4545);
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 }
 
