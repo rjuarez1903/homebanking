@@ -5,13 +5,15 @@ const required      = VuelidateValidators.required
 createApp({
     data() {
         return {
-            v$:          useVuelidate(),
-            client:      {},
-            cards:       [],
-            creditCards: [],
-            debitCards:  [],
-            cardType:    "",
-            cardColor:   ""
+            v$:           useVuelidate(),
+            client:       {},
+            cards:        [],
+            creditCards:  [],
+            debitCards:   [],
+            cardType:     "",
+            cardColor:    "",
+            noMoreCards:  false,
+            errorMessage: ""
         }
     },
     created() {
@@ -62,17 +64,22 @@ createApp({
         createCard() {
             axios.post("/api/clients/current/cards", `color=${this.cardColor}&type=${this.cardType}`)
                 .then(response => {
-                    location.replace("/web/cards.html")
+                    if (response.status === 201) {
+                        location.replace("/web/cards.html")
+                    }
+                })
+                .catch(error => {
+                    this.noMoreCards  = true
+                    this.errorMessage =  error.response.data
                 })
         },
-        submitForm() {
+        submitForm(e) {
+            e.preventDefault()
             this.v$.cardType.$touch();
             this.v$.cardColor.$touch();
             if (!this.v$.cardType.$invalid && !this.v$.cardColor.$invalid) {
-                console.log("Ok.")
                 this.createCard()
             } else {
-                console.log("Not ok.")
             }
         }
     }

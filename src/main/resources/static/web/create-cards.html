@@ -143,6 +143,7 @@
                             </li>
                         </ul>
                     </div>
+                    <small class="text-warning text-center mt-2" v-if="noMoreCards">{{ errorMessage }}</small>
                     <div class="text-center">
                         <button class="green-btn rounded-2 my-4" @click="submitForm">Create</button>
                     </div>
