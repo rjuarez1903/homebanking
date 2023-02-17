@@ -5,7 +5,7 @@ import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.repositories.TransactionRepository;a
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +45,7 @@ public class TransactionsController {
         Set<Account> clientAccounts = client.getAccounts();
         boolean sourceBelongsToClient = false;
 
-        if (amount != 0.0 || description.isEmpty() || sourceAccountNumber.isEmpty() || destinationAccountNumber.isEmpty()) {
+        if (amount == 0.0 || description.isEmpty() || sourceAccountNumber.isEmpty() || destinationAccountNumber.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
@@ -73,15 +73,21 @@ public class TransactionsController {
         }
 
         if (amount > accountRepository.findByNumber(sourceAccountNumber).getBalance()) {
-            return new ResponseEntity<>("insufficient funds.", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Insufficient funds.", HttpStatus.FORBIDDEN);
         }
 
-        Transaction transaction1 = new Transaction(DEBIT, -amount, description + " VIN" + sourceAccountNumber, LocalDateTime.now());
-        Transaction transaction2 = new Transaction(CREDIT, amount, description + " VIN" + destinationAccountNumber, LocalDateTime.now());
+        Transaction transaction1 = new Transaction(DEBIT, -amount, description + " " + sourceAccountNumber, LocalDateTime.now());
+        Transaction transaction2 = new Transaction(CREDIT, amount, description + " " + destinationAccountNumber, LocalDateTime.now());
         Account sourceAccount = accountRepository.findByNumber(sourceAccountNumber);
         Account destinationAccount = accountRepository.findByNumber(destinationAccountNumber);
         sourceAccount.addTransaction(transaction1);
         destinationAccount.addTransaction(transaction2);
+        sourceAccount.setBalance(sourceAccount.getBalance() - amount);
+        destinationAccount.setBalance(destinationAccount.getBalance() + amount);
+        transactionRepository.save(transaction1);
+        transactionRepository.save(transaction2);
+        accountRepository.save(sourceAccount);
+        accountRepository.save(destinationAccount);
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
