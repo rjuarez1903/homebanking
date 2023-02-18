@@ -1,8 +1,13 @@
 const { createApp } = Vue
+const useVuelidate  = Vuelidate.useVuelidate
+const required      = VuelidateValidators.required
+const minValue      = VuelidateValidators.minValue
+// const maxValue      = VuelidateValidators.maxValue
 
 createApp({
     data() {
         return {
+            v$:                          useVuelidate(),
             client:                      {},
             accounts:                    [],
             transferType:                "",
@@ -11,11 +16,26 @@ createApp({
             externalDestinationAccount:  "",
             amount:                      "",
             description:                 "",
-            filteredAccounts:             []
+            filteredAccounts:             [],
+            transferError:               false,
+            errorMessage:                ""
         }
     },
     created() {
         this.loadData()
+    },
+    validations() {
+        return {
+            transferType:  { required },
+            sourceAccount: { required },
+            ownDestinationAccount: { required },
+            externalDestinationAccount: { required },
+            amount: {
+                required,
+                minValue: minValue(1)
+            },
+            description: { required }
+        }
     },
     methods: {
         loadData() {
@@ -35,24 +55,45 @@ createApp({
             axios.post('/api/logout')
                 .then(response => location.replace("/index.html"))
         },
-        transfer(e) {
-            e.preventDefault()
-            console.log(this.transferType)
-            console.log(this.sourceAccount)
-        },
         filterAccounts() {
             this.filteredAccounts = this.accounts.filter(account => account.number != this.sourceAccount)
         },
         showBalance() {
             return this.accounts.filter(account => account.number === this.sourceAccount)[0].balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
         },
-        transfer(e) {
-            e.preventDefault()
+        transfer() {
             axios.post("/api/transactions", `amount=${this.amount}&description=${this.description}&sourceAccountNumber=${this.sourceAccount}&destinationAccountNumber=${this.ownDestinationAccount || this.externalDestinationAccount}`)
-                .then(response => console.log(response))
-                .catch(error => console.log(error.response.data))
+                .then(response => {
+                    if (response.status === 201) {
+                        console.log(response.status)
+                    }
+                })
+                .catch(error => {
+                    this.transferError = true
+                    this.errorMessage  = error.response.data
+                })
+        },
+        submitForm(e) {
+            e.preventDefault()
+            console.log(this.transferType);
+            this.v$.transferType.$touch();
+            this.v$.sourceAccount.$touch();
+            this.v$.amount.$touch();
+            this.v$.description.$touch();
+            if (this.transferType == "Own account") {
+                this.v$.ownDestinationAccount.$touch();
+            } else if (this.transferType == "External transfer") {
+                this.v$.externalDestinationAccount.$touch();
+            }
+            if (!this.v$.transferType.$invalid
+                && !this.v$.sourceAccount.$invalid
+                && (!this.v$.ownDestinationAccount.$invalid || !this.v$.externalDestinationAccount.$invalid)
+                && !this.v$.amount.$invalid
+                && !this.v$.description.$invalid) {
+                this.transfer()
+            } else {
+            }
         }
-
     }
 
 }).mount('#app')
