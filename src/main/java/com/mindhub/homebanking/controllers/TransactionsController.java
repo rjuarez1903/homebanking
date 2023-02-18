@@ -76,8 +76,8 @@ public class TransactionsController {
             return new ResponseEntity<>("Insufficient funds.", HttpStatus.FORBIDDEN);
         }
 
-        Transaction transaction1 = new Transaction(DEBIT, -amount, description + " " + sourceAccountNumber, LocalDateTime.now());
-        Transaction transaction2 = new Transaction(CREDIT, amount, description + " " + destinationAccountNumber, LocalDateTime.now());
+        Transaction transaction1 = new Transaction(DEBIT, -amount, description + " " + destinationAccountNumber, LocalDateTime.now());
+        Transaction transaction2 = new Transaction(CREDIT, amount, description + " " + sourceAccountNumber, LocalDateTime.now());
         Account sourceAccount = accountRepository.findByNumber(sourceAccountNumber);
         Account destinationAccount = accountRepository.findByNumber(destinationAccountNumber);
         sourceAccount.addTransaction(transaction1);
