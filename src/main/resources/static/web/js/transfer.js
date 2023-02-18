@@ -48,7 +48,9 @@ createApp({
         },
         transfer(e) {
             e.preventDefault()
-            axios.post("/api/transactions", `amount=1000.10&description=first transaction usign the API&sourceAccountNumber=VIN001&destinationAccountNumber=VIN002`)
+            axios.post("/api/transactions", `amount=${this.amount}&description=${this.description}&sourceAccountNumber=${this.sourceAccount}&destinationAccountNumber=${this.ownDestinationAccount || this.externalDestinationAccount}`)
+                .then(response => console.log(response))
+                .catch(error => console.log(error.response.data))
         }
 
     }
