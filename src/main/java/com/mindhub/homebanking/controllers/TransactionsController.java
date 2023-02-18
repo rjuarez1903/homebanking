@@ -88,7 +88,7 @@ public class TransactionsController {
         transactionRepository.save(transaction2);
         accountRepository.save(sourceAccount);
         accountRepository.save(destinationAccount);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("Transfer OK.", HttpStatus.CREATED);
 
     }
 }
