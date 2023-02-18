@@ -73,6 +73,41 @@ header {
     color: white;
 }
 
+.formGroup {
+    position: relative;
+}
+
+.formGroup input {
+    width: 90%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.formGroup label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.formGroup input:focus ~ label,
+.formGroup input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #fff;
+    font-size: 12px;
+}
+
 input:focus {
     outline: none !important;
     border-bottom: 2px solid var(--primary-color);
