@@ -2,6 +2,8 @@ const { createApp } = Vue
 const useVuelidate  = Vuelidate.useVuelidate
 const required      = VuelidateValidators.required
 const minValue      = VuelidateValidators.minValue
+const numeric       = VuelidateValidators.numeric
+const decimal       = VuelidateValidators.decimal
 // const maxValue      = VuelidateValidators.maxValue
 
 createApp({
@@ -32,7 +34,7 @@ createApp({
             externalDestinationAccount: { required },
             amount: {
                 required,
-                minValue: minValue(1)
+                minValue: minValue(1),
             },
             description: { required }
         }
@@ -65,12 +67,34 @@ createApp({
             axios.post("/api/transactions", `amount=${this.amount}&description=${this.description}&sourceAccountNumber=${this.sourceAccount}&destinationAccountNumber=${this.ownDestinationAccount || this.externalDestinationAccount}`)
                 .then(response => {
                     if (response.status === 201) {
-                        console.log(response.status)
+                        this.transferError = false
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Transfer succeded!`,
+                            background: "#1F2023",
+                            color: "#FFFFFF",
+                            confirmButtonColor: "var(--primary-color)",
+                            confirmButtonText: "Ok!",
+                            confirmButtonAriaLabel: "Ok",
+                            focusConfirm: false,
+                        })
                     }
                 })
                 .catch(error => {
+                    console.log(error.response.data)
                     this.transferError = true
                     this.errorMessage  = error.response.data
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Transfer error!`,
+                        text: error.response.data,
+                        background: "#1F2023",
+                        color: "#FFFFFF",
+                        confirmButtonColor: "var(--primary-color)",
+                        confirmButtonText: "Ok!",
+                        confirmButtonAriaLabel: "Ok",
+                        focusConfirm: false,
+                    })
                 })
         },
         submitForm(e) {
