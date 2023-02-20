@@ -399,6 +399,7 @@ aside ul {
   }
   aside nav {
     position: sticky;
+    top: 1rem;
   }
   aside nav ul {
     justify-content: space-around;
