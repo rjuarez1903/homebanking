@@ -75,6 +75,10 @@ footer li {
     font-weight: 300;
 }
 
+.footer-icons {
+    border-bottom: 2px solid var(--link-color-hover);
+}
+
 @media (min-width: 768px) {
     .hero-heading {
         font-size: 3.5rem;
