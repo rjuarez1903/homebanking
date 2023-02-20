@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/2cd05a3c76.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./mh-logo.png" type="image/png">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>MindHub Bros.</title>
+</head>
+<body>
+<div id="app">
+
+    <header class="p-4">
+        <div class="container d-flex justify-content-between align-items-center py-4">
+            <a href="#" class="logo d-flex gap-2 align-items-center">
+                <img src="./mh-logo.png" alt="MindHub Logo" width="50">
+                <h1 class="fs-4 mb-0 text-white">MindHub Bros.</h1>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <nav class="d-flex gap-2 align-items-center">
+                    <a href="./login.html" class="signin mb-0 px-2 py-1 rounded-2">Sign in</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4 text-white">
+        <div class="row" >
+            <!-- <aside class="col-5 col-md-12 col-lg-2 py-2 px-4 p-lg-0 m-lg-0">
+                <img src="./assets/mobile-exit.svg" alt="Exit mobile nav" class="exit hide-tablet rounded-2" @click="toggleMenu">
+                <nav class="p-lg-0">
+                    <ul class="d-flex flex-column flex-md-row flex-lg-column navbar-nav">
+                        <li class="nav-item d-md-flex align-items-center gap-2 mt-lg-3 active-custom-lg">
+                            <i class="fa-solid fa-address-card hide-mobile active-custom"></i>
+                            <a href="#" class="nav-link active-custom">Accounts</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2">
+                            <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
+                            <a href="./transfer.html" class="nav-link">Transfer</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                            <i class="fa-brands fa-cc-visa hide-mobile"></i>
+                            <a href="./cards.html" class="nav-link">Cards</a>
+                        </li>
+                        <li class="nav-item gap-2 hide-tablet">
+                            <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside> -->
+
+            <!-- <main class="col-12 col-md-12 col-lg-10"> -->
+            <main>
+                <section class="hero container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2 class="hero-heading">
+                                Tecnología e infraestructura para lanzar y escalar tu fintech en América Latina
+                            </h2>
+                            <p class="mb-4"> 
+                                Infraestructura de nueva generación para que puedas lanzar nuevos productos en solo semanas y con costo transparente.
+                            </p>
+                            <button class="green-btn rounded-2 mt-4">Ver detalles</button>
+                        </div>
+                        <div class="d-none d-lg-flex flex-column align-items-center justify-content-center col-lg-6">
+                            <img src="./g8.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container cards-container">
+                    <h3 class="mb-4">Lo que nos hace diferentes</h3>
+                    <ul class="row">
+                        <li class="col-md-6 col-lg-3">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-start">
+                                <rect x="21.5" y="16" width="52" height="34" rx="4" fill="url(#paint0_linear_390_3247)"></rect>
+                                <path d="M2 35H48" stroke="url(#paint1_linear_390_3247)" stroke-width="2" stroke-linecap="round"></path>
+                                <path d="M9 55H43" stroke="url(#paint2_linear_390_3247)" stroke-width="2" stroke-linecap="round"></path>
+                                <path d="M13 45L53 45" stroke="url(#paint3_linear_390_3247)" stroke-width="2" stroke-linecap="round"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_390_3247" x1="47.5" y1="16" x2="69.5192" y2="26.5351" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="var(--primary-color)"></stop>
+                                        <stop offset="1" stop-color="#92B2FF"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_390_3247" x1="48" y1="195.5" x2="3.93457" y2="195.5" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.479167" stop-color="white"></stop>
+                                        <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_390_3247" x1="43" y1="215.5" x2="10.4299" y2="215.5" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.479167" stop-color="white"></stop>
+                                        <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_390_3247" x1="53" y1="205.5" x2="14.6822" y2="205.5" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.479167" stop-color="white"></stop>
+                                        <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <h4 class="text-center card-title">Rápido</h4>
+                            <p>Disminuimos tus tiempos de implementación priorizando el time to market.</p>
+                        </li> 
+                        <li class="col-md-6 col-lg-3">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="22" y="16" width="52" height="34" rx="4" fill="url(#paint0_linear_390_3244)"></rect>
+                                <rect x="3" y="33" width="50" height="30" rx="5" stroke="url(#paint1_linear_390_3244)" stroke-width="2"></rect>
+                                <defs>
+                                    <linearGradient id="paint0_linear_390_3244" x1="48" y1="16" x2="70.0192" y2="26.5351" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="var(--primary-color)"></stop>
+                                        <stop offset="1" stop-color="#92B2FF"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_390_3244" x1="54" y1="48" x2="4.18691" y2="48" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.447917" stop-color="white"></stop>
+                                        <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <h4 class="text-center card-title">Transparente</h4>
+                            <p>Pricing simple y flexible. Sin sorpresas ni costos ocultos.</p>
+                        </li>
+                        <li class="col-md-6 col-lg-3">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="15" y="16" width="52" height="34" rx="4" fill="url(#paint0_linear_186_1563)"></rect>
+                                <rect x="53.8818" y="28" width="6.5" height="6.5" rx="2" fill="white"></rect>
+                                <rect x="2" y="57.6026" width="6.5" height="6.5" rx="2" fill="white" fill-opacity="0.15"></rect>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.26917 61.3393C4.99302 60.861 5.1569 60.2494 5.63519 59.9733L56.6844 30.5C57.1627 30.2239 57.7743 30.3877 58.0504 30.866C58.3265 31.3443 58.1627 31.9559 57.6844 32.2321L6.63519 61.7053C6.1569 61.9815 5.54531 61.8176 5.26917 61.3393Z" fill="url(#paint1_linear_186_1563)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_186_1563" x1="41" y1="16" x2="63.0192" y2="26.5351" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="var(--primary-color)"></stop>
+                                        <stop offset="1" stop-color="#92B2FF"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_186_1563" x1="137.434" y1="170.363" x2="88.5321" y2="198.597" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.588542" stop-color="white"></stop>
+                                        <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <h4 class="text-center card-title">Personalizable</h4>
+                            <p>Soluciones que se adaptan completamente a tus necesidades.</p>
+                        </li>
+                        <li class="col-md-6 col-lg-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 80 80">
+                                <rect width="52" height="34" x="14" y="16" fill="url(#paint0_linear_390_3243)" rx="4"></rect>
+                                <path stroke="url(#paint1_linear_390_3243)" stroke-linecap="round" stroke-width="2" d="M40 73V36"></path>
+                                <rect width="7" height="7" x="36.5" y="31" fill="#fff" rx="2"></rect>
+                                <path stroke="url(#paint2_linear_390_3243)" stroke-linecap="round" stroke-width="2" d="M34 68V46a6 6 0 00-6-6h-3"></path>
+                                <rect width="7" height="7" x="20.5" y="36.5" fill="#fff" rx="2"></rect>
+                                <path stroke="url(#paint3_linear_390_3243)" stroke-linecap="round" stroke-width="2" d="M46 68V46a6 6 0 016-6h4"></path>
+                                <rect width="7" height="7" fill="#fff" rx="2" transform="matrix(-1 0 0 1 59.5 36.5)"></rect>
+                                <defs>
+                                    <linearGradient id="paint0_linear_390_3243" x1="40" x2="62.019" y1="16" y2="26.535" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="var(--primary-color)"></stop>
+                                        <stop offset="1" stop-color="#92B2FF"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_390_3243" x1="1223940000" x2="1223940000" y1="91.729" y2="124.219" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.151" stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_390_3243" x1="11015400000" x2="11015400000" y1="541.562" y2="566.15" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.151" stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_390_3243" x1="-12239400000" x2="-12239400000" y1="597.292" y2="621.879" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.151" stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <h4 class="text-center card-title">Tecnológico</h4>
+                            <p>APIs fáciles de implementar para todas las funcionalidades que necesitás.</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="container features">
+                    <div class="row g-4">
+                        <div class="col-lg-6 d-flex flex-column justify-content-center">
+                            <h5 class="title-light text-uppercase fs-5">Core</h5>
+                            <h3 class="fs-1 features-heading">Ofrecé cuentas digitales para que tus clientes usen su saldo como quieran</h3>
+                            <p>Desarrolla tu plataforma fintech y ofrece todo tipo de transacciones físicas y virtuales a tus clientes al igual que los bancos digitales.</p>
+                            <ul>
+                                <li class="d-flex gap-3">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="10" fill="var(--primary-color)"></circle>
+                                            <path d="M6 10.7118L7.63333 12.7299C7.75904 12.8933 7.96772 12.9939 8.19358 12.9997C8.41944 13.0056 8.63464 12.9161 8.77133 12.7595L14 7" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                   <p>Estamos conectados a la red bancaria local y de efectivo.</p> 
+                                </li> 
+                                <li class="d-flex gap-3">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="10" fill="var(--primary-color)"></circle>
+                                            <path d="M6 10.7118L7.63333 12.7299C7.75904 12.8933 7.96772 12.9939 8.19358 12.9997C8.41944 13.0056 8.63464 12.9161 8.77133 12.7595L14 7" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <p>Tus clientes pueden ingresar y retirar dinero fácilmente.</p>
+                                </li>
+                            </ul>
+                            <button class="green-btn rounded-2">Saber más</button>
+                        </div>
+                        <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                            <img src="./g10.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container features">
+                    <div class="row g-4">
+                        <div class="col-lg-6 d-flex flex-column justify-content-center order-lg-last">
+                            <h5 class="title-light text-uppercase fs-5">Crypto friendly</h5>
+                            <h3 class="fs-1 features-heading">Sumá una nueva fuente de ingresos</h3>
+                            <p>
+                                Recibí un porcentaje de ganancia por las compras y los pagos que hagan tus clientes con la tarjeta.</p>
+                            <ul>
+                                <li class="d-flex gap-3">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="10" fill="var(--primary-color)"></circle>
+                                            <path d="M6 10.7118L7.63333 12.7299C7.75904 12.8933 7.96772 12.9939 8.19358 12.9997C8.41944 13.0056 8.63464 12.9161 8.77133 12.7595L14 7" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <p>Podrás hacer un seguimiento de las transacciones en tiempo real desde el Dashboard o usando nuestras APIs.</p> 
+                                </li> 
+                            </ul>
+                            <button class="green-btn rounded-2">Saber más</button>
+                        </div>
+                        <div class="col-lg-6 order-lg-first d-flex flex-column align-items-center justify-content-center">
+                            <img src="./g9.png" alt="" class="img-fluid">
+                        </div>
+                        
+                    </div>                   
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="mt-auto container my-4">
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="d-flex gap-2 align-items-center">
+                    <img src="./mh-logo.png" alt="MindHub Logo" width="50" class="mb-4">
+                    <p class="fs-4 text-white">MindHub Bros.</p>
+                </div>
+                <p class="text-white mb-4">Av. del Libertador 8620, piso 13. CABA. Buenos Aires.</p>
+                <p class="text-white">Av. Presidente Juscelino Kubitschek, 2041 - 17º andar. Vila Olímpia. São Paulo.</p>
+            </div>
+            <div class="col-lg-9">
+                <div class="container p-0">
+                    <div class="row">
+                        <div class="offset-lg-1 offset-xl-2 col-lg-2 mb-4">
+                            <ul class="text-white">
+                                <li class="fw-bold">Productos</li>
+                                <li>Cards</li>
+                                <li>Core</li>
+                                <li>Identity</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <ul class="text-white">
+                                <li class="fw-bold">Sobre Pomelo</li>
+                                <li>Contacto</li>
+                                <li>Sumate al team</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <ul class="text-white">
+                                <li class="fw-bold">Otros recursos</li>
+                                <li>DOCS</li>
+                                <li>APIs</li>
+                                <li>Dashboard</li>
+                                <li>Presskit</li>
+                                <li>Uptime de nuestros servicios</li>
+                                <li>Políticas de privacidad</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-4">
+                            <ul class="text-white">
+                                <li class="fw-bold">Países</li>
+                                <li>🇦🇷 Argentina</li>
+                                <li>🇨🇱 Chile</li>
+                                <li>🇨🇴 Colombia</li>
+                                <li>🇲🇽 México</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="./index2.js"></script>
+</body>
+</html>
