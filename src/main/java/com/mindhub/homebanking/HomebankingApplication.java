@@ -51,10 +51,10 @@ public class HomebankingApplication {
 			Loan loan2 = new Loan("Personal", 100_000, List.of(6,12,24));
 			Loan loan3 = new Loan("Car", 300_000, List.of(6,12,24,36));
 
-			ClientLoan clientLoan1 = new ClientLoan(400_000.0, (byte) 60, client1, loan1);
-			ClientLoan clientLoan2 = new ClientLoan(50_000.0, (byte) 12, client1, loan2);
-			ClientLoan clientLoan3 = new ClientLoan(100_000.0, (byte) 24, client2, loan2);
-			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36, client2, loan3);
+			ClientLoan clientLoan1 = new ClientLoan(400_000.0, (byte) 60);
+			ClientLoan clientLoan2 = new ClientLoan(50_000.0, (byte) 12);
+			ClientLoan clientLoan3 = new ClientLoan(100_000.0, (byte) 24);
+			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36);
 
 			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
 			Card card2 = new Card(CardType.CREDIT, CardColor.SILVER, "4444333322221111", "456", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
