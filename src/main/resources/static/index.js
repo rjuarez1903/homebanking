@@ -25,7 +25,7 @@ createApp({
             this.login = !this.login
         },
         logUser() {
-            axios.post('/api/login',
+            axios.post('/api/login', `email=${this.email}&password=${this.password}`,
                 {
                     email:    this.email,
                     password: this.password
@@ -43,12 +43,7 @@ createApp({
         },
         registerUser() {
             axios.post('/api/clients',
-                        {
-                            firstName: this.newClientFirstName,
-                            lastName: this.newClientLastName,
-                            email:    this.newClientEmail,
-                            password: this.newClientPassword
-                        },
+                        `firstName=${this.newClientFirstName}&lastName=${this.newClientLastName}&email=${this.newClientEmail}&password=${this.newClientPassword}`,
                        {
                            headers:
                                {
