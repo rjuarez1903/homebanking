@@ -113,7 +113,6 @@ createApp({
         },
         submitForm(e) {
             e.preventDefault()
-            console.log(this.transferType);
             this.v$.transferType.$touch();
             this.v$.sourceAccount.$touch();
             this.v$.amount.$touch();
