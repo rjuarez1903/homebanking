@@ -68,15 +68,22 @@ createApp({
                 .then(response => {
                     if (response.status === 201) {
                         this.transferError = false
-                        Swal.fire({
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
                             icon: 'success',
                             title: `Transfer succeded!`,
-                            background: "#1F2023",
+                            background: "var(--secondary-color)",
                             color: "#FFFFFF",
-                            confirmButtonColor: "var(--primary-color)",
-                            confirmButtonText: "Ok!",
-                            confirmButtonAriaLabel: "Ok",
-                            focusConfirm: false,
                         })
                     }
                 })
@@ -84,16 +91,23 @@ createApp({
                     console.log(error.response.data)
                     this.transferError = true
                     this.errorMessage  = error.response.data
-                    Swal.fire({
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
                         icon: 'error',
-                        title: `Transfer error!`,
+                        title: 'Transfer error!',
                         text: error.response.data,
-                        background: "#1F2023",
+                        background: "var(--secondary-color)",
                         color: "#FFFFFF",
-                        confirmButtonColor: "var(--primary-color)",
-                        confirmButtonText: "Ok!",
-                        confirmButtonAriaLabel: "Ok",
-                        focusConfirm: false,
                     })
                 })
         },
