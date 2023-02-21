@@ -229,8 +229,7 @@ footer li {
   transition: 0.5s;
 }
 
-.formGroup input:focus ~ label,
-.formGroup input:valid ~ label {
+.formGroup input ~ label {
   top: -20px;
   left: 0;
   color: #fff;
