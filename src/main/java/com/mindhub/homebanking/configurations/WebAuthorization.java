@@ -33,7 +33,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
             .passwordParameter("password")
             .loginPage("/api/login");
 
-        http.logout().logoutUrl("/api/logout");
+        http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
         http.csrf().disable();
 
