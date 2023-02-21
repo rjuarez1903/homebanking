@@ -68,9 +68,12 @@ body::-webkit-scrollbar-thumb {
   --primary-color: #5E85F8;
   --secondary-color: #292B31;
   --link-color: #BAC2D9;
+  --link-color-hover: #A4ADC6;
   --border-color: #464A56;
   --inner-panel-color: #32343C;
-} 
+}
+
+
 /*
     ******
     HEADER
