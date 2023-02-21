@@ -44,7 +44,7 @@ public class Client {
     }
 
     public void addCard(Card card) {
-        card.setCardholder(this.getFirstName() + " " + this.getLastName());
+        card.setClient(this);
         cards.add(card);
     }
 
