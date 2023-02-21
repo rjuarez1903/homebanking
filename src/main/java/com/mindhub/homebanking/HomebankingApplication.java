@@ -72,6 +72,16 @@ public class HomebankingApplication {
 			client1.addCard(card4);
 			client2.addCard(card5);
 
+			client1.addClientLoan(clientLoan1);
+			client1.addClientLoan(clientLoan2);
+			client2.addClientLoan(clientLoan3);
+			client2.addClientLoan(clientLoan4);
+
+			loan1.addClientLoan(clientLoan1);
+			loan2.addClientLoan(clientLoan2);
+			loan2.addClientLoan(clientLoan3);
+			loan3.addClientLoan(clientLoan4);
+
 			account1.addTransaction(transaction1);
 			account1.addTransaction(transaction2);
 			account1.addTransaction(transaction3);
