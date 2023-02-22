@@ -88,13 +88,14 @@
 
             <div v-if="transferType == 'Own account'">
               <label for="ownDestinationAccount" class="text-white mt-4">Destination Account</label>
-              <select class="form-select" id="ownDestinationAccount" aria-label="Default select example" v-model="ownDestinationAccount">
+              <select class="form-select" id="ownDestinationAccount" aria-label="Default select example" v-model="ownDestinationAccount" :disabled="sourceAccount != '' && accounts.length < 2">
                 <option value="">Destination Account</option>
                 <template v-for="account of filteredAccounts">
                   <option :value="`${account.number}`">{{ account.number }}</option>
                 </template>
               </select>
-              <small class="text-warning" v-if="v$.ownDestinationAccount.$error">{{ v$.ownDestinationAccount.$errors[0].$message }}</small>
+              <small class="text-warning" v-if="v$.ownDestinationAccount.$error" >{{ v$.ownDestinationAccount.$errors[0].$message }}</small>
+              <small v-if="sourceAccount != '' && accounts.length < 2" class="text-warning">You only have one account registered.</small>
             </div>
 
             <div v-else>
