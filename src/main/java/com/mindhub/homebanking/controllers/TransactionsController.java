@@ -45,8 +45,14 @@ public class TransactionsController {
         Set<Account> clientAccounts = client.getAccounts();
         boolean sourceBelongsToClient = false;
 
-        if (amount == 0.0 || description.isEmpty() || sourceAccountNumber.isEmpty() || destinationAccountNumber.isEmpty()) {
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        if (amount < 1) {
+            return new ResponseEntity<>("Transfer values lower than 0 are not allowed.", HttpStatus.BAD_REQUEST);
+        } else if (description.isEmpty()) {
+            return new ResponseEntity<>("Missing description", HttpStatus.FORBIDDEN);
+        } else if (sourceAccountNumber.isEmpty()) {
+            return new ResponseEntity<>("Missing source account number", HttpStatus.FORBIDDEN);
+        } else if (destinationAccountNumber.isEmpty()) {
+            return new ResponseEntity<>("Missing destination account number", HttpStatus.FORBIDDEN);
         }
 
         if (accountRepository.findByNumber(sourceAccountNumber) == null) {
