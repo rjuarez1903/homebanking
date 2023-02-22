@@ -968,6 +968,25 @@ input[type=radio]:checked ~ label{
     ********
 */
 
+select,
+#amount,
+#externalDestinationAccount,
+textarea {
+    outline: none;
+    box-shadow: none !important;
+    background-color: var(--inner-panel-color) !important;
+    color: #FFFFFF !important;
+}
+
+select:focus, #amount:focus, #externalDestinationAccount:focus, textarea:focus {
+    border-color: var(--primary-color) !important
+}
+
+/*  ***********
+    SWEET ALERT
+    ***********
+*/
+
 .swal2-popup {
     border-radius: 1rem !important;
     font-size: 1rem !important;
