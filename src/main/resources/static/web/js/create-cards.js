@@ -81,7 +81,20 @@ createApp({
             axios.post("/api/clients/current/cards", `color=${this.cardColor}&type=${this.cardType}`)
                 .then(response => {
                     if (response.status === 201) {
-                        location.replace("/web/cards.html")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true,
+                        })
+                        Toast.fire({
+                            icon: 'success',
+                            title: `Card created!`,
+                            background: "var(--secondary-color)",
+                            color: "#FFFFFF",
+                        })
+                        setTimeout(() => location.replace("/web/cards.html"),1000)
                     }
                 })
                 .catch(error => {
