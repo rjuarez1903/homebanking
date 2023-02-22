@@ -69,7 +69,7 @@
         <div class="form transfer-form rounded-4">
           <form class="p-4">
             <label for="transferType" class="text-white">Transfer type</label>
-            <select class="form-select" id="transferType" aria-label="Default select example" v-model="transferType">
+            <select class="form-select" id="transferType" aria-label="Default select example" v-model="transferType" @change="resetDestinationValues">
               <option value="">Choose transfer type</option>
               <option value="Own account">Own account</option>
               <option value="External transfer">External transfer</option>

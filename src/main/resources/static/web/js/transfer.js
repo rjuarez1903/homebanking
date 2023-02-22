@@ -57,6 +57,10 @@ createApp({
             axios.post('/api/logout')
                 .then(response => location.replace("/index.html"))
         },
+        resetDestinationValues() {
+            this.ownDestinationAccount      = ""
+            this.externalDestinationAccount = ""
+        },
         filterAccounts() {
             this.filteredAccounts = this.accounts.filter(account => account.number != this.sourceAccount)
         },
@@ -85,6 +89,7 @@ createApp({
                             background: "var(--secondary-color)",
                             color: "#FFFFFF",
                         })
+                        this.loadData()
                     }
                 })
                 .catch(error => {
