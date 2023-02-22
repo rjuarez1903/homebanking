@@ -119,6 +119,10 @@ body {
   font-weight: 300;
 }
 
+.check-svg {
+  min-width: 20px;
+}
+
 .features-heading {
   font-weight: 300;
 }
