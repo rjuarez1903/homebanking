@@ -36,9 +36,13 @@ public class CardController {
         }
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
-        public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
+    public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
         Client client = clientRepository.findByEmail(authentication.getName());
-        if (client.getCards().stream().filter(card -> card.getType() == type).count() < 3) {
+        if (client.getCards().stream().filter(card -> card.getType() == type).count() > 2) {
+            return new ResponseEntity<>("Can't generate more than 3 " + type.toString().toLowerCase() + " cards per client.", HttpStatus.FORBIDDEN);
+        } else if (cardRepository.findByCardholderAndTypeAndColor(client.getFirstName() + " " + client.getLastName(), type, color) != null) {
+            return new ResponseEntity<>("Can't generate more than 1 card of the same type and color.", HttpStatus.FORBIDDEN);
+        } else {
             Integer cvv = ThreadLocalRandom.current().nextInt(100, 998 + 1);
             String number = "";
             do {
@@ -50,8 +54,6 @@ public class CardController {
             client.addCard(card);
             cardRepository.save(card);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("Can't generate more than 3 " + type.toString().toLowerCase() + " cards per client.", HttpStatus.FORBIDDEN);
         }
     }
 }
