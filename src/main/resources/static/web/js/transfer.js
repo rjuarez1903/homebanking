@@ -4,7 +4,6 @@ const required      = VuelidateValidators.required
 const minValue      = VuelidateValidators.minValue
 const numeric       = VuelidateValidators.numeric
 const decimal       = VuelidateValidators.decimal
-// const maxValue      = VuelidateValidators.maxValue
 
 createApp({
     data() {
@@ -71,6 +70,7 @@ createApp({
             axios.post("/api/transactions", `amount=${this.amount}&description=${this.description}&sourceAccountNumber=${this.sourceAccount}&destinationAccountNumber=${this.ownDestinationAccount || this.externalDestinationAccount}`)
                 .then(response => {
                     if (response.status === 201) {
+                        console.log(response.data)
                         this.transferError = false
                         const Toast = Swal.mixin({
                             toast: true,
