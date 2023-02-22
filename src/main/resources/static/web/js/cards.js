@@ -44,9 +44,25 @@ createApp({
         filterCards(cards, filter) {
             return this.cards.filter(card => card.type == filter)
         },
-        signOutUser() {
-            axios.post('/api/logout')
-                .then(response => location.replace("/index.html"))
-        }
+        signOutUser(e) {
+            e.preventDefault()
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            })
+            Toast.fire({
+                icon: 'success',
+                title: `Logging out...`,
+                background: "var(--secondary-color)",
+                color: "#FFFFFF",
+            })
+            setTimeout(() => {
+                axios.post('/api/logout')
+                    .then(() =>location.replace("/index.html"))
+            }, 1000)
+        },
     }
 }).mount('#app')
