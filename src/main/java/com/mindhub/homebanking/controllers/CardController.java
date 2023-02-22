@@ -7,6 +7,7 @@ import com.mindhub.homebanking.models.CardType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +44,10 @@ public class CardController {
         } else if (cardRepository.findByCardholderAndTypeAndColor(client.getFirstName() + " " + client.getLastName(), type, color) != null) {
             return new ResponseEntity<>("Can't generate more than 1 card of the same type and color.", HttpStatus.FORBIDDEN);
         } else {
-            Integer cvv = ThreadLocalRandom.current().nextInt(100, 998 + 1);
-            String number = "";
+            Integer cvv = Utilities.getCvvNumber();
+            String number;
             do {
-                for (byte i = 0; i < 4; i++) {
-                    number += ThreadLocalRandom.current().nextInt(1000, 9998 + 1);
-                }
+                number = Utilities.getRandomCardNumbers();
             } while (cardRepository.findByNumber(number) != null);
             Card card = new Card(type, color, number, cvv.toString(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client);
             client.addCard(card);
