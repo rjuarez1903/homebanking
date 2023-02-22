@@ -48,9 +48,17 @@ public class AccountController {
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(Authentication authentication) {
         Client client = clientRepository.findByEmail(authentication.getName());
-        if (client.getAccounts().size() < 3) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, 99999999 + 1);
-            Account account =  new Account("VIN" + randomNum, LocalDateTime.now(), 0);
+        String accountPrefix = "VIN";
+        String accountNumber = "";
+        if (client.getAccounts().size() < 3 ) {
+            while (true) {
+                int randomNum = ThreadLocalRandom.current().nextInt(0, 99999999 + 1);
+                if (accountRepository.findByNumber(accountPrefix + randomNum) == null) {
+                    accountNumber = accountPrefix + randomNum;
+                    break;
+                }
+            }
+            Account account =  new Account(accountNumber, LocalDateTime.now(), 0);
             client.addAccount(account);
             accountRepository.save(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
