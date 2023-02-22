@@ -40,7 +40,7 @@ createApp({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 2000,
+                timer: 1000,
                 timerProgressBar: true,
             })
             Toast.fire({
@@ -52,7 +52,7 @@ createApp({
             setTimeout(() => {
                 axios.post('/api/logout')
                     .then(() =>location.replace("/index.html"))
-            }, 2000)
+            }, 1000)
         },
         createAccount() {
             axios.post('/api/clients/current/accounts')
