@@ -8,14 +8,14 @@ const decimal       = VuelidateValidators.decimal
 createApp({
     data() {
         return {
-            client:                      {},
-            v$:                          useVuelidate(),
-            loans:                       [],
-            loan:                        "",
-            loanId:                      "",
-            payments:                    "",
-            loanAmount:                  "",
-            destinationAccount:          ""
+            client:             {},
+            v$:                 useVuelidate(),
+            loans:              [],
+            loan:               "",
+            loanId:             "",
+            payments:           "",
+            loanAmount:         "",
+            destinationAccount: ""
         }
     },
     created() {
@@ -55,17 +55,17 @@ createApp({
         signOutUser(e) {
             e.preventDefault()
             const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
+                toast:            true,
+                position:         'top-end',
                 showConfirmButton: false,
-                timer: 1000,
+                timer:            1000,
                 timerProgressBar: true,
             })
             Toast.fire({
-                icon: 'success',
-                title: `Logging out...`,
+                icon:       'success',
+                title:      `Logging out...`,
                 background: "var(--secondary-color)",
-                color: "#FFFFFF",
+                color:      "#FFFFFF",
             })
             setTimeout(() => {
                 axios.post('/api/logout')
@@ -85,45 +85,62 @@ createApp({
             }
         },
         applyForLoan() {
-            axios.post('/api/loans',{
-                id:                       this.loanId,
-                amount:                   this.loanAmount,
-                payments:                 this.payments,
-                destinationAccountNumber: this.destinationAccount
+            const Toast = Swal.mixin({
+                toast:            true,
+                position:         'top-end',
+                showConfirmButton: false,
+                timer:            1000,
+                timerProgressBar: true,
             })
-                .then(response => console.log(response))
+            axios.post('/api/loans',
+                {
+                    id:                       this.loanId,
+                    amount:                   this.loanAmount,
+                    payments:                 this.payments,
+                    destinationAccountNumber: this.destinationAccount
+                }
+            )
+                .then(response => {
+                        console.log(response.data)
+                        if (response.status == 201) {
+                            Toast.fire({
+                                icon:       'success',
+                                title:      `Loan approved!`,
+                                background: "var(--secondary-color)",
+                                color:      "#FFFFFF",
+                            })
+                        }
+                    }
+                )
                 .catch((error) => console.log(error.response.data))
         },
         submitForm() {
             const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
+                toast:            true,
+                position:         'top-end',
                 showConfirmButton: false,
-                timer: 1000,
+                timer:            1000,
                 timerProgressBar: true,
             })
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
+                title:             'Are you sure?',
+                text:              "You won't be able to revert this!",
+                icon:              'warning',
+                showCancelButton:  true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText:  'Yes, delete it!',
+                background:        "#1F2023",
+                color:             "#FFFFFF"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Toast.fire({
-                        icon: 'success',
-                        title: `Loan approved!`,
-                        background: "var(--secondary-color)",
-                        color: "#FFFFFF",
-                    })
+                    this.applyForLoan()
                 } else {
                     Toast.fire({
-                        icon: 'error',
-                        title: `Loan application cancelled.`,
+                        icon:       'error',
+                        title:      `Loan application cancelled.`,
                         background: "var(--secondary-color)",
-                        color: "#FFFFFF",
+                        color:      "#FFFFFF",
                     })
                 }
             })
