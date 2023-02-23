@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -101,6 +102,8 @@ public class LoanController {
             Integer requestedLoanPayments = loanApplicationDTO.getPayments();
             String requestedLoanDestinationAccountNumber = loanApplicationDTO.getDestinationAccountNumber();
             Set<Account> clientAccounts = client.getAccounts();
+            List<Integer> payments = new ArrayList<>();
+            Double maxAmount = 0.0;
 
             if (requestedLoanId == null) {
                 return new ResponseEntity<>("Empty loan field.", HttpStatus.BAD_REQUEST);
@@ -114,14 +117,16 @@ public class LoanController {
 
             Loan requestedLoan = loanRepository.findById(requestedLoanId).orElse(null);
 
-            if (requestedLoan == null) {
+            if (requestedLoan != null) {
+                payments = requestedLoan.getPayments();
+                maxAmount = requestedLoan.getMaxAmount();
+            } else {
                 return new ResponseEntity<>("Loan id doesn't exist.", HttpStatus.BAD_REQUEST);
-            } else if (requestedLoanAmount < 1.0) {
-                return new ResponseEntity<>("Loan amount can't be lower than 0", HttpStatus.BAD_REQUEST);
             }
 
-            List<Integer> payments = loanRepository.findById(requestedLoanId).get().getPayments();
-            Double maxAmount = loanRepository.findById(requestedLoanId).get().getMaxAmount();
+            if (requestedLoanAmount < 1.0) {
+                return new ResponseEntity<>("Loan amount can't be lower than 0", HttpStatus.BAD_REQUEST);
+            }
 
             if (!payments.contains(requestedLoanPayments)) {
                 return new ResponseEntity<>("Invalid payments value.", HttpStatus.BAD_REQUEST);
@@ -132,11 +137,12 @@ public class LoanController {
             }
 
             Account destinationAccount = accountRepository.findByNumber(requestedLoanDestinationAccountNumber);
-            if (clientAccounts.contains(destinationAccount)) {
+
+            if (!clientAccounts.contains(destinationAccount)) {
                 return new ResponseEntity<>("Account doesn't belong to client.", HttpStatus.FORBIDDEN);
             }
 
-            double interest = loanApplicationDTO.getAmount() * 0.20;
+            double interest = requestedLoanAmount * 0.20;
             ClientLoan clientLoan = new ClientLoan(requestedLoanAmount + interest, requestedLoanPayments);
             Loan loan = loanRepository.findById(requestedLoanId).orElse(null);
             Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now());
