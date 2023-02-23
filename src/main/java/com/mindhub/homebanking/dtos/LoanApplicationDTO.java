@@ -1,23 +1,23 @@
 package com.mindhub.homebanking.dtos;
 
 public class LoanApplicationDTO {
-    private long id;
-    private double amount;
+    private Long id;
+    private Double amount;
     private Integer payments;
     private String destinationAccountNumber;
 
-    public LoanApplicationDTO(long id, double amount, Integer payments, String destinationAccountNumber) {
+    public LoanApplicationDTO(Long id, Double amount, Integer payments, String destinationAccountNumber) {
         this.id = id;
         this.amount = amount;
         this.payments = payments;
         this.destinationAccountNumber = destinationAccountNumber;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
