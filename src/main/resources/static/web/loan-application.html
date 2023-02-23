@@ -79,13 +79,14 @@
             <label for="payments" class="text-white mt-4">Payments</label>
             <select class="form-select" id="payments" aria-label="Default select example" v-model="payments">
               <option value="">Choose payments</option>
-                <template v-for="payment of getLoanPayments(loanId)">
+                <template v-for="payment of getLoanPayments()">
                   <option :value="payment">{{ payment }}</option>
                 </template>
             </select>
 
             <div>
               <label for="loanAmount" class="text-white mt-4">Amount</label>
+              <small v-if="loanId != ''" class="d-block text-white">Max amount: {{ showMaxAmount() }}</small>
               <input type="text" id="loanAmount" class="form-control" v-model="loanAmount">
             </div>
 

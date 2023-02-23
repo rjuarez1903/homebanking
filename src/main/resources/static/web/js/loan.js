@@ -82,10 +82,16 @@ createApp({
                     .then(() =>location.replace("/index.html"))
             }, 1000)
         },
-        getLoanPayments(selectedLoanId) {
-            const currentLoan = this.loans.filter(loan => loan.id == selectedLoanId)
+        getLoanPayments() {
+            const currentLoan = this.loans.filter(loan => loan.id == this.loanId)
             if (currentLoan.length > 0) {
                 return currentLoan[0].payments
+            }
+        },
+        showMaxAmount() {
+            const currentLoan = this.loans.filter(loan => loan.id === this.loanId)
+            if (currentLoan.length > 0) {
+                return currentLoan[0].maxAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
             }
         },
         applyForLoan() {
