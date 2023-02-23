@@ -95,6 +95,13 @@ createApp({
                 .catch((error) => console.log(error.response.data))
         },
         submitForm() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            })
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -105,11 +112,19 @@ createApp({
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
+                    Toast.fire({
+                        icon: 'success',
+                        title: `Loan approved!`,
+                        background: "var(--secondary-color)",
+                        color: "#FFFFFF",
+                    })
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: `Loan application cancelled.`,
+                        background: "var(--secondary-color)",
+                        color: "#FFFFFF",
+                    })
                 }
             })
         }
