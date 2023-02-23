@@ -4,6 +4,7 @@ import com.mindhub.homebanking.dtos.LoanApplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.ClientLoan;
 import com.mindhub.homebanking.models.Loan;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -53,7 +54,6 @@ public class LoanController {
 
             Loan requestedLoan = loanRepository.findById(loanApplicationDTO.getId()).orElse(null);
 
-
             if (requestedLoan == null) {
                 return new ResponseEntity<>("Loan id doesn't exist.", HttpStatus.BAD_REQUEST);
             } else if (loanApplicationDTO.getAmount() < 1.0) {
@@ -76,6 +76,8 @@ public class LoanController {
                 return new ResponseEntity<>("Account doesn't belong to client.", HttpStatus.FORBIDDEN);
             }
 
+            double interest = loanApplicationDTO.getAmount() * 0.20;
+            ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() + interest, loanApplicationDTO.getPayments());
             return new ResponseEntity<>("Loan approved.", HttpStatus.CREATED);
 
         } else {
