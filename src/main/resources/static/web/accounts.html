@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="text-end" v-if="client.accounts.length < 3">
-                        <button href="./create-cards.html" @click="createAccount" class="green-btn rounded-2 my-4 d-inline-block">Add account</button>
+                        <button @click="createAccount" class="green-btn rounded-2 my-4 d-inline-block">Add account</button>
                     </div>
                 </div>
 
@@ -114,6 +114,9 @@
                     </li>
                 </ul>
                 <h2 v-else class="mt-4 text-center">No loans registered for this client.</h2>
+                <div class="text-end">
+                    <a href="./loan-application.html" class="green-btn rounded-2 my-4 d-inline-block">Apply</a>
+                </div>
             </main>
         </div>
     </div>
