@@ -994,6 +994,8 @@ input[type=radio]:checked ~ label {
 select,
 #amount,
 #externalDestinationAccount,
+#destinationAccount,
+#loanAmount,
 textarea {
   outline: none;
   box-shadow: none !important;
@@ -1001,7 +1003,12 @@ textarea {
   color: #FFFFFF !important;
 }
 
-select:focus, #amount:focus, #externalDestinationAccount:focus, textarea:focus {
+select:focus,
+#amount:focus,
+#externalDestinationAccount:focus,
+#destinationAccount:focus,
+#loanAmount:focus,
+textarea:focus {
   border-color: var(--primary-color) !important;
 }
 
