@@ -77,7 +77,6 @@
             <small class="text-warning d-block" v-if="v$.transferType.$error">{{ v$.transferType.$errors[0].$message }}</small>
 
             <label for="sourceAccount" class="text-white mt-4">Source Account</label>
-            <small v-if="sourceAccount != ''" class="d-block text-white">Max amount available: {{ showBalance() }}</small>
             <select class="form-select" id="sourceAccount" aria-label="Default select example" v-model="sourceAccount" @change="filterAccounts">
               <option value="">Source account</option>
               <template v-for="account of accounts">
@@ -106,6 +105,7 @@
 
             <div>
               <label for="amount" class="text-white mt-4">Amount</label>
+              <small v-if="sourceAccount != ''" class="d-block text-white">Max amount available: {{ showBalance() }}</small>
               <input type="text" id="amount" class="form-control" v-model="amount">
               <small class="text-warning" v-if="v$.amount.$error">{{ v$.amount.$errors[0].$message }}</small>
             </div>
