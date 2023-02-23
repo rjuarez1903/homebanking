@@ -2,13 +2,8 @@ package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.LoanApplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.ClientLoan;
-import com.mindhub.homebanking.models.Loan;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.LoanRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -30,6 +26,10 @@ public class LoanController {
     LoanRepository loanRepository;
     @Autowired
     AccountRepository accountRepository;
+    @Autowired
+    private TransactionRepository transactionRepository;
+    @Autowired
+    private ClientLoanRepository clientLoanRepository;
 
     @GetMapping("/loans")
     public List<LoanDTO> getLoans() {
@@ -78,6 +78,14 @@ public class LoanController {
 
             double interest = loanApplicationDTO.getAmount() * 0.20;
             ClientLoan clientLoan = new ClientLoan(loanApplicationDTO.getAmount() + interest, loanApplicationDTO.getPayments());
+            Loan loan = loanRepository.findById(loanApplicationDTO.getId()).orElse(null);
+            loan.addClientLoan(clientLoan);
+            client.addClientLoan(clientLoan);
+            Transaction transaction = new Transaction(TransactionType.CREDIT, clientLoan.getAmount(), requestedLoan.getName() + " loan approved", LocalDateTime.now());
+            destinationAccount.addTransaction(transaction);
+            destinationAccount.setBalance(destinationAccount.getBalance() + loanApplicationDTO.getAmount());
+            transactionRepository.save(transaction);
+            clientLoanRepository.save(clientLoan);
             return new ResponseEntity<>("Loan approved.", HttpStatus.CREATED);
 
         } else {
