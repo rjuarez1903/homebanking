@@ -50,9 +50,9 @@
               <i class="fa-solid fa-address-card hide-mobile"></i>
               <a href="./accounts.html" class="nav-link">Accounts</a>
             </li>
-            <li class="nav-item d-md-flex align-items-center gap-2 active-custom-lg">
-              <i class="fa-solid fa-money-bill-transfer hide-mobile active-custom"></i>
-              <a href="#" class="nav-link active-custom">Transfer</a>
+            <li class="nav-item d-md-flex align-items-center gap-2">
+              <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
+              <a href="#" class="nav-link">Transfer</a>
             </li>
             <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
               <i class="fa-brands fa-cc-visa hide-mobile"></i>
@@ -96,55 +96,9 @@
             </div>
 
             <div class="text-center mt-4">
-<!--              <small class="text-warning text-center mt-2 d-block" v-if="transferError">{{ errorMessage }}</small>-->
               <button @click="submitForm" class="green-btn mt-4 rounded-2">Apply</button>
             </div>
-<!--            <small class="text-warning d-block" v-if="v$.transferType.$error">{{ v$.transferType.$errors[0].$message }}</small>-->
 
-<!--            <label for="sourceAccount" class="text-white mt-4">Source Account</label>-->
-<!--            <small v-if="sourceAccount != ''" class="d-block text-white">Max amount available: {{ showBalance() }}</small>-->
-<!--            <select class="form-select" id="sourceAccount" aria-label="Default select example" v-model="sourceAccount" @change="filterAccounts">-->
-<!--              <option value="">Source account</option>-->
-<!--              <template v-for="account of accounts">-->
-<!--                <option :value="`${account.number}`">{{ account.number }}</option>-->
-<!--              </template>-->
-<!--            </select>-->
-<!--            <small class="text-warning d-block" v-if="v$.sourceAccount.$error">{{ v$.sourceAccount.$errors[0].$message }}</small>-->
-
-<!--            <div v-if="transferType == 'Own account'">-->
-<!--              <label for="ownDestinationAccount" class="text-white mt-4">Destination Account</label>-->
-<!--              <select class="form-select" id="ownDestinationAccount" aria-label="Default select example" v-model="ownDestinationAccount" :disabled="sourceAccount != '' && accounts.length < 2">-->
-<!--                <option value="">Destination Account</option>-->
-<!--                <template v-for="account of filteredAccounts">-->
-<!--                  <option :value="`${account.number}`">{{ account.number }}</option>-->
-<!--                </template>-->
-<!--              </select>-->
-<!--              <small class="text-warning" v-if="v$.ownDestinationAccount.$error" >{{ v$.ownDestinationAccount.$errors[0].$message }}</small>-->
-<!--              <small v-if="sourceAccount != '' && accounts.length < 2" class="text-warning">You only have one account registered.</small>-->
-<!--            </div>-->
-
-<!--            <div v-else>-->
-<!--              <label for="externalDestinationAccount" class="text-white mt-4">Destination Account</label>-->
-<!--              <input type="text" id="externalDestinationAccount" class="form-control" v-model="externalDestinationAccount">-->
-<!--              <small class="text-warning" v-if="v$.externalDestinationAccount.$error">{{ v$.externalDestinationAccount.$errors[0].$message }}</small>-->
-<!--            </div>-->
-
-<!--            <div>-->
-<!--              <label for="amount" class="text-white mt-4">Amount</label>-->
-<!--              <input type="text" id="amount" class="form-control" v-model="amount">-->
-<!--              <small class="text-warning" v-if="v$.amount.$error">{{ v$.amount.$errors[0].$message }}</small>-->
-<!--            </div>-->
-
-<!--            <div>-->
-<!--              <label for="description" class="form-label mt-4 text-white">Description</label>-->
-<!--              <textarea class="form-control" id="description" rows="4" v-model="description"></textarea>-->
-<!--              <small class="text-warning" v-if="v$.description.$error">{{ v$.description.$errors[0].$message }}</small>-->
-<!--            </div>-->
-
-<!--            <div class="text-center mt-4">-->
-<!--              <small class="text-warning text-center mt-2 d-block" v-if="transferError">{{ errorMessage }}</small>-->
-<!--              <button @click="submitForm" class="green-btn mt-4 rounded-2">Transfer</button>-->
-<!--            </div>-->
           </form>
         </div>
       </main>
