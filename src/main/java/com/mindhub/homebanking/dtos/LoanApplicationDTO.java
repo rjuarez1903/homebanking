@@ -13,20 +13,19 @@ public class LoanApplicationDTO {
         this.destinationAccountNumber = destinationAccountNumber;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getId() {
+        return id;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setPayments(Integer payments) {
-        this.payments = payments;
+    public Integer getPayments() {
+        return payments;
     }
 
-    public void setDestinationAccountNumber(String destinationAccountNumber) {
-        this.destinationAccountNumber = destinationAccountNumber;
+    public String getDestinationAccountNumber() {
+        return destinationAccountNumber;
     }
-
 }
