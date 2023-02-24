@@ -56,7 +56,10 @@ public class HomebankingApplication {
 			ClientLoan clientLoan3 = new ClientLoan(100_000.0, (byte) 24);
 			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36);
 
-			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+			LocalDateTime creation = LocalDateTime.now().minusYears(5);
+			LocalDateTime expiration = creation.plusYears(5);
+
+			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", creation, expiration, client1);
 			Card card2 = new Card(CardType.CREDIT, CardColor.SILVER, "4444333322221111", "456", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
 			Card card3 = new Card(CardType.CREDIT, CardColor.TITANIUM, "3232414154546565", "789", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
 			Card card4 = new Card(CardType.DEBIT, CardColor.GOLD, "2020989810102929", "321", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
