@@ -49,22 +49,28 @@ public class AccountController {
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(Authentication authentication) {
         Client client = clientRepository.findByEmail(authentication.getName());
-        String accountPrefix = "VIN";
-        String accountName = "";
-        if (client.getAccounts().size() < 3 ) {
-            while (true) {
-                int accountNumber = Utilities.getRandomNumber(0, 99999999);
-                if (accountRepository.findByNumber(accountPrefix + accountNumber) == null) {
-                    accountName = accountPrefix + accountNumber;
-                    break;
+
+        if (client != null) {
+            String accountPrefix = "VIN";
+            String accountName = "";
+            if (client.getAccounts().size() < 3 ) {
+                while (true) {
+                    int accountNumber = Utilities.getRandomNumber(0, 99999999);
+                    if (accountRepository.findByNumber(accountPrefix + accountNumber) == null) {
+                        accountName = accountPrefix + accountNumber;
+                        break;
+                    }
                 }
+                Account account =  new Account(accountName, LocalDateTime.now(), 0);
+                client.addAccount(account);
+                accountRepository.save(account);
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
             }
-            Account account =  new Account(accountName, LocalDateTime.now(), 0);
-            client.addAccount(account);
-            accountRepository.save(account);
-            return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+
     }
 }
