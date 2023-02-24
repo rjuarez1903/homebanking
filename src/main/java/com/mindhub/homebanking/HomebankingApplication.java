@@ -20,6 +20,8 @@ public class HomebankingApplication {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	@Autowired
+	CardRepository cardRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class, args);
@@ -57,7 +59,7 @@ public class HomebankingApplication {
 			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36);
 
 			LocalDateTime creation = LocalDateTime.now().minusYears(5);
-			LocalDateTime expiration = creation.plusYears(5);
+			LocalDateTime expiration = creation.plusYears(5).plusMinutes(2);
 
 			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", creation, expiration, client1);
 			Card card2 = new Card(CardType.CREDIT, CardColor.SILVER, "4444333322221111", "456", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
@@ -91,34 +93,18 @@ public class HomebankingApplication {
 			account3.addTransaction(transaction4);
 			account3.addTransaction(transaction5);
 
-			clientRepository.save(client1);
-			clientRepository.save(client2);
-			clientRepository.save(client3);
+			clientRepository.saveAll(List.of(client1, client2, client3));
 
-			accountRepository.save(account1);
-			accountRepository.save(account2);
-			accountRepository.save(account3);
+			accountRepository.saveAll(List.of(account1, account2, account3));
 
-			transactionRepository.save(transaction1);
-			transactionRepository.save(transaction2);
-			transactionRepository.save(transaction3);
-			transactionRepository.save(transaction4);
-			transactionRepository.save(transaction5);
+			transactionRepository.saveAll(List.of(transaction1, transaction2, transaction3, transaction4, transaction5));
 
-			loanRepository.save(loan1);
-			loanRepository.save(loan2);
-			loanRepository.save(loan3);
+			loanRepository.saveAll(List.of(loan1, loan2, loan3));
 
-			clientLoanRepository.save(clientLoan1);
-			clientLoanRepository.save(clientLoan2);
-			clientLoanRepository.save(clientLoan3);
-			clientLoanRepository.save(clientLoan4);
+			clientLoanRepository.saveAll(List.of(clientLoan1, clientLoan2, clientLoan3, clientLoan4));
 
-			cardRepository.save(card1);
-			cardRepository.save(card2);
-			cardRepository.save(card3);
-			cardRepository.save(card4);
-			cardRepository.save(card5);
+			cardRepository.saveAll(List.of(card1, card2, card3, card4, card5));
+
 		};
 	}
 
