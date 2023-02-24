@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -32,12 +29,12 @@ public class CardController {
     @Autowired
     CardRepository cardRepository;
 
-    @RequestMapping("/clients/current/cards")
+    @GetMapping("/clients/current/cards")
         public List<CardDTO> getCurrentCards(Authentication authentication) {
             return clientRepository.findByEmail(authentication.getName()).getCards().stream().map(CardDTO::new).collect(Collectors.toList());
         }
 
-    @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
+    @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
         Client client = clientRepository.findByEmail(authentication.getName());
 
@@ -63,7 +60,6 @@ public class CardController {
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
 
     }
 }
