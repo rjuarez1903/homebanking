@@ -36,7 +36,14 @@ createApp({
                         'content-type':'application/x-www-form-urlencoded'
                     }
                 })
-                .then(() => location.replace("/web/accounts.html"))
+                .then(() => {
+                    if (this.email == "admin@admin.com") {
+                        location.replace("/manager/manager.html")
+                    } else {
+                        location.replace("/web/accounts.html")
+                    }
+
+                })
                 .catch(error => {
                     console.log(error.message)
                     this.invalidCredentials = true

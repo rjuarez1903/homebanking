@@ -17,7 +17,7 @@ createApp({
                     this.client = response.data
                     this.loans  = this.client.loans
                     this.sortById(this.client.accounts)
-                    if (this.client.accounts.length === 0) {
+                    if (this.client.accounts.length === 0 && this.client.email != "admin@admin.com") {
                         this.createAccount()
                     }
                 })
