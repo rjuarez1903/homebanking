@@ -42,59 +42,64 @@ public class TransactionsController {
                                                 @RequestParam String destinationAccountNumber) {
 
         Client client = clientRepository.findByEmail(authentication.getName());
-        Set<Account> clientAccounts = client.getAccounts();
-        boolean sourceBelongsToClient = false;
 
-        if (amount < 1) {
-            return new ResponseEntity<>("Transfer values lower than 0 are not allowed.", HttpStatus.BAD_REQUEST);
-        } else if (description.isEmpty()) {
-            return new ResponseEntity<>("Missing description", HttpStatus.FORBIDDEN);
-        } else if (sourceAccountNumber.isEmpty()) {
-            return new ResponseEntity<>("Missing source account number", HttpStatus.FORBIDDEN);
-        } else if (destinationAccountNumber.isEmpty()) {
-            return new ResponseEntity<>("Missing destination account number", HttpStatus.FORBIDDEN);
-        }
+        if (client != null) {
+            Set<Account> clientAccounts = client.getAccounts();
+            boolean sourceBelongsToClient = false;
 
-        if (accountRepository.findByNumber(sourceAccountNumber) == null) {
-            return new ResponseEntity<>("Source account doesn't exist", HttpStatus.FORBIDDEN);
-        }
-
-        if (accountRepository.findByNumber(destinationAccountNumber) == null) {
-            return new ResponseEntity<>("Destination account doesn't exist", HttpStatus.FORBIDDEN);
-        }
-
-        if (sourceAccountNumber.equals(destinationAccountNumber)) {
-            return new ResponseEntity<>("Source and destination accounts are the same.", HttpStatus.FORBIDDEN);
-        }
-
-        for (Account account : clientAccounts) {
-            if (account.getNumber().equals(sourceAccountNumber)) {
-                sourceBelongsToClient = true;
-                break;
+            if (amount < 1) {
+                return new ResponseEntity<>("Transfer values lower than 0 are not allowed.", HttpStatus.BAD_REQUEST);
+            } else if (description.isEmpty()) {
+                return new ResponseEntity<>("Missing description", HttpStatus.FORBIDDEN);
+            } else if (sourceAccountNumber.isEmpty()) {
+                return new ResponseEntity<>("Missing source account number", HttpStatus.FORBIDDEN);
+            } else if (destinationAccountNumber.isEmpty()) {
+                return new ResponseEntity<>("Missing destination account number", HttpStatus.FORBIDDEN);
             }
-        }
 
-        if (!sourceBelongsToClient) {
-            return new ResponseEntity<>("Source account doesn't belong to current client.", HttpStatus.FORBIDDEN);
-        }
+            if (accountRepository.findByNumber(sourceAccountNumber) == null) {
+                return new ResponseEntity<>("Source account doesn't exist", HttpStatus.FORBIDDEN);
+            }
 
-        if (amount > accountRepository.findByNumber(sourceAccountNumber).getBalance()) {
-            return new ResponseEntity<>("Insufficient funds.", HttpStatus.FORBIDDEN);
-        }
+            if (accountRepository.findByNumber(destinationAccountNumber) == null) {
+                return new ResponseEntity<>("Destination account doesn't exist", HttpStatus.FORBIDDEN);
+            }
 
-        Transaction transaction1 = new Transaction(DEBIT, -amount, description + " " + destinationAccountNumber, LocalDateTime.now());
-        Transaction transaction2 = new Transaction(CREDIT, amount, description + " " + sourceAccountNumber, LocalDateTime.now());
-        Account sourceAccount = accountRepository.findByNumber(sourceAccountNumber);
-        Account destinationAccount = accountRepository.findByNumber(destinationAccountNumber);
-        sourceAccount.addTransaction(transaction1);
-        destinationAccount.addTransaction(transaction2);
-        sourceAccount.setBalance(sourceAccount.getBalance() - amount);
-        destinationAccount.setBalance(destinationAccount.getBalance() + amount);
-        transactionRepository.save(transaction1);
-        transactionRepository.save(transaction2);
-        accountRepository.save(sourceAccount);
-        accountRepository.save(destinationAccount);
-        return new ResponseEntity<>("Transfer OK.", HttpStatus.CREATED);
+            if (sourceAccountNumber.equals(destinationAccountNumber)) {
+                return new ResponseEntity<>("Source and destination accounts are the same.", HttpStatus.FORBIDDEN);
+            }
+
+            for (Account account : clientAccounts) {
+                if (account.getNumber().equals(sourceAccountNumber)) {
+                    sourceBelongsToClient = true;
+                    break;
+                }
+            }
+
+            if (!sourceBelongsToClient) {
+                return new ResponseEntity<>("Source account doesn't belong to current client.", HttpStatus.FORBIDDEN);
+            }
+
+            if (amount > accountRepository.findByNumber(sourceAccountNumber).getBalance()) {
+                return new ResponseEntity<>("Insufficient funds.", HttpStatus.FORBIDDEN);
+            }
+
+            Transaction transaction1 = new Transaction(DEBIT, -amount, description + " " + destinationAccountNumber, LocalDateTime.now());
+            Transaction transaction2 = new Transaction(CREDIT, amount, description + " " + sourceAccountNumber, LocalDateTime.now());
+            Account sourceAccount = accountRepository.findByNumber(sourceAccountNumber);
+            Account destinationAccount = accountRepository.findByNumber(destinationAccountNumber);
+            sourceAccount.addTransaction(transaction1);
+            destinationAccount.addTransaction(transaction2);
+            sourceAccount.setBalance(sourceAccount.getBalance() - amount);
+            destinationAccount.setBalance(destinationAccount.getBalance() + amount);
+            transactionRepository.save(transaction1);
+            transactionRepository.save(transaction2);
+            accountRepository.save(sourceAccount);
+            accountRepository.save(destinationAccount);
+            return new ResponseEntity<>("Transfer OK.", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
 
     }
 }
