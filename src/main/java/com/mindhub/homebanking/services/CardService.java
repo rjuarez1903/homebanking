@@ -17,14 +17,12 @@ public class CardService {
 
     @Scheduled(fixedRate = 86400000)
     public void updateIfExpired() {
-        LocalDateTime now = LocalDateTime.now();
         List<Card> activeCards = cardRepository.findAllByExpired(false);
         activeCards.forEach(card -> {
-            if (now.isAfter(card.getThruDate())){
+            if (LocalDateTime.now().isAfter(card.getThruDate())){
                 card.setExpired(true);
+                cardRepository.save(card);
             }
         });
-        System.out.println(activeCards);
-        cardRepository.saveAll(activeCards);
     }
 }
