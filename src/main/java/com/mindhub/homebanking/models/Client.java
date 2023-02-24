@@ -48,6 +48,10 @@ public class Client {
         cards.add(card);
     }
 
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
     public long getId() {
         return id;
     }
