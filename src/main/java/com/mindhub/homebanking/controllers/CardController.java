@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,20 +40,30 @@ public class CardController {
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
     public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardColor color, @RequestParam CardType type) {
         Client client = clientRepository.findByEmail(authentication.getName());
-        if (client.getCards().stream().filter(card -> card.getType() == type).count() > 2) {
-            return new ResponseEntity<>("Can't generate more than 3 " + type.toString().toLowerCase() + " cards per client.", HttpStatus.FORBIDDEN);
-        } else if (cardRepository.findByCardholderAndTypeAndColor(client.getFirstName() + " " + client.getLastName(), type, color) != null) {
-            return new ResponseEntity<>("Can't generate more than 1 card of the same type and color.", HttpStatus.FORBIDDEN);
+
+        if (client != null) {
+
+            Set<Card> activeClientCards = client.getCards().stream().filter(card -> !card.isExpired()).collect(Collectors.toSet());
+
+            if (activeClientCards.stream().filter(card -> card.getType() == type).count() > 2) {
+                return new ResponseEntity<>("Can't generate more than 3 " + type.toString().toLowerCase() + " cards per client.", HttpStatus.FORBIDDEN);
+            } else if (cardRepository.findByCardholderAndTypeAndColorAndExpired(client.getFullName(), type, color, false) != null) {
+                return new ResponseEntity<>("Can't generate more than 1 card of the same type and color.", HttpStatus.FORBIDDEN);
+            } else {
+                Integer cvv = Utilities.getCvvNumber();
+                String number;
+                do {
+                    number = Utilities.getRandomCardNumbers();
+                } while (cardRepository.findByNumber(number) != null);
+                Card card = new Card(type, color, number, cvv.toString(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client);
+                client.addCard(card);
+                cardRepository.save(card);
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
         } else {
-            Integer cvv = Utilities.getCvvNumber();
-            String number;
-            do {
-                number = Utilities.getRandomCardNumbers();
-            } while (cardRepository.findByNumber(number) != null);
-            Card card = new Card(type, color, number, cvv.toString(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client);
-            client.addCard(card);
-            cardRepository.save(card);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+
+
     }
 }
