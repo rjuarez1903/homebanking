@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <h2 v-else class="text-center text-white my-4">You don't own any credit cards.</h2>
-                <div class="text-center" v-if="creditCards.length < 3">
+                <div class="text-center" v-if="activeCreditCards.length < 3">
                     <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
                 </div>
 
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <h2 v-else class="text-center text-white my-4">You don't own any debit cards.</h2>
-                <div class="text-center" v-if="debitCards.length < 3">
+                <div class="text-center" v-if="activeDebitCards.length < 3">
                     <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
                 </div>
             </main>
