@@ -15,7 +15,9 @@ createApp({
             loanId:             "",
             payments:           "",
             loanAmount:         "",
-            destinationAccount: ""
+            destinationAccount: "",
+            loanAppError:       false,
+            errorMessage:       ""
         }
     },
     created() {
@@ -109,6 +111,8 @@ createApp({
                 )
                 .catch((error) => {
                     console.log(error.response.data)
+                    this.loanAppError = true
+                    this.errorMessage = error.response.data
                     Toast.fire({
                         icon:       'error',
                         title:      `${error.response.data}`,
