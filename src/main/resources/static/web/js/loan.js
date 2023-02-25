@@ -86,7 +86,7 @@ createApp({
                 toast:            true,
                 position:         'top-end',
                 showConfirmButton: false,
-                timer:            2500,
+                timer:            2000,
                 timerProgressBar: true,
             })
             axios.post('/api/loans',
@@ -107,8 +107,10 @@ createApp({
                                 color:      "#FFFFFF",
                             })
                         }
+                        setTimeout(() => location.replace("/web/accounts.html"),2000)
                     }
                 )
+
                 .catch((error) => {
                     console.log(error.response.data)
                     this.loanAppError = true
@@ -126,7 +128,7 @@ createApp({
                 toast:            true,
                 position:         'top-end',
                 showConfirmButton: false,
-                timer:            2500,
+                timer:            2000,
                 timerProgressBar: true,
             })
             Swal.fire({
