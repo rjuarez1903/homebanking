@@ -23,7 +23,7 @@ createApp({
                     this.creditCards = this.filterCards(this.cards, "CREDIT")
                     this.debitCards  = this.filterCards(this.cards, "DEBIT")
                     this.activeCreditCards = this.creditCards.filter(card => card.expired == false)
-                    this.activeDeditCards  = this.debitCards.filter(card => card.expired == false)
+                    this.activeDebitCards  = this.debitCards.filter(card => card.expired == false)
                 })
                 .catch(error => console.log(error))
         },
