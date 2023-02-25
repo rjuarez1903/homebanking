@@ -2,8 +2,7 @@ const { createApp } = Vue
 const useVuelidate  = Vuelidate.useVuelidate
 const required      = VuelidateValidators.required
 const minValue      = VuelidateValidators.minValue
-const numeric       = VuelidateValidators.numeric
-const decimal       = VuelidateValidators.decimal
+
 
 createApp({
     data() {
@@ -154,20 +153,12 @@ createApp({
                 }
             })
         },
-        // resetDestinationValues() {
-        //     this.ownDestinationAccount      = ""
-        //     this.externalDestinationAccount = ""
-        // },
-        // filterAccounts() {
-        //     this.filteredAccounts = this.accounts.filter(account => account.number != this.sourceAccount)
-        // },
         validateForm(e) {
             e.preventDefault()
             this.v$.loanId.$touch();
             this.v$.payments.$touch();
             this.v$.loanAmount.$touch();
             this.v$.destinationAccount.$touch();
-            console.log(this.v$.loanId.$invalid)
             if (!this.v$.loanId.$invalid
                 && !this.v$.payments.$invalid
                 && !this.v$.loanAmount.$invalid
