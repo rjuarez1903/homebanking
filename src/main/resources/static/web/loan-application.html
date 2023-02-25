@@ -75,6 +75,7 @@
                 <option :value="loan.id">{{ loan.name }}</option>
               </template>
             </select>
+            <small class="text-warning d-block" v-if="v$.loanId.$error">{{ v$.loanId.$errors[0].$message }}</small>
 
             <label for="payments" class="text-white mt-4">Payments</label>
             <select class="form-select" id="payments" aria-label="Default select example" v-model="payments">
@@ -83,20 +84,24 @@
                   <option :value="payment">{{ payment }}</option>
                 </template>
             </select>
+            <small class="text-warning d-block" v-if="v$.payments.$error">{{ v$.payments.$errors[0].$message }}</small>
 
             <div>
               <label for="loanAmount" class="text-white mt-4">Amount</label>
               <small v-if="loanId != ''" class="d-block text-white">Max amount: {{ showMaxAmount() }}</small>
               <input type="text" id="loanAmount" class="form-control" v-model="loanAmount">
+              <small class="text-warning d-block" v-if="v$.loanAmount.$error">{{ v$.loanAmount.$errors[0].$message }}</small>
             </div>
 
             <div>
               <label for="destinationAccount" class="text-white mt-4">Destination Account</label>
               <input type="text" id="destinationAccount" class="form-control" v-model="destinationAccount">
+              <small class="text-warning d-block" v-if="v$.destinationAccount.$error">{{ v$.destinationAccount.$errors[0].$message }}</small>
+
             </div>
 
             <div class="text-center mt-4">
-              <button @click="submitForm" class="green-btn mt-4 rounded-2">Apply</button>
+              <button @click="validateForm" class="green-btn mt-4 rounded-2">Apply</button>
             </div>
 
           </form>
