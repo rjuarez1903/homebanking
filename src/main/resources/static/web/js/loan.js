@@ -122,6 +122,9 @@ createApp({
                     })
                 })
         },
+        resetPaymentValues() {
+            this.payments = ""
+        },
         submitForm() {
             const Toast = Swal.mixin({
                 toast:            true,

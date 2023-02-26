@@ -73,7 +73,7 @@
         <div class="form rounded-4">
           <form class="p-4" @submit.prevent>
             <label for="loanType" class="text-white">Loan</label>
-            <select class="form-select" id="loanType" aria-label="Default select example" v-model="loanId">
+            <select class="form-select" id="loanType" aria-label="Default select example" v-model="loanId" @change="resetPaymentValues">
               <option value="">Choose loan type</option>
               <template v-for="loan of loans">
                 <option :value="loan.id">{{ loan.name }}</option>
