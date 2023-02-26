@@ -70,10 +70,10 @@
             </aside>
 
             <main class="col-12 col-md-12 col-lg-10">
-                <div class="container" v-if="client.accounts">
+                <div class="container" v-if="accounts.length > 0">
                     <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
                     <div class="mt-5">
-                        <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
+                        <div class="row account rounded-2 mb-3" v-for="account of accounts">
                             <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
                                 <h3 class="fw-bold mb-0">{{ account.number }}</h3>
                                 <p class="text-uppercase mb-0">Account</p>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-end" v-if="client.accounts">
+                <div class="text-end" v-if="accounts.length < 3">
                     <button @click="createAccount" class="green-btn rounded-2 my-2 d-inline-block">Add account</button>
                 </div>
 

@@ -3,8 +3,9 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client: {},
-            loans:  {}
+            client:   {},
+            accounts: [],
+            loans:    {}
         }
     },
     created() {
@@ -14,8 +15,9 @@ createApp({
         loadData() {
             axios('/api/clients/current')
                 .then(response => {
-                    this.client = response.data
-                    this.loans  = this.client.loans
+                    this.client   = response.data
+                    this.accounts =  this.client.accounts
+                    this.loans    = this.client.loans
                     this.sortById(this.client.accounts)
                     if (this.client.accounts.length === 0 && this.client.email != "admin@admin.com") {
                         this.createAccount()
