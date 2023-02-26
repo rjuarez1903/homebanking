@@ -73,7 +73,7 @@
         <div class="form rounded-4">
           <form class="p-4" @submit.prevent>
             <label for="loanType" class="text-white">Loan</label>
-            <select class="form-select" id="loanType" aria-label="Default select example" v-model="loanId" @change="resetPaymentValues">
+            <select class="form-select" id="loanType" aria-label="Choose loan type" v-model="loanId" @change="resetPaymentValues">
               <option value="">Choose loan type</option>
               <template v-for="loan of loans">
                 <option :value="loan.id">{{ loan.name }}</option>
@@ -82,7 +82,7 @@
             <small class="text-warning d-block" v-if="v$.loanId.$error">{{ v$.loanId.$errors[0].$message }}</small>
 
             <label for="payments" class="text-white mt-4">Payments</label>
-            <select class="form-select" id="payments" aria-label="Default select example" v-model="payments">
+            <select class="form-select" id="payments" aria-label="Choose payments" v-model="payments">
               <option value="">Choose payments</option>
                 <template v-for="payment of getLoanPayments()">
                   <option :value="payment">{{ payment }}</option>

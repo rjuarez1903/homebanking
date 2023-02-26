@@ -73,7 +73,7 @@
         <div class="form transfer-form rounded-4">
           <form class="p-4">
             <label for="transferType" class="text-white">Transfer type</label>
-            <select class="form-select" id="transferType" aria-label="Default select example" v-model="transferType" @change="resetDestinationValues">
+            <select class="form-select" id="transferType" aria-label="Choose transfer type" v-model="transferType" @change="resetDestinationValues">
               <option value="">Choose transfer type</option>
               <option value="Own account">Own account</option>
               <option value="External transfer">External transfer</option>
@@ -81,7 +81,7 @@
             <small class="text-warning d-block" v-if="v$.transferType.$error">{{ v$.transferType.$errors[0].$message }}</small>
 
             <label for="sourceAccount" class="text-white mt-4">Source Account</label>
-            <select class="form-select" id="sourceAccount" aria-label="Default select example" v-model="sourceAccount" @change="filterAccounts">
+            <select class="form-select" id="sourceAccount" aria-label="Source account" v-model="sourceAccount" @change="filterAccounts">
               <option value="">Source account</option>
               <template v-for="account of accounts">
                 <option :value="`${account.number}`">{{ account.number }}</option>
@@ -91,7 +91,7 @@
 
             <div v-if="transferType == 'Own account'">
               <label for="ownDestinationAccount" class="text-white mt-4">Destination Account</label>
-              <select class="form-select" id="ownDestinationAccount" aria-label="Default select example" v-model="ownDestinationAccount" :disabled="sourceAccount != '' && accounts.length < 2">
+              <select class="form-select" id="ownDestinationAccount" aria-label="Destination Account" v-model="ownDestinationAccount" :disabled="sourceAccount != '' && accounts.length < 2">
                 <option value="">Destination Account</option>
                 <template v-for="account of filteredAccounts">
                   <option :value="`${account.number}`">{{ account.number }}</option>
