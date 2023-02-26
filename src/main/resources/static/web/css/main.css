@@ -146,6 +146,11 @@ footer li {
     font-size: 3.5rem;
   }
 }
+@media (min-width: 1200px) {
+  .hero-heading {
+    font-size: 5rem;
+  }
+}
 /*
     *****
     LOGIN
