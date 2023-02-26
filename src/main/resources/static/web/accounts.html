@@ -54,9 +54,13 @@
                             <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
                             <a href="./transfer.html" class="nav-link">Transfer</a>
                         </li>
-                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                        <li class="nav-item d-md-flex align-items-center gap-2">
                             <i class="fa-brands fa-cc-visa hide-mobile"></i>
                             <a href="./cards.html" class="nav-link">Cards</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                            <i class="fa-solid fa-landmark hide-mobile"></i>
+                            <a href="./loan-application.html" class="nav-link">Loan Application</a>
                         </li>
                         <li class="nav-item gap-2 hide-tablet">
                             <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
@@ -96,12 +100,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-end" v-if="client.accounts.length < 3">
+                <div class="text-end" v-if="client.accounts">
                     <button @click="createAccount" class="green-btn rounded-2 my-2 d-inline-block">Add account</button>
                 </div>
 
                 <h2 class="text-center mt-5">Loans</h2>
-                <ul class="list-group loans-list" v-if="loans.length> 0">
+                <ul class="list-group loans-list" v-if="loans.length > 0">
                     <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
                         <div class="row text-center">
                             <div class="mb-0 col-md-12 loan-name rounded-2 py-4">
