@@ -35,46 +35,46 @@
     </div>
   </header>
 
-  <main class="container my-4">
+  <main class="container my-4 text-white">
     <div class="row">
 
       <!-- EDIT CLIENT MODAL -->
-      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" v-if="clientDetail">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="editModalLabel">Edit client</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form @submit.prevent>
-                <div class="mb-3">
-                  <label for="name-edit" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name-edit" v-model="firstNameEdit" required>
-                </div>
-                <div class="mb-3">
-                  <label for="last-name-edit" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" id="last-name-edit" v-model="lastNameEdit" required>
-                </div>
-                <div class="mb-3">
-                  <label for="email-edit" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email-edit" v-model="emailEdit" required>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-warning"
-                  @click="editClient(getClientId(clientDetail))"
-                >
-                  Save changes
-                </button>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" v-if="clientDetail">-->
+<!--        <div class="modal-dialog">-->
+<!--          <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--              <h1 class="modal-title fs-5" id="editModalLabel">Edit client</h1>-->
+<!--              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--              <form @submit.prevent>-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="name-edit" class="form-label">Name</label>-->
+<!--                  <input type="text" class="form-control" id="name-edit" v-model="firstNameEdit" required>-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="last-name-edit" class="form-label">Last Name</label>-->
+<!--                  <input type="text" class="form-control" id="last-name-edit" v-model="lastNameEdit" required>-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="email-edit" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email-edit" v-model="emailEdit" required>-->
+<!--                </div>-->
+<!--                <button-->
+<!--                  type="submit"-->
+<!--                  class="btn btn-warning"-->
+<!--                  @click="editClient(getClientId(clientDetail))"-->
+<!--                >-->
+<!--                  Save changes-->
+<!--                </button>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="col-md-6">
         <h1>Client Manager</h1>
@@ -95,7 +95,7 @@
         </form>
         <h2>Client list</h2>
         <div class="table-responsive">
-          <table class="table">
+          <table class="table text-white">
             <thead>
               <tr>
                 <th scope="col">First Name</th>
@@ -131,7 +131,7 @@
           </table>
         </div>
       </div>
-      <div class="col-md-6 mt-3">
+      <div class="col-md-6 mt-3 text-white">
         <h2>Client REST response</h2>
         <pre>{{ json }}}</pre>
       </div>
