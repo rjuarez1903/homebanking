@@ -426,12 +426,12 @@ pre::-webkit-scrollbar-thumb {
     color: #FFFFFF;
 }
 
-.account-total {
-    border: 1px solid var(--border-color);
-    border-top: 4px solid #3EB27F;
-    background-color: rgba(41, 39, 39, 0.3);
-    box-shadow: 0 5px 30px black;
-}
+//.account-total {
+//    border: 1px solid var(--border-color);
+//    border-top: 4px solid #3EB27F;
+//    background-color: rgba(41, 39, 39, 0.3);
+//    box-shadow: 0 5px 30px black;
+//}
 
 .account-name {
     background-color: var(--border-color);
@@ -451,8 +451,6 @@ pre::-webkit-scrollbar-thumb {
 
 .list-group-item {
     background-color: var(--inner-panel-color) !important;
-    border-left: 4px solid var(--primary-color);
-
     color: #FFFFFF;
     padding: 0 0.70rem !important;
 

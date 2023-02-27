@@ -72,23 +72,23 @@
             <main class="col-12 col-md-12 col-lg-10">
                 <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
                 <div class="container" v-if="accounts.length > 0">
-                    <div class="mt-5">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">
-                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
-                                    <p class="text-uppercase mb-0">Total balance</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 ">
-                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2
-">
-                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
-                                    <p class="text-uppercase mb-0">Total balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="mt-5">-->
+<!--                        <div class="row g-4">-->
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">-->
+<!--                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>-->
+<!--                                    <p class="text-uppercase mb-0">Total balance</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6 ">-->
+<!--                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2-->
+<!--">-->
+<!--                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>-->
+<!--                                    <p class="text-uppercase mb-0">Total balance</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="mt-3">
                         <div class="row account rounded-2 mb-3" v-for="account of accounts">
                             <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
