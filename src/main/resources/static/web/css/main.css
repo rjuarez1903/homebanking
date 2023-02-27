@@ -180,6 +180,17 @@ footer li {
   margin: 0 auto;
 }
 
+.signin-form-heading,
+.signup-form-heading {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 1px;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
 .btn-options {
   width: 96%;
 }

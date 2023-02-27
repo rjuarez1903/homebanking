@@ -48,7 +48,7 @@
                         </button>
                     </div>
                     <form class="signUp" action="" v-if="!login" @submit.prevent>
-                        <h5 class="text-center text-white mb-4">Register as a new user</h5>
+                        <h5 class="text-center text-white mb-4 signup-form-heading">Register as a new user</h5>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="text" id="newClientFirstName" name="newClientFirstName" v-model="newClientFirstName" class="mb-1" required>
                             <label for="newClientFirstName">First Name</label>
@@ -78,7 +78,7 @@
                     </form>
                     
                     <form class="login" action="" method="get" v-else>
-                        <h5 class="text-center text-white mb-4">Login with your credentials</h5>
+                        <h5 class="text-center text-white mb-4 signin-form-heading">Login with your credentials</h5>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="email" id="email" name="email" v-model="email" class="mb-1" required>
                             <label for="email">Email</label>
