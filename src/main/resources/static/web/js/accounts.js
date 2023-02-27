@@ -33,6 +33,11 @@ createApp({
         getStringDate(date) {
             return new Date(date).toLocaleDateString()
         },
+        getTotalBalance() {
+            return this.accounts.reduce((accumulator, account) => {
+                return accumulator + account.balance
+            }, 0)
+        },
         sortById(accounts) {
             accounts.sort((a,b) => b.id - a.id)
         },
