@@ -61,14 +61,13 @@ public class ClientController {
         String accountName;
         do {
             accountName = AccountUtilities.getRandomAccountNumber();
-            System.out.println(accountName);
         } while (accountRepository.findByNumber(accountName) != null);
 
         Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
         Account account = new Account(accountName, LocalDateTime.now(), 0);
-//        client.addAccount(account);
-//        accountRepository.save(account);
-//        clientRepository.save(client);
+        client.addAccount(account);
+        clientRepository.save(client);
+        accountRepository.save(account);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

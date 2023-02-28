@@ -7,7 +7,7 @@ import com.mindhub.homebanking.models.CardType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.utils.Utilities;
+import com.mindhub.homebanking.utils.CardUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -47,10 +46,10 @@ public class CardController {
             } else if (cardRepository.findByCardholderAndTypeAndColorAndExpired(client.getFullName(), type, color, false) != null) {
                 return new ResponseEntity<>("Can't generate more than 1 card of the same type and color.", HttpStatus.FORBIDDEN);
             } else {
-                Integer cvv = Utilities.getCvvNumber();
+                Integer cvv = CardUtilities.getCvvNumber();
                 String number;
                 do {
-                    number = Utilities.getRandomCardNumbers();
+                    number = CardUtilities.getRandomCardNumbers();
                 } while (cardRepository.findByNumber(number) != null);
                 Card card = new Card(type, color, number, cvv.toString(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client);
                 client.addCard(card);
