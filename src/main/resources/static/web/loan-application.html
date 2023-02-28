@@ -72,6 +72,7 @@
       <main class="col-12 col-md-12 col-lg-10">
         <div class="form rounded-4">
           <form class="p-4" @submit.prevent>
+            <h5 class="text-center text-white mb-4 form-heading fw-bold">Fill out the form to apply for a loan</h5>
             <label for="loanType" class="text-white">Loan</label>
             <select class="form-select" id="loanType" aria-label="Choose loan type" v-model="loanId" @change="resetPaymentValues">
               <option value="">Choose loan type</option>

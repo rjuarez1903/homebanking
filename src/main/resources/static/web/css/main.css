@@ -180,8 +180,7 @@ footer li {
   margin: 0 auto;
 }
 
-.signin-form-heading,
-.signup-form-heading {
+.form-heading {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -189,6 +188,7 @@ footer li {
   font-weight: 300;
   text-transform: uppercase;
   font-size: 16px;
+  line-height: 1.5;
 }
 
 .btn-options {
@@ -468,6 +468,20 @@ pre::-webkit-scrollbar-thumb {
   color: #FFFFFF;
 }
 
+.account-total {
+  border: 1px solid var(--border-color);
+  border-left: 4px solid #3EB27F;
+  background-color: rgba(41, 39, 39, 0.3);
+  box-shadow: 0 5px 30px black;
+}
+
+.account-number {
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary-color);
+  background-color: rgba(41, 39, 39, 0.3);
+  box-shadow: 0 5px 30px black;
+}
+
 .account-name {
   background-color: var(--border-color);
 }
@@ -492,6 +506,10 @@ pre::-webkit-scrollbar-thumb {
 
 .loan-name {
   background-color: var(--border-color);
+}
+
+.list-loan-item {
+  border-top: 4px solid var(--primary-color) !important;
 }
 
 /*

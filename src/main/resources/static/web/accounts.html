@@ -70,58 +70,56 @@
             </aside>
 
             <main class="col-12 col-md-12 col-lg-10">
-                <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
-                <div class="container" v-if="accounts.length > 0">
-<!--                    <div class="mt-5">-->
-<!--                        <div class="row g-4">-->
-<!--                            <div class="col-md-6">-->
-<!--                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">-->
-<!--                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>-->
-<!--                                    <p class="text-uppercase mb-0">Total balance</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-md-6 ">-->
-<!--                                <div class="account-total d-flex flex-column align-items-center p-4 rounded-2-->
-<!--">-->
-<!--                                    <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>-->
-<!--                                    <p class="text-uppercase mb-0">Total balance</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <div class="mt-3">
-                        <div class="row account rounded-2 mb-3" v-for="account of accounts">
-                            <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
-                                <h3 class="fw-bold mb-0">{{ account.number }}</h3>
-                                <p class="text-uppercase mb-0">Account</p>
-                            </div>
-                            <div class="col-12 col-md-9 p-3">
-                                <div class="container">
-                                    <div class="row account-data g-4">
-                                        <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                            <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
-                                            <p class="text-uppercase mb-0">Balance</p>
-                                        </div>
-                                        <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                            <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
-                                            <p class="text-uppercase mb-0">Date of creation</p>
-                                        </div>
-                                        <div class="col-12 col-md-4 d-flex align-items-center">
-                                            <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
-                                                See transactions
-                                            </a>
-                                        </div>
+                <h2 class="text-center ">Welcome, <span class="client-welcome">{{ client.firstName }}</span>!</h2>
+                <h3 class="text-center fs-5 mt-3 mb-4" v-if="accounts.length > 0">These are your current accounts.</h3>
+                <h3 class="text-center fs-5 mt-3 mb-4" v-else>No active accounts.</h3>
+                <ul class="container mt-3" v-if="accounts.length > 0">
+                    <li class="row account rounded-2 mb-3" v-for="account of accounts">
+                        <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
+                            <h3 class="fw-bold mb-0">{{ account.number }}</h3>
+                            <p class="text-uppercase mb-0">Account</p>
+                        </div>
+                        <div class="col-12 col-md-9 p-3">
+                            <div class="container">
+                                <div class="row account-data g-4">
+                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                        <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
+                                        <p class="text-uppercase mb-0">Balance</p>
+                                    </div>
+                                    <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+                                        <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
+                                        <p class="text-uppercase mb-0">Date of creation</p>
+                                    </div>
+                                    <div class="col-12 col-md-4 d-flex align-items-center">
+                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 text-uppercase w-100 p-3">
+                                            See transactions
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </li>
+                </ul>
+                <div class="row gy-4">
+                    <div class="col-md-6">
+                        <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">
+                            <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
+                            <p class="text-uppercase mb-0">Total balance</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="account-number d-flex flex-column align-items-center p-4 rounded-2">
+                            <h3 class="fw-bold">{{ accounts.length }}</h3>
+                            <p class="text-uppercase mb-0">Accounts</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-center justify-content-center" v-if="accounts.length < 3">
+                        <button @click="createAccount" class="green-btn rounded-2 d-inline-block align-self-center">Add account</button>
                     </div>
                 </div>
-                <div class="text-end" v-if="accounts.length < 3">
-                    <button @click="createAccount" class="green-btn rounded-2 my-2 d-inline-block">Add account</button>
-                </div>
 
-                <h2 class="text-center mt-5">Loans</h2>
+
+                <h3 class="text-center mt-5">Loans</h3>
                 <ul class="list-group loans-list" v-if="loans.length > 0">
                     <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
                         <div class="row text-center">
@@ -134,8 +132,8 @@
                         </div>
                     </li>
                 </ul>
-                <h2 v-else class="mt-4 text-center">No loans registered for this client.</h2>
-                <div class="text-end">
+                <h2 v-else class="mt-4 text-center fs-5">No loans registered for this client.</h2>
+                <div class="text-center">
                     <a href="./loan-application.html" class="green-btn rounded-2 my-4 d-inline-block">Apply</a>
                 </div>
             </main>
