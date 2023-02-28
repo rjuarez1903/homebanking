@@ -8,6 +8,7 @@ createApp({
     data() {
         return {
             client:             {},
+            accounts:           [],
             v$:                 useVuelidate(),
             loans:              [],
             loan:               "",
@@ -26,7 +27,10 @@ createApp({
         return {
             loanId:             { required },
             payments:           { required },
-            loanAmount:         { required },
+            loanAmount:         {
+                required,
+                minValue: minValue(1),
+            },
             destinationAccount: { required }
         }
     },
@@ -35,6 +39,7 @@ createApp({
             axios('/api/clients/current')
                 .then(response => {
                     this.client   = response.data
+                    this.accounts = this.client.accounts
                 })
                 .catch(error => console.log(error))
             axios('/api/loans')
@@ -79,6 +84,9 @@ createApp({
             if (currentLoan.length > 0) {
                 return currentLoan[0].maxAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
             }
+        },
+        showBalance() {
+            return this.accounts.filter(account => account.number === this.destinationAccount)[0].balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
         },
         applyForLoan() {
             const Toast = Swal.mixin({

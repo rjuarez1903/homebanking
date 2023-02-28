@@ -100,7 +100,15 @@
 
             <div>
               <label for="destinationAccount" class="text-white mt-4">Destination Account</label>
-              <input type="text" id="destinationAccount" class="form-control" v-model="destinationAccount">
+              <small v-if="destinationAccount != ''" class="d-block text-white">Account balance: {{ showBalance() }}</small>
+              <select class="form-select" id="destinationAccount" aria-label="Destination account" v-model="destinationAccount">
+                <option value="">Destination account</option>
+                <template v-for="account of accounts">
+                  <option :value="`${account.number}`">{{ account.number }}</option>
+                </template>
+              </select>
+<!--              <label for="destinationAccount" class="text-white mt-4">Destination Account</label>-->
+<!--              <input type="text" id="destinationAccount" class="form-control" v-model="destinationAccount">-->
               <small class="text-warning d-block" v-if="v$.destinationAccount.$error">{{ v$.destinationAccount.$errors[0].$message }}</small>
 
             </div>
