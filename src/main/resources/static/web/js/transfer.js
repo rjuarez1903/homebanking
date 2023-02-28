@@ -88,18 +88,10 @@ createApp({
                     if (response.status === 201) {
                         console.log(response.data)
                         this.transferError = false
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
+                        Swal.fire({
                             showConfirmButton: false,
                             timer: 3000,
                             timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
                             icon: 'success',
                             title: `Transfer succeded!`,
                             background: "var(--secondary-color)",
@@ -112,18 +104,10 @@ createApp({
                     console.log(error.response.data)
                     this.transferError = true
                     this.errorMessage  = error.response.data
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
+                    Swal.fire({
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    Toast.fire({
                         icon: 'error',
                         title: 'Transfer error!',
                         text: error.response.data,

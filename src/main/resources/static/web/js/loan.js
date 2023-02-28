@@ -89,13 +89,6 @@ createApp({
             return this.accounts.filter(account => account.number === this.destinationAccount)[0].balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
         },
         applyForLoan() {
-            const Toast = Swal.mixin({
-                toast:            true,
-                position:         'top-end',
-                showConfirmButton: false,
-                timer:            2000,
-                timerProgressBar: true,
-            })
             axios.post('/api/loans',
                 {
                     id:                       this.loanId,
@@ -107,11 +100,14 @@ createApp({
                 .then(response => {
                         console.log(response.data)
                         if (response.status == 201) {
-                            Toast.fire({
-                                icon:       'success',
-                                title:      `Loan approved!`,
-                                background: "var(--secondary-color)",
-                                color:      "#FFFFFF",
+                            Swal.fire({
+                                showConfirmButton: false,
+                                timer:            2000,
+                                timerProgressBar: true,
+                                icon:             'success',
+                                title:            `Loan approved!`,
+                                background:       "var(--secondary-color)",
+                                color:            "#FFFFFF",
                             })
                         }
                         setTimeout(() => location.replace("/web/accounts.html"),2000)
@@ -122,7 +118,10 @@ createApp({
                     console.log(error.response.data)
                     this.loanAppError = true
                     this.errorMessage = error.response.data
-                    Toast.fire({
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
                         icon:       'error',
                         title:      `${error.response.data}`,
                         background: "var(--secondary-color)",
@@ -134,13 +133,6 @@ createApp({
             this.payments = ""
         },
         submitForm() {
-            const Toast = Swal.mixin({
-                toast:            true,
-                position:         'top-end',
-                showConfirmButton: false,
-                timer:            2000,
-                timerProgressBar: true,
-            })
             Swal.fire({
                 title:             'Are you sure?',
                 text:              "You won't be able to revert this.",
@@ -155,11 +147,14 @@ createApp({
                 if (result.isConfirmed) {
                     this.applyForLoan()
                 } else {
-                    Toast.fire({
-                        icon:       'error',
-                        title:      `Loan application cancelled.`,
-                        background: "var(--secondary-color)",
-                        color:      "#FFFFFF",
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
+                        icon:             'error',
+                        title:            `Loan application cancelled.`,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
                     })
                 }
             })
