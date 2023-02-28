@@ -16,7 +16,10 @@ createApp({
             const urlParams = new URLSearchParams(window.location.search)
             const id =  urlParams.get('id')
             axios('/api/clients/current')
-                .then(response => this.client = response.data)
+                .then(response => {
+                    this.client = response.data
+                    this.sortById(this.client.accounts)
+                })
                 .catch(error => console.log(error))
             axios(`/api/accounts/${id}`)
                 .then(response => {
@@ -36,6 +39,9 @@ createApp({
         },
         sortByDate(transactions) {
             transactions.sort((a,b) => new Date(b.date) - new Date(a.date))
+        },
+        sortById(accounts) {
+            accounts.sort((a,b) => b.id - a.id)
         },
         getTransactionIcon(transaction) {
             if (transaction === "CREDIT") {
