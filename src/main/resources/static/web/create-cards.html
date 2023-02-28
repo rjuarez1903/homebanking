@@ -130,6 +130,8 @@
                                 <div class="check"><div class="inside"></div></div>
                             </li>
                         </ul>
+                        <small class="text-warning text-center d-block" v-if="v$.cardType.$error">{{ v$.cardType.$errors[0].$message }}</small>
+
                     </div>
                     <div class="radio-container col-md-6">
                         <h4 class="text-center text-green fw-bold mt-4">Choose color</h4>
@@ -150,7 +152,10 @@
                                 <div class="check"><div class="inside"></div></div>
                             </li>
                         </ul>
+                        <small class="text-warning text-center d-block" v-if="v$.cardColor.$error">{{ v$.cardColor.$errors[0].$message }}</small>
                     </div>
+
+
                     <small class="text-warning text-center mt-2" v-if="noMoreCards">{{ errorMessage }}</small>
                     <div class="text-center">
                         <button class="green-btn rounded-2 my-4" @click="submitForm">Create</button>
