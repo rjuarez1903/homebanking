@@ -52,22 +52,22 @@
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="text" id="newClientFirstName" name="newClientFirstName" v-model="newClientFirstName" class="mb-1" required>
                             <label for="newClientFirstName">First Name</label>
-                            <small class="text-warning" v-if="v$.newClientFirstName.$error">{{ v$.newClientFirstName.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.newClientFirstName.$error">{{ v$.newClientFirstName.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="text" id="newClientLastName" name="newClientLastName" v-model="newClientLastName" class="mb-1" required>
                             <label for="newClientLastName">Last Name</label>
-                            <small class="text-warning" v-if="v$.newClientLastName.$error">{{ v$.newClientLastName.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.newClientLastName.$error">{{ v$.newClientLastName.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="email" id="newClientEmail" name="newClientEmail" v-model="newClientEmail" class="mb-1" required>
                             <label for="newClientEmail">Email</label>
-                            <small class="text-warning" v-if="v$.newClientEmail.$error">{{ v$.newClientEmail.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.newClientEmail.$error">{{ v$.newClientEmail.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="password" id="newClientPassword" name="newClientPassword" v-model="newClientPassword" class="mb-1" required>
                             <label for="newClientPassword">Password</label>
-                            <small class="text-warning" v-if="v$.newClientPassword.$error">{{ v$.newClientPassword.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.newClientPassword.$error">{{ v$.newClientPassword.$errors[0].$message }}</small>
                         </div>
                         <div class="text-center mb-4">
                             <small class="text-warning" v-if="emailInUse">Email already in use.</small>
@@ -82,12 +82,12 @@
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="email" id="email" name="email" v-model="email" class="mb-1" required>
                             <label for="email">Email</label>
-                            <small class="text-warning" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</small>
                         </div>
                         <div class="formGroup d-flex flex-column justify-content-center align-items-center mb-4">
                             <input type="password" id="password" name="password" v-model="password" class="mb-1" required>
                             <label for="password">Password</label>
-                            <small class="text-warning" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</small>
+                            <small class="text-warning text-error" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</small>
                         </div>
                         <div class="text-center mb-4">
                             <small class="text-warning" v-if="invalidCredentials">Invalid email or password.</small>

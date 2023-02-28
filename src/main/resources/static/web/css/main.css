@@ -262,6 +262,13 @@ input:focus {
   color: #FFFFFF;
 }
 
+.text-error {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: start;
+}
+
 .text {
   color: #FFFFFF;
   font-size: 0.8125rem;
