@@ -141,6 +141,34 @@ footer li {
   border-bottom: 2px solid var(--link-color-hover);
 }
 
+.logo {
+  animation: enter-left 1s ease-in;
+}
+
+.signin {
+  animation: enter-right 1s ease-in;
+}
+
+@keyframes enter-right {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes enter-left {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @media (min-width: 768px) {
   .hero-heading {
     font-size: 3.5rem;
