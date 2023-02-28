@@ -20,6 +20,14 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
     ClientRepository clientRepository;
 
+    @Bean
+
+    public PasswordEncoder passwordEncoder() {
+
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    }
+
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -29,25 +37,23 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             if (client != null) {
                 if (client.getEmail().equals("admin@admin.com")) {
+
                     return new User(client.getEmail(), client.getPassword(),
-                                    AuthorityUtils.createAuthorityList("ADMIN"));
+                            AuthorityUtils.createAuthorityList("ADMIN"));
+
                 } else {
+
                     return new User(client.getEmail(), client.getPassword(),
-                                    AuthorityUtils.createAuthorityList("CLIENT"));
+                            AuthorityUtils.createAuthorityList("CLIENT"));
+
                 }
 
             } else {
+
                 throw new UsernameNotFoundException("Unknown user: " + email);
+
             }
         });
-    }
-
-    @Bean
-
-    public PasswordEncoder passwordEncoder() {
-
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
     }
 
 }

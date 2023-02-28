@@ -19,9 +19,9 @@ createApp({
                     this.accounts =  this.client.accounts
                     this.loans    = this.client.loans
                     this.sortById(this.client.accounts)
-                    if (this.client.accounts.length === 0 && this.client.email != "admin@admin.com") {
-                        this.createAccount()
-                    }
+                    // if (this.client.accounts.length === 0 && this.client.email != "admin@admin.com") {
+                    //     this.createAccount()
+                    // }
                 })
                 .catch(error => console.log(error))
         },

@@ -5,6 +5,7 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.utils.AccountUtilities;
 import com.mindhub.homebanking.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,25 +49,24 @@ public class AccountController {
         Client client = clientRepository.findByEmail(authentication.getName());
 
         if (client != null) {
-            String accountPrefix = "VIN";
-            String accountName = "";
             if (client.getAccounts().size() < 3 ) {
-                while (true) {
-                    int accountNumber = Utilities.getRandomNumber(0, 99999999);
-                    if (accountRepository.findByNumber(accountPrefix + accountNumber) == null) {
-                        accountName = accountPrefix + accountNumber;
-                        break;
-                    }
-                }
-                Account account =  new Account(accountName, LocalDateTime.now(), 0);
+                String accountName;
+                do {
+                    accountName = AccountUtilities.getRandomAccountNumber();
+                } while (accountRepository.findByNumber(accountName) != null);
+                Account account = new Account(accountName, LocalDateTime.now(), 0);
                 client.addAccount(account);
                 accountRepository.save(account);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
+
                 return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
+
             }
         } else {
+
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
         }
 
     }
