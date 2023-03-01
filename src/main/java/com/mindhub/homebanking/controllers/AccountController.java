@@ -6,7 +6,6 @@ import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.utils.AccountUtilities;
-import com.mindhub.homebanking.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -69,5 +67,20 @@ public class AccountController {
 
         }
 
+    }
+
+    @GetMapping("/clients/current/accounts/{id}")
+    public AccountDTO getAccount(Authentication authentication, @PathVariable Long id) {
+        Client client = clientRepository.findByEmail(authentication.getName());
+        Account account = accountRepository.findById(id).orElse(null);
+        if (client.getAccounts().contains(account)) {
+
+            return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
+
+        } else {
+
+            return null;
+
+        }
     }
 }

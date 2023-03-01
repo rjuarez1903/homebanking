@@ -19,20 +19,24 @@ createApp({
                 .then(response => {
                     this.client = response.data
                     this.sortById(this.client.accounts)
+                    this.getAccount(id)
                 })
                 .catch(error => console.log(error))
-            axios(`/api/accounts/${id}`)
-                .then(response => {
-                    this.account = response.data
-                    this.transactions = this.account.transactions
-                    this.sortByDate(this.transactions)
-                })
-                .catch(error => console.log(error))
+
         },
         toggleMenu(e) {
             const menu = document.querySelector('aside')
             e.preventDefault()
             menu.classList.toggle('toggle-menu')
+        },
+        getAccount(id) {
+            axios(`/api/clients/current/accounts/${id}`)
+                .then(response => {
+                    this.account      = response.data
+                    this.transactions = this.account.transactions
+                    this.sortByDate(this.transactions)
+                })
+                .catch(error => console.log(error))
         },
         getDate(date) {
             return new Date(date).toLocaleString()
@@ -52,17 +56,17 @@ createApp({
         signOutUser(e) {
             e.preventDefault()
             const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
+                toast:            true,
+                position:         'top-end',
                 showConfirmButton: false,
-                timer: 1000,
+                timer:            1000,
                 timerProgressBar: true,
             })
             Toast.fire({
-                icon: 'success',
-                title: `Logging out...`,
+                icon:       'success',
+                title:      `Logging out...`,
                 background: "var(--secondary-color)",
-                color: "#FFFFFF",
+                color:      "#FFFFFF",
             })
             setTimeout(() => {
                 axios.post('/api/logout')
