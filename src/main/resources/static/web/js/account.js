@@ -30,9 +30,9 @@ createApp({
             menu.classList.toggle('toggle-menu')
         },
         getAccount(id) {
-            axios(`/api/clients/current/accounts/${id}`)
+            axios(`/api/clients/current/accounts`)
                 .then(response => {
-                    this.account      = response.data
+                    this.account      = response.data.filter(account => account.id == id)[0]
                     this.transactions = this.account.transactions
                     this.sortByDate(this.transactions)
                 })

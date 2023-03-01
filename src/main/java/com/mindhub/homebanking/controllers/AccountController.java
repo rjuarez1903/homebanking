@@ -57,30 +57,11 @@ public class AccountController {
                 accountRepository.save(account);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
-
                 return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
-
             }
         } else {
-
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-
         }
 
-    }
-
-    @GetMapping("/clients/current/accounts/{id}")
-    public AccountDTO getAccount(Authentication authentication, @PathVariable Long id) {
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Account account = accountRepository.findById(id).orElse(null);
-        if (client.getAccounts().contains(account)) {
-
-            return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
-
-        } else {
-
-            return null;
-
-        }
     }
 }
