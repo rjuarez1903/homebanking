@@ -27,15 +27,12 @@ createApp({
         },
         logUser() {
             axios.post('/api/login',
-                {
-                    email:    this.email,
-                    password: this.password
-                },
-                {
-                    headers: {
-                        'content-type':'application/x-www-form-urlencoded'
-                    }
-                })
+                        `email=${this.email}&password=${this.password}`,
+                        {
+                            headers: {
+                                'content-type':'application/x-www-form-urlencoded'
+                            }
+                        })
                 .then(() => {
                     if (this.email == "admin@admin.com") {
                         location.replace("/manager/manager.html")
@@ -51,12 +48,7 @@ createApp({
         },
         registerUser() {
             axios.post('/api/clients',
-                        {
-                            firstName: this.newClientFirstName,
-                            lastName: this.newClientLastName,
-                            email:    this.newClientEmail,
-                            password: this.newClientPassword
-                        },
+                        `firstName=${this.newClientFirstName}&lastName=${this.newClientLastName}&email=${this.newClientEmail}&password=${this.newClientPassword}`,
                        {
                            headers:
                                {
