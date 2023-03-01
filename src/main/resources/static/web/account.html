@@ -100,7 +100,7 @@
                                     :index="transaction.id"
                                 >
                                     <td class="hide-mobile transactions-data">{{ transaction.id }}</td>
-                                    <td :class="transaction.type == 'DEBIT'? 'text-warning' : 'text-green'" width="120">
+                                    <td :class="transaction.type == 'DEBIT'? 'text-danger' : 'text-green'" width="120">
                                         {{ transaction.type }}
                                         <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
                                     </td>

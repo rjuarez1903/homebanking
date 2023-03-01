@@ -47,7 +47,7 @@ createApp({
             if (transaction === "CREDIT") {
                 return "up text-green fw-bold"
             }
-                return "down text-warning fw-bold"
+                return "down text-danger fw-bold"
         },
         signOutUser(e) {
             e.preventDefault()
