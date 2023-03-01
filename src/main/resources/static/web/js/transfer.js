@@ -55,17 +55,17 @@ createApp({
         signOutUser(e) {
             e.preventDefault()
             const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
+                toast:            true,
+                position:         'top-end',
                 showConfirmButton: false,
-                timer: 1000,
+                timer:            1000,
                 timerProgressBar: true,
             })
             Toast.fire({
-                icon: 'success',
-                title: `Logging out...`,
+                icon:       'success',
+                title:      `Logging out...`,
                 background: "var(--secondary-color)",
-                color: "#FFFFFF",
+                color:      "#FFFFFF",
             })
             setTimeout(() => {
                 axios.post('/api/logout')
@@ -90,12 +90,12 @@ createApp({
                         this.transferError = false
                         Swal.fire({
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer:            2000,
                             timerProgressBar: true,
-                            icon: 'success',
-                            title: `Transfer succeded!`,
-                            background: "var(--secondary-color)",
-                            color: "#FFFFFF",
+                            icon:             'success',
+                            title:            `Transfer succeded!`,
+                            background:       "var(--secondary-color)",
+                            color:            "#FFFFFF",
                         })
                         this.loadData()
                     }
@@ -106,17 +106,17 @@ createApp({
                     this.errorMessage  = error.response.data
                     Swal.fire({
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer:            2000,
                         timerProgressBar: true,
-                        icon: 'error',
-                        title: 'Transfer error!',
-                        text: error.response.data,
-                        background: "var(--secondary-color)",
-                        color: "#FFFFFF",
+                        icon:             'error',
+                        title:            'Transfer error!',
+                        text:             error.response.data,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
                     })
                 })
         },
-        submitForm(e) {
+        validateForm(e) {
             e.preventDefault()
             this.v$.transferType.$touch();
             this.v$.sourceAccount.$touch();
@@ -132,9 +132,35 @@ createApp({
                 && (!this.v$.ownDestinationAccount.$invalid || !this.v$.externalDestinationAccount.$invalid)
                 && !this.v$.amount.$invalid
                 && !this.v$.description.$invalid) {
-                this.transfer()
-            } else {
+                this.submitForm()
             }
+        },
+        submitForm() {
+            Swal.fire({
+                title:             'Are you sure?',
+                text:              "You won't be able to revert this.",
+                icon:              'warning',
+                showCancelButton:  true,
+                confirmButtonColor: 'var(--primary-color)',
+                cancelButtonColor: '#d33',
+                confirmButtonText:  'Confiirm',
+                background:        "#1F2023",
+                color:             "#FFFFFF"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.transfer()
+                } else {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
+                        icon:             'error',
+                        title:            `Transfer cancelled.`,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
+                    })
+                }
+            })
         }
     }
 
