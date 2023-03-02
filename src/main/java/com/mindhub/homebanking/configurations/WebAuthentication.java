@@ -20,17 +20,14 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     ClientRepository clientRepository;
 
     @Bean
-
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(email -> {
             Client client = clientRepository.findByEmail(email);
-
             if (client != null) {
                 if (client.getEmail().equals("admin@admin.com")) {
                     return new User(client.getEmail(), client.getPassword(),
