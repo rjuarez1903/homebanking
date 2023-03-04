@@ -1,18 +1,29 @@
 const { createApp } = Vue
+const useVuelidate  = Vuelidate.useVuelidate
+const required      = VuelidateValidators.required
 
 createApp({
     data() {
         return {
-            client:      {},
-            cards:       [],
-            creditCards: [],
-            debitCards:  [],
-            activeCreditCards: [],
-            activeDebitCards:  []
+            v$:           useVuelidate(),
+            client:       {},
+            cards:        [],
+            creditCards:  [],
+            debitCards:   [],
+            cardType:     "",
+            cardColor:    "",
+            noMoreCards:  false,
+            errorMessage: ""
         }
     },
     created() {
         this.loadData()
+    },
+    validations() {
+        return {
+            cardType:  { required },
+            cardColor: { required }
+        }
     },
     methods: {
         loadData() {
@@ -22,8 +33,6 @@ createApp({
                     this.cards       = response.data.cards
                     this.creditCards = this.filterCards(this.cards, "CREDIT")
                     this.debitCards  = this.filterCards(this.cards, "DEBIT")
-                    this.activeCreditCards = this.creditCards.filter(card => card.expired == false)
-                    this.activeDebitCards  = this.debitCards.filter(card => card.expired == false)
                 })
                 .catch(error => console.log(error))
         },
@@ -34,7 +43,7 @@ createApp({
         },
         formatCardNumber(number) {
             return number.match(/.{1,4}/g)
-        }, 
+        },
         getStringDate(date) {
             const year = new Date(date).getFullYear().toString().slice(2)
             let month  = new Date(date).getMonth() + 1
@@ -54,7 +63,7 @@ createApp({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1000,
+                timer: 2000,
                 timerProgressBar: true,
             })
             Toast.fire({
@@ -68,5 +77,35 @@ createApp({
                     .then(() =>location.replace("/index.html"))
             }, 1000)
         },
+        createCard() {
+            axios.post("/api/clients/current/cards", `color=${this.cardColor}&type=${this.cardType}`)
+                .then(response => {
+                    if (response.status === 201) {
+                        Swal.fire({
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: `Card created!`,
+                            background: "var(--secondary-color)",
+                            color: "#FFFFFF",
+                        })
+                        setTimeout(() => location.replace("/web/cards.html"),2000)
+                    }
+                })
+                .catch(error => {
+                    this.noMoreCards  = true
+                    this.errorMessage =  error.response.data
+                })
+        },
+        submitForm(e) {
+            e.preventDefault()
+            this.v$.cardType.$touch();
+            this.v$.cardColor.$touch();
+            if (!this.v$.cardType.$invalid && !this.v$.cardColor.$invalid) {
+                this.createCard()
+            } else {
+            }
+        }
     }
 }).mount('#app')

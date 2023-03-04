@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/2cd05a3c76.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/mh-logo.png" type="image/png">
+  <link rel="stylesheet" href="css/main.css">
+  <title>MindHub Bros. | Transfer</title>
+</head>
+<body>
+<div id="app">
+
+  <header class="p-4">
+    <div class="container d-flex justify-content-between align-items-center py-4">
+      <a href="#" class="logo d-flex gap-2 align-items-center">
+        <img src="./assets/mh-logo.png" alt="MindHub Logo" width="50">
+        <h1 class="fs-4 mb-0 text-white">MindHub Bros.</h1>
+      </a>
+      <div class="d-flex align-items-center gap-3">
+        <nav class="d-flex gap-2 align-items-center">
+          <div class="d-flex gap-2">
+            <i class="fa-solid fa-user text-white"></i>
+            <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
+          </div>
+          <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
+        </nav>
+        <a href="#" class="menu hide-tablet" @click="toggleMenu">
+          <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="42">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 21C34.5625 20.2751 33.9749 19.6875 33.25 19.6875H8.75C8.02513 19.6875 7.4375 20.2751 7.4375 21C7.4375 21.7249 8.02513 22.3125 8.75 22.3125H33.25C33.9749 22.3125 34.5625 21.7249 34.5625 21Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 12.25C34.5625 11.5251 33.9749 10.9375 33.25 10.9375H8.75C8.02513 10.9375 7.4375 11.5251 7.4375 12.25C7.4375 12.9749 8.02513 13.5625 8.75 13.5625H33.25C33.9749 13.5625 34.5625 12.9749 34.5625 12.25Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5625 29.75C34.5625 29.0251 33.9749 28.4375 33.25 28.4375H8.75C8.02513 28.4375 7.4375 29.0251 7.4375 29.75C7.4375 30.4749 8.02513 31.0625 8.75 31.0625H33.25C33.9749 31.0625 34.5625 30.4749 34.5625 29.75Z" fill="white"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container my-4">
+    <div class="row">
+      <aside class="col-5 col-md-12 col-lg-2 py-2 px-4 p-lg-0 m-lg-0">
+        <img src="./assets/mobile-exit.svg" alt="Exit mobile nav" class="exit hide-tablet rounded-2" @click="toggleMenu">
+        <nav class="p-lg-0">
+          <ul class="d-flex flex-column flex-md-row flex-lg-column navbar-nav">
+            <li class="nav-item d-md-flex align-items-center gap-2 mt-lg-3">
+              <i class="fa-solid fa-address-card hide-mobile"></i>
+              <a href="./accounts.html" class="nav-link">Accounts</a>
+            </li>
+            <li class="nav-item d-md-flex align-items-center gap-2">
+              <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
+              <a href="./transfer.html" class="nav-link">Transfer</a>
+            </li>
+            <li class="nav-item d-md-flex align-items-center gap-2">
+              <i class="fa-brands fa-cc-visa hide-mobile"></i>
+              <a href="./cards.html" class="nav-link">Cards</a>
+            </li>
+            <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3 active-custom-lg">
+              <i class="fa-solid fa-landmark hide-mobile active-custom"></i>
+              <a href="#" class="nav-link active-custom">Loan Application</a>
+            </li>
+            <li class="nav-item gap-2 hide-tablet">
+              <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="col-12 col-md-12 col-lg-10">
+        <div class="form rounded-4">
+          <form class="p-4" @submit.prevent>
+            <h5 class="text-center text-white mb-4 form-heading fw-bold">Fill out the form to apply for a loan</h5>
+            <label for="loanType" class="text-white">Loan</label>
+            <select class="form-select" id="loanType" aria-label="Choose loan type" v-model="loanId" @change="resetPaymentValues">
+              <option value="">Choose loan type</option>
+              <template v-for="loan of loans">
+                <option :value="loan.id">{{ loan.name }}</option>
+              </template>
+            </select>
+            <small class="text-warning d-block" v-if="v$.loanId.$error">{{ v$.loanId.$errors[0].$message }}</small>
+
+            <label for="payments" class="text-white mt-4">Payments</label>
+            <select class="form-select" id="payments" aria-label="Choose payments" v-model="payments">
+              <option value="">Choose payments</option>
+                <template v-for="payment of getLoanPayments()">
+                  <option :value="payment">{{ payment }}</option>
+                </template>
+            </select>
+            <small class="text-warning d-block" v-if="v$.payments.$error">{{ v$.payments.$errors[0].$message }}</small>
+
+            <div>
+              <label for="loanAmount" class="text-white mt-4">Amount</label>
+              <small v-if="loanId != ''" class="d-block text-white">Max amount: {{ showMaxAmount() }}</small>
+              <input type="text" id="loanAmount" class="form-control" v-model="loanAmount">
+              <small class="text-warning d-block" v-if="v$.loanAmount.$error">{{ v$.loanAmount.$errors[0].$message }}</small>
+            </div>
+
+            <div>
+              <label for="destinationAccount" class="text-white mt-4">Destination Account</label>
+              <small v-if="destinationAccount != ''" class="d-block text-white">Account balance: {{ showBalance() }}</small>
+              <select class="form-select" id="destinationAccount" aria-label="Destination account" v-model="destinationAccount">
+                <option value="">Destination account</option>
+                <template v-for="account of accounts">
+                  <option :value="`${account.number}`">{{ account.number }}</option>
+                </template>
+              </select>
+<!--              <label for="destinationAccount" class="text-white mt-4">Destination Account</label>-->
+<!--              <input type="text" id="destinationAccount" class="form-control" v-model="destinationAccount">-->
+              <small class="text-warning d-block" v-if="v$.destinationAccount.$error">{{ v$.destinationAccount.$errors[0].$message }}</small>
+
+            </div>
+
+            <div class="text-center mt-4">
+              <small class="text-warning text-center mt-2 d-block" v-if="loanAppError">{{ errorMessage }}</small>
+              <button @click="validateForm" class="green-btn mt-4 rounded-2">Apply</button>
+            </div>
+
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="mt-auto container py-4">
+    <div>
+      <div class="d-flex justify-content-between p-2 footer-icons">
+        <p class="fs-4 text-green mb-0">Anywhere, anytime</p>
+        <div class="d-flex gap-2">
+          <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter text-white"></i></a>
+          <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin text-white"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 d-flex justify-content-between">
+      <p class="text-white">© 2023 MindHub Bros.</p>
+      <a href="#" class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x text-green"></i>
+        <i class="fa-solid fa-stack-1x fa-chevron-up text-white"></i>
+      </a>
+    </div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-demi"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vuelidate/core"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vuelidate/validators"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/loan.js"></script>
+</body>
+</html>

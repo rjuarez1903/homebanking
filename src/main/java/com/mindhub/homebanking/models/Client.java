@@ -22,13 +22,15 @@ public class Client {
     private Set<ClientLoan> clientLoans = new HashSet<>();
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
+    private String password;
 
     public Client() { }
 
-    public Client(String firstName, String lastName, String email) {
+    public Client(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
     public void addAccount(Account account) {
@@ -42,8 +44,12 @@ public class Client {
     }
 
     public void addCard(Card card) {
-        card.setCardholder(this.getFirstName() + " " + this.getLastName());
+        card.setClient(this);
         cards.add(card);
+    }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
     }
 
     public long getId() {
@@ -74,6 +80,10 @@ public class Client {
         return cards;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -96,5 +106,9 @@ public class Client {
 
     public void setCards(Set<Card> cards) {
         this.cards = cards;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -11,7 +11,7 @@ public class ClientLoan {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private double amount;
-    private byte payments;
+    private int payments;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
@@ -21,11 +21,9 @@ public class ClientLoan {
 
     public ClientLoan() {}
 
-    public ClientLoan(double amount, byte payments, Client client, Loan loan) {
+    public ClientLoan(double amount, int payments) {
         this.amount = amount;
         this.payments = payments;
-        this.client = client;
-        this.loan = loan;
     }
 
     public long getId() {
@@ -36,7 +34,7 @@ public class ClientLoan {
         return amount;
     }
 
-    public byte getPayments() {
+    public int getPayments() {
         return payments;
     }
 
@@ -52,7 +50,7 @@ public class ClientLoan {
         this.amount = amount;
     }
 
-    public void setPayments(byte payments) {
+    public void setPayments(int payments) {
         this.payments = payments;
     }
 

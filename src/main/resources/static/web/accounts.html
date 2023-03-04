@@ -27,7 +27,7 @@
                         <i class="fa-solid fa-user text-white"></i>
                         <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
                     </div>
-                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2">Sign out</a>
+                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
                 </nav>
                 <a href="#" class="menu hide-tablet" @click="toggleMenu">
                     <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="42">
@@ -50,22 +50,31 @@
                             <i class="fa-solid fa-address-card hide-mobile active-custom"></i>
                             <a href="#" class="nav-link active-custom">Accounts</a>
                         </li>
-                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                        <li class="nav-item d-md-flex align-items-center gap-2">
+                            <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
+                            <a href="./transfer.html" class="nav-link">Transfer</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2">
                             <i class="fa-brands fa-cc-visa hide-mobile"></i>
                             <a href="./cards.html" class="nav-link">Cards</a>
                         </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                            <i class="fa-solid fa-landmark hide-mobile"></i>
+                            <a href="./loan-application.html" class="nav-link">Loan Application</a>
+                        </li>
                         <li class="nav-item gap-2 hide-tablet">
-                            <a href="#" class="nav-link">Sign out</a>
+                            <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
                         </li>
                     </ul>
                 </nav>
             </aside>
 
             <main class="col-12 col-md-12 col-lg-10">
-                <div class="container" v-if="client.accounts">
-                    <h2 class="text-center">Welcome back, <span class="client-welcome">{{ client.firstName }}</span>! These are your current accounts.</h2>
-                    <div class="mt-5">
-                    <div class="row account rounded-2 mb-3" v-for="account of client.accounts">
+                <h2 class="text-center ">Welcome, <span class="client-welcome">{{ client.firstName }}</span>!</h2>
+                <h3 class="text-center fs-5 mt-3 mb-4" v-if="accounts.length > 0">These are your current accounts.</h3>
+<!--                <h3 class="text-center fs-5 mt-3 mb-4" v-else>No active accounts.</h3>-->
+                <ul class="container mt-3" v-if="accounts.length > 0">
+                    <li class="row account rounded-2 mb-3" v-for="account of accounts">
                         <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
                             <h3 class="fw-bold mb-0">{{ account.number }}</h3>
                             <p class="text-uppercase mb-0">Account</p>
@@ -74,46 +83,79 @@
                             <div class="container">
                                 <div class="row account-data g-4">
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">${{ account.balance }}</p>
+                                        <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
                                         <p class="text-uppercase mb-0">Balance</p>
                                     </div>
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
                                         <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
-                                        <p class="text-uppercase mb-0">Date of creation</p>
+                                        <p class="text-uppercase mb-0">Creation date</p>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center">
-                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 w-100 p-3">
+                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 text-uppercase w-100 p-3">
                                             See transactions
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </li>
+                </ul>
+                <div class="row gy-4">
+                    <div class="col-md-6">
+                        <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">
+                            <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
+                            <p class="text-uppercase mb-0">Total balance</p>
+                        </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="account-number d-flex flex-column align-items-center p-4 rounded-2">
+                            <h3 class="fw-bold">{{ accounts.length }}</h3>
+                            <p class="text-uppercase mb-0">Accounts</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-center justify-content-center" v-if="accounts.length < 3">
+                        <button @click="createAccount" class="green-btn rounded-2 d-inline-block align-self-center">Add account</button>
                     </div>
                 </div>
 
-                <h3 class="text-center mt-5">Loans</h3>
-                <ul class="list-group loans-list" v-if="client.loans">
+
+                <h3 class="text-center mt-5 mb-4">Loans</h3>
+                <ul class="list-group loans-list" v-if="loans.length > 0">
                     <li v-for="loan of client.loans" class="list-group-item list-loan-item container py-0 w-100">
                         <div class="row text-center">
                             <div class="mb-0 col-md-12 loan-name rounded-2 py-4">
                                 <p class="loan-data text-uppercase fs-4 fw-bold mb-0">{{ loan.name }}</p>
                                 <p class="text-uppercase mb-0">Loan</p>
                             </div>
-                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">${{ loan.amount }}</span></p>
+                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">{{ loan.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</span></p>
                             <p class="mb-0 col-md-6 py-2">Payments: <span class="loan-data fs-4">{{ loan.payments }}</span></p>
                         </div>
                     </li>
                 </ul>
-                <h3 v-else class="mt-4 text-center">No loans registered for this client.</h3>
+                <h2 v-else class="mt-4 text-center fs-5">No loans registered for this client.</h2>
+                <div class="text-center">
+                    <a href="./loan-application.html" class="green-btn rounded-2 my-4 d-inline-block">Apply</a>
+                </div>
             </main>
         </div>
     </div>
 
-    <footer class="mt-auto">
-        <div class="container text-center mt-auto py-3">
-            <small>®MindHub</small>
+    <footer class="mt-auto container my-4">
+        <div>
+            <div class="d-flex justify-content-between p-2 footer-icons">
+                <p class="fs-4 text-green mb-0">Anywhere, anytime</p>
+                <div class="d-flex gap-2">
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter text-white"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin text-white"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+            <p class="text-white">© 2023 MindHub Bros.</p>
+            <a href="#" class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x text-green"></i>
+                <i class="fa-solid fa-stack-1x fa-chevron-up text-white"></i>
+            </a>
         </div>
     </footer>
 
@@ -121,6 +163,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/accounts.js"></script>
 </body>
 </html>

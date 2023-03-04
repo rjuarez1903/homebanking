@@ -27,7 +27,7 @@
                         <i class="fa-solid fa-user text-white"></i>
                         <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
                     </div>
-                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2">Sign out</a>
+                    <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
                 </nav>
                 <a href="#" class="menu hide-tablet" @click="toggleMenu">
                     <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" width="42">
@@ -46,16 +46,24 @@
                 <img src="./assets/mobile-exit.svg" alt="Exit mobile nav" class="exit hide-tablet rounded-2" @click="toggleMenu">
                 <nav class="p-lg-0">
                     <ul class="d-flex flex-column flex-md-row flex-lg-column navbar-nav">
-                        <li class="nav-item d-md-flex align-items-center gap-2 mt-lg-3 active-custom-lg">
-                            <i class="fa-solid fa-address-card hide-mobile active-custom"></i>
-                            <a href="./accounts.html" class="nav-link active-custom">Accounts</a>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mt-lg-3">
+                            <i class="fa-solid fa-address-card hide-mobile"></i>
+                            <a href="./accounts.html" class="nav-link">Accounts</a>
                         </li>
-                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                        <li class="nav-item d-md-flex align-items-center gap-2">
+                            <i class="fa-solid fa-money-bill-transfer hide-mobile"></i>
+                            <a href="./transfer.html" class="nav-link">Transfer</a>
+                        </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2">
                             <i class="fa-brands fa-cc-visa hide-mobile"></i>
                             <a href="./cards.html" class="nav-link">Cards</a>
                         </li>
+                        <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3">
+                            <i class="fa-solid fa-landmark hide-mobile"></i>
+                            <a href="./loan-application.html" class="nav-link">Loan Application</a>
+                        </li>
                         <li class="nav-item gap-2 hide-tablet">
-                            <a href="#" class="nav-link">Sign out</a>
+                            <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
                         </li>
                     </ul>
                 </nav>
@@ -64,7 +72,7 @@
             <main class="col-12 col-md-12 col-lg-10">
                 <section class="container">
                     <div class="row">
-                        <h2 class="col-6 fs-5 mb-0 text-light">Account <span class="fw-bold">{{ account.number }}</span> / Transactions</h2>
+                        <h2 class="col-6 fs-5 mb-0 text-white">Account <span class="fw-bold">{{ account.number }}</span> / Transactions</h2>
                         <div class="col-md-6 dropdown mt-4 mt-md-0 text-md-end">
                             <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accounts
@@ -79,39 +87,52 @@
                     <div class="table-responsive" v-if="transactions.length > 0">
                         <table class="content-table mt-4">
                             <thead>
-                            <tr>
-                                <th scope="col" class="hide-mobile transactions-data">Id</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col" class="hide-mobile transactions-data">Description</th>
-                                <th scope="col">Date</th>
-                            </tr>
+                                <tr class="text-end">
+                                    <th scope="col" class="hide-mobile transactions-data">Id</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col" class="hide-mobile transactions-data">Description</th>
+                                    <th scope="col">Date</th>
+                                </tr>
                             </thead>
-                            <tbody>
-                            <tr v-for="transaction of transactions"
-                                :index="transaction.id"
-                            >
-                                <td class="hide-mobile transactions-data">{{ transaction.id }}</td>
-                                <td :class="transaction.type == 'DEBIT'? 'text-warning' : 'text-green'" width="120">
-                                    {{ transaction.type }}
-                                    <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
-                                </td>
-                                <td>${{ transaction.amount }}</td>
-                                <td class="hide-mobile transactions-data">{{ transaction.description }}</td>
-                                <td>{{ getDate(transaction.date) }}</td>
-                            </tr>
+                            <tbody class="text-end">
+                                <tr v-for="transaction of transactions"
+                                    :index="transaction.id"
+                                >
+                                    <td class="hide-mobile transactions-data">{{ transaction.id }}</td>
+                                    <td :class="transaction.type == 'DEBIT'? 'text-danger' : 'text-green'" width="120">
+                                        {{ transaction.type }}
+                                        <i :class="`fa-solid fa-arrow-${getTransactionIcon(transaction.type)}`"></i>
+                                    </td>
+                                    <td>{{ transaction.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</td>
+                                    <td class="hide-mobile transactions-data">{{ transaction.description }}</td>
+                                    <td>{{ getDate(transaction.date) }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <h3 v-else class="mt-4 text-center text-light">No transactions registered for this account.</h3>
+                    <h3 v-else class="mt-4 text-center text-white fs-5">No transactions registered for this account.</h3>
                 </section>
             </main>
         </div>
     </div>
 
-    <footer class="mt-auto">
-        <div class="container text-center mt-auto py-3">
-            <small>®MindHub</small>
+    <footer class="mt-auto container py-4">
+        <div>
+            <div class="d-flex justify-content-between p-2 footer-icons">
+                <p class="fs-4 text-green mb-0">Anywhere, anytime</p>
+                <div class="d-flex gap-2">
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter text-white"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin text-white"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+            <p class="text-white">© 2023 MindHub Bros.</p>
+            <a href="#" class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x text-green"></i>
+                <i class="fa-solid fa-stack-1x fa-chevron-up text-white"></i>
+            </a>
         </div>
     </footer>
 
@@ -119,6 +140,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="js/account.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./js/account.js"></script>
 </body>
 </html>

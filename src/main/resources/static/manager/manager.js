@@ -50,10 +50,30 @@ createApp({
             this.clientDetail = this.clients.filter(client => this.getClientId(client) == id)[0]
             axios.get(`/rest/clients/${id}`)
                 .then(response => {
-                    this.firstNameEdit = response.data.firstName
+                    this.firstNameEdit  = response.data.firstName
                     this.lastNameEdit  = response.data.lastName
                     this.emailEdit     = response.data.email
                 })
+        },
+        signOutUser(e) {
+            e.preventDefault()
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            })
+            Toast.fire({
+                icon: 'success',
+                title: `Logging out...`,
+                background: "var(--secondary-color)",
+                color: "#FFFFFF",
+            })
+            setTimeout(() => {
+                axios.post('/api/logout')
+                    .then(() =>location.replace("/index.html"))
+            }, 1000)
         },
         // editClient(id) {
         //     if ((this.firstNameEdit != '' && this.lastNameEdit != '') && (this.regExMail.test(this.emailEdit))) {
