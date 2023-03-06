@@ -21,6 +21,7 @@ public class Account {
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
     private AccountType type;
+    private boolean active;
 
     public Account() { }
 
@@ -29,6 +30,7 @@ public class Account {
         this.creationDate = creationDate;
         this.balance = balance;
         this.type = type;
+        this.active = true;
     }
 
     public void addTransaction(Transaction transaction) {
@@ -64,6 +66,10 @@ public class Account {
         return type;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     public void setNumber(String number) {
         this.number = number;
     }
@@ -86,5 +92,9 @@ public class Account {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

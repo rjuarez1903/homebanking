@@ -17,7 +17,7 @@ public class AccountDTO {
     private double balance;
     Set<TransactionDTO> transactions = new HashSet<>();
     private AccountType type;
-
+    private Boolean active;
 
     public AccountDTO(Account account) {
         this.id = account.getId();
@@ -26,6 +26,7 @@ public class AccountDTO {
         this.balance = account.getBalance();
         this.transactions = account.getTransactions().stream().map(TransactionDTO::new).collect(toSet());
         this.type = account.getType();
+        this.active = account.isActive();
     }
 
     public long getId() {
@@ -50,5 +51,9 @@ public class AccountDTO {
 
     public AccountType getType() {
         return type;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 }
