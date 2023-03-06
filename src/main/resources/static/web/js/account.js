@@ -7,8 +7,8 @@ createApp({
             activeAccounts: {},
             account:        {},
             transactions:   [],
-            fromDate:       "",
-            thruDate:       ""
+            fromDate:       new Date(),
+            thruDate:       new Date()
         }
     },
     created() {
@@ -57,6 +57,13 @@ createApp({
             }
                 return "down text-danger fw-bold"
         },
+        getTransactions() {
+            console.log(this.fromDate)
+            console.log(this.thruDate)
+            axios.post('/api/clients/current/transactions', `fromDate=${this.fromDate.toISOString()}&thruDate=${this.thruDate.toISOString()}&account=${this.account}`)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
+        },
         signOutUser(e) {
             e.preventDefault()
             const Toast = Swal.mixin({
@@ -68,7 +75,8 @@ createApp({
             })
             Toast.fire({
                 icon:       'success',
-                title:      `Logging out...`,
+                title:      `
+                }Logging out...`,
                 background: "var(--secondary-color)",
                 color:      "#FFFFFF",
             })

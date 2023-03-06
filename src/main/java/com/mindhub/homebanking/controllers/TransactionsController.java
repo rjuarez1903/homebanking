@@ -1,5 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mindhub.homebanking.dtos.TransactionDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
@@ -13,8 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.time.*;
+import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.mindhub.homebanking.models.TransactionType.CREDIT;
 import static com.mindhub.homebanking.models.TransactionType.DEBIT;
@@ -29,6 +33,30 @@ public class TransactionsController {
     AccountRepository accountRepository;
     @Autowired
     TransactionRepository transactionRepository;
+
+    @PostMapping("/clients/current/transactions")
+    public Set<TransactionDTO> getTransactions(Authentication authentication,
+                                               @RequestParam String fromDate,
+                                               @RequestParam String thruDate,
+                                               @RequestParam String accountId) {
+        Client client = clientRepository.findByEmail(authentication.getName());
+        if (client != null) {
+            Instant fromInstant = Instant.parse(fromDate);
+            Instant thruInstant = Instant.parse(thruDate);
+            LocalDateTime fromFormattedDate = LocalDateTime.ofInstant(fromInstant, ZoneId.of(ZoneOffset.UTC.getId()));
+            LocalDateTime thruFormattedDate = LocalDateTime.ofInstant(thruInstant, ZoneId.of(ZoneOffset.UTC.getId()));
+
+            Set<Transaction> transactionsAfterDate = transactionRepository.findByDateGreaterThan(fromFormattedDate);
+            Set<Transaction> transactionsBeforeDate = transactionRepository.findByDateLessThan(thruFormattedDate);
+
+            Set<Transaction> transactionsBetweenDates = transactionRepository.findByDateGreaterThanAndDateLessThan(fromFormattedDate, thruFormattedDate);
+            Set<Transaction> transactionsFilteredByAccount = transactionsBetweenDates.stream().filter(transaction -> transaction.getAccount() == accountRepository.findByNumber(accountId)).collect(Collectors.toSet());
+            return transactionsFilteredByAccount.stream().map(TransactionDTO::new).collect(Collectors.toSet());
+        } else {
+            return null;
+        }
+
+    }
 
     @Transactional
     @PostMapping("/transactions")

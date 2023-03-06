@@ -93,6 +93,7 @@
                             <Datepicker v-model="thruDate" dark></Datepicker>
                         </div>
                     </div>
+                    <button type="buton" class="btn-custom" @click="getTransactions">Filter</button>
                     <div class="table-responsive" v-if="transactions.length > 0" v-cloak>
                         <table class="content-table mt-4">
                             <thead>
