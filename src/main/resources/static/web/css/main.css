@@ -258,6 +258,10 @@ input:focus {
   color: #FFFFFF;
 }
 
+::-moz-placeholder {
+  color: #FFFFFF;
+}
+
 ::placeholder {
   color: #FFFFFF;
 }
@@ -638,7 +642,6 @@ ul .dropdown-item:hover {
   height: inherit;
   transition: 0.7s;
   transform-style: preserve-3d;
-  -webkit-animation: flip 2.5s ease;
   animation: flip 2.5s ease;
 }
 
@@ -972,6 +975,7 @@ input[type=radio]:checked ~ label {
 }
 
 .green-btn {
+  width: -moz-max-content;
   width: max-content;
   padding: 0.8em 1.8em;
   border: 2px solid #3EB27F;
@@ -1061,6 +1065,4 @@ textarea:focus {
   border-radius: 1rem !important;
   font-size: 1rem !important;
   font-family: Overpass, sans-serif;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

@@ -61,27 +61,60 @@ createApp({
                     .then(() =>location.replace("/index.html"))
             }, 1000)
         },
-        createAccount() {
-            axios.post('/api/clients/current/accounts')
-                .then(() => {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
+        // createAccount() {
+        //     axios.post('/api/clients/current/accounts')
+        //         .then(() => {
+        //             const Toast = Swal.mixin({
+        //                 toast: true,
+        //                 position: 'top-end',
+        //                 showConfirmButton: false,
+        //                 timer: 3000,
+        //                 timerProgressBar: true,
+        //                 didOpen: (toast) => {
+        //                     toast.addEventListener('mouseenter', Swal.stopTimer)
+        //                     toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //                 }
+        //             })
+        //             Toast.fire({
+        //                 icon: 'success',
+        //                 title: `Account created!`,
+        //                 background: "var(--secondary-color)",
+        //                 color: "#FFFFFF",
+        //             })
+        //             this.loadData()})
+        // },
+        selectAccountType() {
+            Swal.fire({
+                title: 'Select your account type',
+                input: 'select',
+                inputOptions: {
+                    CHECKING: 'Checking',
+                    SAVINGS:  'Savings',
+                },
+                showCancelButton:   true,
+                confirmButtonText:   'Create',
+                confirmButtonColor:  'var(--primary-color)',
+                cancelButtonColor:  '#d33',
+                showLoaderOnConfirm: true,
+                background:         "var(--secondary-color)",
+                color:              "#FFFFFF",
+                preConfirm: option => {
+                    return axios.post('/api/clients/current/accounts', `type=${option}`)
+                        .then(response => console.log(response))
+                        .catch(error => Swal.showValidationMessage(error))
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then(result => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon:              'success',
+                        title:             `Account created`,
+                        background:        "var(--secondary-color)",
+                        confirmButtonColor: 'var(--primary-color)',
+                        color:             "#FFFFFF",
                     })
-                    Toast.fire({
-                        icon: 'success',
-                        title: `Account created!`,
-                        background: "var(--secondary-color)",
-                        color: "#FFFFFF",
-                    })
-                    this.loadData()})
+                }
+            }).then(() => this.loadData())
         }
     }
 
