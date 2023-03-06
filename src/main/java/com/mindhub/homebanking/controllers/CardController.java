@@ -59,6 +59,33 @@ public class CardController {
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+    }
 
+    @PatchMapping("/clients/current/cards/{id}")
+        public ResponseEntity<Object> deleteCard(Authentication authentication, @PathVariable Long id) {
+        Client client = clientRepository.findByEmail(authentication.getName());
+
+        if (client != null) {
+            Set<Card> activeClientCards = client.getCards().stream().filter(card -> !card.isExpired()).collect(Collectors.toSet());
+            Set<Card> inactiveClientCards = client.getCards().stream().filter(card -> card.isExpired()).collect(Collectors.toSet());
+            Card selectedCard = cardRepository.findById(id).orElse(null);
+
+            if (selectedCard != null) {
+                if (activeClientCards.contains(selectedCard)) {
+                    selectedCard.setExpired(true);
+                    cardRepository.save(selectedCard);
+                    return new ResponseEntity<>("Card deleted", HttpStatus.OK);
+                } else if (inactiveClientCards.contains(selectedCard)){
+                    return new ResponseEntity<>("Card is already expired", HttpStatus.BAD_REQUEST);
+                } else {
+                    return new ResponseEntity<>("Card doesn't belong to client", HttpStatus.FORBIDDEN);
+                }
+            } else {
+                return new ResponseEntity<>("Card not found", HttpStatus.BAD_REQUEST);
+            }
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 }
