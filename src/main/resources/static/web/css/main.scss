@@ -1073,3 +1073,7 @@ textarea:focus {
     font-size: 1rem !important;
     font-family: Overpass, sans-serif;
 }
+
+.swal2-popup select {
+    border-radius: 0.25rem !important;
+}
