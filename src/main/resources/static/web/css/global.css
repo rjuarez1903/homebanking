@@ -58,6 +58,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .hide-tablet {
     display: none;

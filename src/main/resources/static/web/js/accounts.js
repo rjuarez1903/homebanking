@@ -3,9 +3,10 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client:   {},
-            accounts: [],
-            loans:    {}
+            client:           {},
+            accounts:         [],
+            inactiveAccounts: [],
+            loans:            {}
         }
     },
     created() {
@@ -15,13 +16,11 @@ createApp({
         loadData() {
             axios('/api/clients/current')
                 .then(response => {
-                    this.client   = response.data
-                    this.accounts =  this.client.accounts
-                    this.loans    = this.client.loans
-                    this.sortById(this.client.accounts)
-                    // if (this.client.accounts.length === 0 && this.client.email != "admin@admin.com") {
-                    //     this.createAccount()
-                    // }
+                    this.client           = response.data
+                    this.accounts         = this.client.accounts.filter(account => account.active == true)
+                    this.inactiveAccounts = this.client.accounts.filter(account => account.active == false)
+                    this.loans            = this.client.loans
+                    this.sortById(this.accounts)
                 })
                 .catch(error => console.log(error))
         },
@@ -61,28 +60,29 @@ createApp({
                     .then(() =>location.replace("/index.html"))
             }, 1000)
         },
-        // createAccount() {
-        //     axios.post('/api/clients/current/accounts')
-        //         .then(() => {
-        //             const Toast = Swal.mixin({
-        //                 toast: true,
-        //                 position: 'top-end',
-        //                 showConfirmButton: false,
-        //                 timer: 3000,
-        //                 timerProgressBar: true,
-        //                 didOpen: (toast) => {
-        //                     toast.addEventListener('mouseenter', Swal.stopTimer)
-        //                     toast.addEventListener('mouseleave', Swal.resumeTimer)
-        //                 }
-        //             })
-        //             Toast.fire({
-        //                 icon: 'success',
-        //                 title: `Account created!`,
-        //                 background: "var(--secondary-color)",
-        //                 color: "#FFFFFF",
-        //             })
-        //             this.loadData()})
-        // },
+        createAccount(option) {
+            axios.post('/api/clients/current/accounts', `type=${option}`)
+                .then(response => {
+                    console.log(response)
+                    this.loadData()
+                })
+                .catch(error => Swal.showValidationMessage(error))
+        },
+        deleteAccount(id) {
+            axios.patch(`/api/clients/current/accounts/${id}`)
+                .then(response => {
+                    console.log(response)
+                    this.loadData()
+                    Swal.fire({
+                        icon:              'success',
+                        title:             `Account deleted`,
+                        background:        "var(--secondary-color)",
+                        confirmButtonColor: 'var(--primary-color)',
+                        color:             "#FFFFFF",
+                    })
+                })
+                .catch(error => console.log(error))
+        },
         selectAccountType() {
             Swal.fire({
                 title: 'Select your account type',
@@ -99,9 +99,7 @@ createApp({
                 background:         "var(--secondary-color)",
                 color:              "#FFFFFF",
                 preConfirm: option => {
-                    return axios.post('/api/clients/current/accounts', `type=${option}`)
-                        .then(response => console.log(response))
-                        .catch(error => Swal.showValidationMessage(error))
+                    return this.createAccount(option)
                 },
                 allowOutsideClick: () => !Swal.isLoading()
             }).then(result => {
@@ -115,6 +113,33 @@ createApp({
                     })
                 }
             }).then(() => this.loadData())
+        },
+        submitForm(id) {
+            Swal.fire({
+                title:             'Are you sure?',
+                text:              "You won't be able to revert this.",
+                icon:              'warning',
+                showCancelButton:  true,
+                confirmButtonColor: 'var(--primary-color)',
+                cancelButtonColor: '#d33',
+                confirmButtonText:  'Confiirm',
+                background:        "#1F2023",
+                color:             "#FFFFFF"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.deleteAccount(id)
+                } else {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
+                        icon:             'error',
+                        title:            `No accounts were disabled`,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
+                    })
+                }
+            })
         }
     }
 

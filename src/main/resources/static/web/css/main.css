@@ -58,6 +58,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .hide-tablet {
     display: none;
@@ -1077,6 +1081,7 @@ textarea:focus {
   border-radius: 1rem !important;
   font-size: 1rem !important;
   font-family: Overpass, sans-serif;
+  border: 2px solid var(--link-color-hover) !important;
 }
 
 .swal2-popup select {

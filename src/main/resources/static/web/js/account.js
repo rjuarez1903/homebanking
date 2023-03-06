@@ -3,9 +3,10 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client:       {},
-            account:      {},
-            transactions: []
+            client:         {},
+            activeAccounts: {},
+            account:        {},
+            transactions:   []
         }
     },
     created() {
@@ -17,8 +18,9 @@ createApp({
             const id =  urlParams.get('id')
             axios('/api/clients/current')
                 .then(response => {
-                    this.client = response.data
-                    this.sortById(this.client.accounts)
+                    this.client         = response.data
+                    this.activeAccounts = this.client.accounts.filter(account => account.active == true)
+                    this.sortById(this.activeAccounts)
                     this.getAccount(id)
                 })
                 .catch(error => console.log(error))

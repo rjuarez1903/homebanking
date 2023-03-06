@@ -1084,6 +1084,7 @@ textarea:focus {
     border-radius: 1rem !important;
     font-size: 1rem !important;
     font-family: Overpass, sans-serif;
+    border: 2px solid var(--link-color-hover) !important;
 }
 
 .swal2-popup select {

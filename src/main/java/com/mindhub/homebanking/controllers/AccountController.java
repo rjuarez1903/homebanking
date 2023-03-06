@@ -47,9 +47,10 @@ public class AccountController {
     @PostMapping("/clients/current/accounts")
     public ResponseEntity<Object> createAccount(Authentication authentication, @RequestParam AccountType type) {
         Client client = clientRepository.findByEmail(authentication.getName());
+        Set<Account> activeClientAccounts = client.getAccounts().stream().filter(account -> account.isActive()).collect(Collectors.toSet());
 
         if (client != null) {
-            if (client.getAccounts().size() < 3 ) {
+            if (activeClientAccounts.size() < 3 ) {
                 String accountName;
                 do {
                     accountName = AccountUtilities.getRandomAccountNumber();
@@ -57,7 +58,7 @@ public class AccountController {
                 Account account = new Account(accountName, LocalDateTime.now(), 0, type);
                 client.addAccount(account);
                 accountRepository.save(account);
-                return new ResponseEntity<>(HttpStatus.CREATED);
+                return new ResponseEntity<>("Account created", HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("Can't generate more than 3 accounts per client.", HttpStatus.FORBIDDEN);
             }

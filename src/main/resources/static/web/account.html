@@ -25,7 +25,7 @@
                 <nav class="d-flex gap-2 align-items-center">
                     <div class="d-flex gap-2">
                         <i class="fa-solid fa-user text-white"></i>
-                        <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
+                        <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client" v-cloak>{{ client.firstName }} {{client.lastName }}</p>
                     </div>
                     <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
                 </nav>
@@ -72,19 +72,19 @@
             <main class="col-12 col-md-12 col-lg-10">
                 <section class="container">
                     <div class="row">
-                        <h2 class="col-6 fs-5 mb-0 text-white">Account <span class="fw-bold">{{ account.number }}</span> / Transactions</h2>
+                        <h2 class="col-6 fs-5 mb-0 text-white" >Account <span class="fw-bold" v-cloak>{{ account.number }}</span> / Transactions</h2>
                         <div class="col-md-6 dropdown mt-4 mt-md-0 text-md-end">
                             <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accounts
                             </a>
                             <ul class="dropdown-menu">
-                                <li v-for="account of client.accounts">
+                                <li v-for="account of activeAccounts">
                                     <a class="dropdown-item" :href=`./account.html?id=${account.id}`>{{ account.number }}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="table-responsive" v-if="transactions.length > 0">
+                    <div class="table-responsive" v-if="transactions.length > 0" v-cloak>
                         <table class="content-table mt-4">
                             <thead>
                                 <tr class="text-end">

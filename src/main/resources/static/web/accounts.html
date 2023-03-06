@@ -25,7 +25,7 @@
                 <nav class="d-flex gap-2 align-items-center">
                     <div class="d-flex gap-2">
                         <i class="fa-solid fa-user text-white"></i>
-                        <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client">{{ client.firstName }} {{client.lastName }}</p>
+                        <p class="mb-0 fw-bold user hide-mobile text-white" v-if="client" v-cloak>{{ client.firstName }} {{client.lastName }}</p>
                     </div>
                     <a href="" class="signout hide-mobile mb-0 px-2 py-1 rounded-2" @click="signOutUser">Sign out</a>
                 </nav>
@@ -70,25 +70,25 @@
             </aside>
 
             <main class="col-12 col-md-12 col-lg-10">
-                <h2 class="text-center ">Welcome, <span class="client-welcome">{{ client.firstName }}</span>!</h2>
+                <h2 class="text-center ">Welcome, <span class="client-welcome" v-cloak>{{ client.firstName }}</span>!</h2>
                 <h3 class="text-center fs-5 mt-3 mb-4" v-if="accounts.length > 0">These are your current accounts.</h3>
 <!--                <h3 class="text-center fs-5 mt-3 mb-4" v-else>No active accounts.</h3>-->
                 <ul class="container mt-3" v-if="accounts.length > 0">
                     <li class="row account rounded-2 mb-3" v-for="account of accounts">
                         <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
-                            <img src="./assets/mobile-exit.svg" alt="" class="delete-account rounded-2" >
-                            <h3 class="fw-bold mb-0">{{ account.number }}</h3>
+                            <img src="./assets/mobile-exit.svg" alt="Delete account" class="delete-account rounded-2" @click="submitForm(account.id)">
+                            <h3 class="fw-bold mb-0" v-cloak>{{ account.number }}</h3>
                             <p class="text-uppercase mb-0">Account</p>
                         </div>
                         <div class="col-12 col-md-9 p-3">
                             <div class="container">
                                 <div class="row account-data g-4">
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
+                                        <p class="mb-0 fw-bold fs-3" v-cloak>{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
                                         <p class="text-uppercase mb-0">Balance</p>
                                     </div>
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-                                        <p class="mb-0 fw-bold fs-3">{{ getStringDate(account.creationDate) }}</p>
+                                        <p class="mb-0 fw-bold fs-3" v-cloak>{{ getStringDate(account.creationDate) }}</p>
                                         <p class="text-uppercase mb-0">Creation date</p>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center">
@@ -104,13 +104,13 @@
                 <div class="row gy-4">
                     <div class="col-md-6">
                         <div class="account-total d-flex flex-column align-items-center p-4 rounded-2">
-                            <h3 class="fw-bold"> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
+                            <h3 class="fw-bold" v-cloak> {{ getTotalBalance().toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</h3>
                             <p class="text-uppercase mb-0">Total balance</p>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="account-number d-flex flex-column align-items-center p-4 rounded-2">
-                            <h3 class="fw-bold">{{ accounts.length }}</h3>
+                            <h3 class="fw-bold" v-cloak>{{ accounts.length }}</h3>
                             <p class="text-uppercase mb-0">Accounts</p>
                         </div>
                     </div>
@@ -128,8 +128,8 @@
                                 <p class="loan-data text-uppercase fs-4 fw-bold mb-0">{{ loan.name }}</p>
                                 <p class="text-uppercase mb-0">Loan</p>
                             </div>
-                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4">{{ loan.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</span></p>
-                            <p class="mb-0 col-md-6 py-2">Payments: <span class="loan-data fs-4">{{ loan.payments }}</span></p>
+                            <p class="mb-0 col-md-6 py-2">Amount: <span class="loan-data fs-4" v-cloak>{{ loan.amount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</span></p>
+                            <p class="mb-0 col-md-6 py-2">Payments: <span class="loan-data fs-4" v-cloak>{{ loan.payments }}</span></p>
                         </div>
                     </li>
                 </ul>
