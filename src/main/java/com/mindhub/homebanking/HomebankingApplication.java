@@ -39,9 +39,9 @@ public class HomebankingApplication {
 			Client client2 = new Client("Rodrigo", "Juarez", "lic.rodrigojuarez@gmail.com", passwordEncoder.encode("pass4321"));
 			Client client3 = new Client("Admin", "Admin", "admin@admin.com", passwordEncoder.encode("admin"));
 
-			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000);
-			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500);
-			Account account3 = new Account("VIN003", LocalDateTime.now().plusDays(1), 8500);
+			Account account1 = new Account("VIN001", LocalDateTime.now(), 5000, AccountType.CHECKING);
+			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500, AccountType.SAVINGS);
+			Account account3 = new Account("VIN003", LocalDateTime.now().plusDays(1), 8500, AccountType.CHECKING);
 
 			Transaction transaction1 = new Transaction(CREDIT, 7510.25, "Test transaction", LocalDateTime.now().plusMinutes(75));
 			Transaction transaction2 = new Transaction(DEBIT, -1500.99, "Test transaction 2", LocalDateTime.now().plusMinutes(30));

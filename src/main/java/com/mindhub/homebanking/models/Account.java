@@ -20,13 +20,15 @@ public class Account {
     private Client client;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
+    private AccountType type;
 
     public Account() { }
 
-    public Account(String number, LocalDateTime creationDate, double balance) {
+    public Account(String number, LocalDateTime creationDate, double balance, AccountType type) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.type = type;
     }
 
     public void addTransaction(Transaction transaction) {
@@ -58,6 +60,10 @@ public class Account {
         return transactions;
     }
 
+    public AccountType getType() {
+        return type;
+    }
+
     public void setNumber(String number) {
         this.number = number;
     }
@@ -76,5 +82,9 @@ public class Account {
 
     public void setTransactions(Set<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 }
