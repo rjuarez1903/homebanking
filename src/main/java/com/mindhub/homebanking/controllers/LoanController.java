@@ -90,7 +90,7 @@ public class LoanController {
                 return new ResponseEntity<>("Account doesn't belong to client.", HttpStatus.FORBIDDEN);
             }
 
-            double interest = requestedLoanAmount * 0.20;
+            double interest = requestedLoanAmount * loanRepository.findById(requestedLoanId).get().getInterestPercentage();
             ClientLoan clientLoan = new ClientLoan(requestedLoanAmount + interest, requestedLoanPayments);
             Loan loan = loanRepository.findById(requestedLoanId).orElse(null);
             Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now());

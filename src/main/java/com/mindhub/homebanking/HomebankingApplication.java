@@ -49,9 +49,9 @@ public class HomebankingApplication {
 			Transaction transaction4 = new Transaction(CREDIT, 2580.69, "Test transaction 4", LocalDateTime.now());
 			Transaction transaction5 = new Transaction(DEBIT, -4580.69, "Test transaction 5", LocalDateTime.now().plusDays(10));
 
-			Loan loan1 = new Loan("Mortgage", 500_000, List.of(12,24,36,48,60));
-			Loan loan2 = new Loan("Personal", 100_000, List.of(6,12,24));
-			Loan loan3 = new Loan("Car", 300_000, List.of(6,12,24,36));
+			Loan loan1 = new Loan("Mortgage", 500_000, List.of(12,24,36,48,60), (float) 0.25);
+			Loan loan2 = new Loan("Personal", 100_000, List.of(6,12,24), (float) 0.15);
+			Loan loan3 = new Loan("Car", 300_000, List.of(6,12,24,36), (float) 0.20);
 
 			ClientLoan clientLoan1 = new ClientLoan(400_000.0, (byte) 60);
 			ClientLoan clientLoan2 = new ClientLoan(50_000.0, (byte) 12);
