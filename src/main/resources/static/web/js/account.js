@@ -6,7 +6,9 @@ createApp({
             client:         {},
             activeAccounts: {},
             account:        {},
-            transactions:   []
+            transactions:   [],
+            fromDate:       "",
+            thruDate:       ""
         }
     },
     created() {
@@ -75,6 +77,6 @@ createApp({
                     .then(() =>location.replace("/index.html"))
             }, 1000)
         },
-    }
-
+    },
+    components: { Datepicker: VueDatePicker }
 }).mount('#app')
