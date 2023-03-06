@@ -68,31 +68,31 @@ public class AccountController {
 
     }
 
-    @PatchMapping("/clients/currents/accounts/{id}")
+    @PatchMapping("/clients/current/accounts/{id}")
     public ResponseEntity<Object> deleteAccount(Authentication authentication, @PathVariable Long id) {
         Client client = clientRepository.findByEmail(authentication.getName());
 
         if (client != null) {
             Set<Account> activeClientAccounts = client.getAccounts().stream().filter(account -> account.isActive()).collect(Collectors.toSet());
             Set<Account> inactiveClientAccounts = client.getAccounts().stream().filter(account -> !account.isActive()).collect(Collectors.toSet());
-//            Card selectedAccount = accountRepository.findById(id).orElse(null);
+            Account selectedAccount = accountRepository.findById(id).orElse(null);
 
-//            if (selectedCard != null) {
-//                if (activeClientCards.contains(selectedCard)) {
-//                    selectedCard.setExpired(true);
-//                    cardRepository.save(selectedCard);
-//                    return new ResponseEntity<>("Card deleted", HttpStatus.OK);
-//                } else if (inactiveClientCards.contains(selectedCard)){
-//                    return new ResponseEntity<>("Card is already expired", HttpStatus.BAD_REQUEST);
-//                } else {
-//                    return new ResponseEntity<>("Card doesn't belong to client", HttpStatus.FORBIDDEN);
-//                }
-//            } else {
-//                return new ResponseEntity<>("Card not found", HttpStatus.BAD_REQUEST);
-//            }
-//
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
+            if (selectedAccount != null) {
+                if (activeClientAccounts.contains(selectedAccount)) {
+                    selectedAccount.setActive(false);
+                    accountRepository.save(selectedAccount);
+                    return new ResponseEntity<>("Account disabled", HttpStatus.OK);
+                } else if (inactiveClientAccounts.contains(selectedAccount)){
+                    return new ResponseEntity<>("Account is already inactive", HttpStatus.BAD_REQUEST);
+                } else {
+                    return new ResponseEntity<>("Account doesn't belong to client", HttpStatus.FORBIDDEN);
+                }
+            } else {
+                return new ResponseEntity<>("Account not found", HttpStatus.BAD_REQUEST);
+            }
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 }
