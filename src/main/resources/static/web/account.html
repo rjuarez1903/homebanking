@@ -85,7 +85,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row gx-2">
+                    <div class="row g-2">
                         <div class="col-md-6">
                             <Datepicker v-model="fromDate" dark></Datepicker>
                         </div>
@@ -93,7 +93,7 @@
                             <Datepicker v-model="thruDate" dark></Datepicker>
                         </div>
                     </div>
-                    <button type="buton" class="btn-custom" @click="getTransactions">Filter</button>
+                    <button type="button" class="green-btn mt-4" @click="getTransactions">Filter</button>
                     <div class="table-responsive" v-if="transactions.length > 0" v-cloak>
                         <table class="content-table mt-4">
                             <thead>
@@ -121,7 +121,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <h3 v-else class="mt-4 text-center text-white fs-5">No transactions registered for this account.</h3>
+                    <h3 v-else class="mt-4 text-center text-white fs-5">No transactions registered.</h3>
                 </section>
             </main>
         </div>
