@@ -38,19 +38,15 @@ public class TransactionsController {
     public Set<TransactionDTO> getTransactions(Authentication authentication,
                                                @RequestParam String fromDate,
                                                @RequestParam String thruDate,
-                                               @RequestParam String accountId) {
+                                               @RequestParam Long accountId) {
         Client client = clientRepository.findByEmail(authentication.getName());
         if (client != null) {
             Instant fromInstant = Instant.parse(fromDate);
             Instant thruInstant = Instant.parse(thruDate);
             LocalDateTime fromFormattedDate = LocalDateTime.ofInstant(fromInstant, ZoneId.of(ZoneOffset.UTC.getId()));
             LocalDateTime thruFormattedDate = LocalDateTime.ofInstant(thruInstant, ZoneId.of(ZoneOffset.UTC.getId()));
-
-            Set<Transaction> transactionsAfterDate = transactionRepository.findByDateGreaterThan(fromFormattedDate);
-            Set<Transaction> transactionsBeforeDate = transactionRepository.findByDateLessThan(thruFormattedDate);
-
             Set<Transaction> transactionsBetweenDates = transactionRepository.findByDateGreaterThanAndDateLessThan(fromFormattedDate, thruFormattedDate);
-            Set<Transaction> transactionsFilteredByAccount = transactionsBetweenDates.stream().filter(transaction -> transaction.getAccount() == accountRepository.findByNumber(accountId)).collect(Collectors.toSet());
+            Set<Transaction> transactionsFilteredByAccount = transactionsBetweenDates.stream().filter(transaction -> transaction.getAccount() == accountRepository.findById(accountId).orElse(null)).collect(Collectors.toSet());
             return transactionsFilteredByAccount.stream().map(TransactionDTO::new).collect(Collectors.toSet());
         } else {
             return null;

@@ -58,10 +58,14 @@ createApp({
                 return "down text-danger fw-bold"
         },
         getTransactions() {
-            console.log(this.fromDate)
-            console.log(this.thruDate)
-            axios.post('/api/clients/current/transactions', `fromDate=${this.fromDate.toISOString()}&thruDate=${this.thruDate.toISOString()}&account=${this.account}`)
-                .then(response => console.log(response))
+            const urlParams = new URLSearchParams(window.location.search)
+            const id = urlParams.get('id')
+            axios.post('/api/clients/current/transactions', `fromDate=${this.fromDate.toISOString()}&thruDate=${this.thruDate.toISOString()}&accountId=${id}`)
+                .then(response => {
+                    console.log(response)
+                    this.transactions = response.data
+                    this.sortByDate(this.transactions)
+                })
                 .catch(error => console.log(error))
         },
         signOutUser(e) {
