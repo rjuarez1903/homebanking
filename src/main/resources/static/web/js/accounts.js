@@ -94,7 +94,7 @@ createApp({
                 showCancelButton:   true,
                 confirmButtonText:   'Create',
                 confirmButtonColor:  'var(--primary-color)',
-                cancelButtonColor:  '#d33',
+                cancelButtonColor:  '#E41D66',
                 showLoaderOnConfirm: true,
                 background:         "var(--secondary-color)",
                 color:              "#FFFFFF",
@@ -121,8 +121,8 @@ createApp({
                 icon:              'warning',
                 showCancelButton:  true,
                 confirmButtonColor: 'var(--primary-color)',
-                cancelButtonColor: '#d33',
-                confirmButtonText:  'Confiirm',
+                cancelButtonColor: '#E41D66',
+                confirmButtonText:  'Confirm',
                 background:        "#1F2023",
                 color:             "#FFFFFF"
             }).then((result) => {

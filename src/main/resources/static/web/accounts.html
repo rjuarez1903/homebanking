@@ -75,14 +75,13 @@
 <!--                <h3 class="text-center fs-5 mt-3 mb-4" v-else>No active accounts.</h3>-->
                 <ul class="container mt-3" v-if="accounts.length > 0">
                     <li class="row account rounded-2 mb-3" v-for="account of accounts">
-                        <div class="col-12 col-md-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
-                            <img src="./assets/mobile-exit.svg" alt="Delete account" class="delete-account rounded-2" @click="submitForm(account.id)">
+                        <div class="col-12 col-lg-3 text-center account-name d-flex flex-column align-items-center justify-content-center rounded-2 py-4">
                             <h3 class="fw-bold mb-0" v-cloak>{{ account.number }}</h3>
-                            <p class="text-uppercase mb-0">Account</p>
+                            <p class="text-uppercase mb-0">{{ account.type }} Account</p>
                         </div>
-                        <div class="col-12 col-md-9 p-3">
+                        <div class="col-12 col-lg-9 py-4 px-2">
                             <div class="container">
-                                <div class="row account-data g-4">
+                                <div class="row account-data g-4 flex-wrap">
                                     <div class="col-6 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
                                         <p class="mb-0 fw-bold fs-3" v-cloak>{{ account.balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' }) }}</p>
                                         <p class="text-uppercase mb-0">Balance</p>
@@ -91,10 +90,11 @@
                                         <p class="mb-0 fw-bold fs-3" v-cloak>{{ getStringDate(account.creationDate) }}</p>
                                         <p class="text-uppercase mb-0">Creation date</p>
                                     </div>
-                                    <div class="col-12 col-md-4 d-flex align-items-center">
-                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions rounded-2 text-uppercase w-100 p-3">
+                                    <div class="col-12 col-md-4 d-flex flex-column align-items-center gap-3">
+                                        <a :href=`./account.html?id=${account.id}` class="btn btn-transactions text-uppercase rounded-2 w-100 p-3">
                                             See transactions
                                         </a>
+                                        <button class="btn btn-delete text-uppercase rounded-2 w-100 p-3" @click="submitForm(account.id)">Delete Account</button>
                                     </div>
                                 </div>
                             </div>

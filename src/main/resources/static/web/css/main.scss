@@ -477,7 +477,7 @@ pre::-webkit-scrollbar-thumb {
     cursor: pointer;
     position: absolute;
     top: 0.5rem;
-    left: 0.5rem;
+    right: 0.5rem;
 }
 
 .account {
@@ -503,6 +503,16 @@ pre::-webkit-scrollbar-thumb {
 
 .account-name {
     background-color: var(--border-color);
+}
+
+.btn-delete {
+    color: #FFF;
+    background-color: #E41D66;
+}
+
+.btn-delete:hover {
+    border: 1px solid #E41D66;
+    color: #E41D66;
 }
 
 .btn-add-client,
