@@ -65,6 +65,13 @@ public class LoanController {
 
             Loan requestedLoan = loanRepository.findById(requestedLoanId).orElse(null);
 
+            Set<ClientLoan> clientLoans = client.getLoans();
+            for (ClientLoan clientLoan : clientLoans) {
+                if (clientLoan.getLoan() == requestedLoan) {
+                    return new ResponseEntity<>("Can't apply for the same loan twice.", HttpStatus.FORBIDDEN);
+                }
+            }
+
             if (requestedLoan != null) {
                 payments = requestedLoan.getPayments();
                 maxAmount = requestedLoan.getMaxAmount();
