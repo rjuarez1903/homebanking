@@ -76,6 +76,13 @@ public class LoanController {
                 return new ResponseEntity<>("Loan amount can't be lower than 0", HttpStatus.BAD_REQUEST);
             }
 
+            Set<ClientLoan> clientLoans = client.getLoans();
+            for (ClientLoan clientLoan : clientLoans) {
+                if (clientLoan.getLoan() == requestedLoan) {
+                    return new ResponseEntity<>("Can't apply for the same loan twice.", HttpStatus.FORBIDDEN);
+                }
+            }
+
             if (!payments.contains(requestedLoanPayments)) {
                 return new ResponseEntity<>("Invalid payments value.", HttpStatus.BAD_REQUEST);
             } else if (requestedLoanAmount > maxAmount) {
