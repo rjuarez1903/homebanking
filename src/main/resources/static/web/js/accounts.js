@@ -87,6 +87,7 @@ createApp({
             Swal.fire({
                 title: 'Select your account type',
                 input: 'select',
+                icon:  'warning',
                 inputOptions: {
                     CHECKING: 'Checking',
                     SAVINGS:  'Savings',
