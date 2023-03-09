@@ -79,8 +79,7 @@ createApp({
             })
             Toast.fire({
                 icon:       'success',
-                title:      `
-                }Logging out...`,
+                title:      `Logging out...`,
                 background: "var(--secondary-color)",
                 color:      "#FFFFFF",
             })
