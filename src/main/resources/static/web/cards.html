@@ -72,8 +72,8 @@
 
             <main class="col-12 col-md-12 col-lg-10">
                 <h2 class="fs-5 text-white"><span class="fw-bold">Cards</span> / Credit Cards</h2>
-                <div class="d-flex justify-content-center flex-wrap gap-4" v-if="creditCards.length > 0">
-                    <template v-for="card of creditCards">
+                <div class="d-flex justify-content-center flex-wrap gap-4" v-if="activeCreditCards.length > 0">
+                    <template v-for="card of activeCreditCards">
                         <div class="d-flex flex-column align-items-center">
                             <div class="card my-4">
                                 <div class="flip">
@@ -82,7 +82,7 @@
                                         <div class="strip-top"
                                              :class="card.color.toLowerCase()"></div>
                                         <img class="card-logo" src="./assets/mh-logo.png" alt="MindHub Logo" width="50">
-                                        <div class="investor">{{ card.color }}</div>
+                                        <div class="investor">{{ card.color }} <span class="expired">{{ card.expired ? ' EXPIRED ' : ' '}}</span></div>
                                         <div class="chip">
                                             <div class="chip-line"></div>
                                             <div class="chip-line"></div>
@@ -124,18 +124,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-delete btn-delete-card text-uppercase rounded-2 p-3" @click="">Delete Card</button>
+                            <button class="btn btn-delete btn-delete-card text-uppercase rounded-2 p-3" @click="submit(card.id)">Delete Card</button>
                         </div>
                     </template>
                 </div>
-                <h2 v-else class="text-center text-white my-4 fs-5">You don't own any credit cards.</h2>
+                <h2 v-else class="text-center text-white my-4 fs-5">You don't own any active credit cards.</h2>
                 <div class="text-center" v-if="activeCreditCards.length < 3">
                     <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
                 </div>
 
                 <h2 class="fs-5 text-white"><span class="fw-bold">Cards</span> / Debit Cards</h2>
-                <div class="d-flex justify-content-center flex-wrap" v-if="debitCards.length > 0">
-                    <template v-for="card of debitCards">
+                <div class="d-flex justify-content-center flex-wrap" v-if="activeDebitCards.length > 0">
+                    <template v-for="card of activeDebitCards">
                         <div class="d-flex flex-column align-items-center">
                             <div class="card my-4">
                                 <div class="flip">
@@ -186,11 +186,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-delete btn-delete-card text-uppercase rounded-2 p-3" @click="">Delete Card</button>
+                            <button class="btn btn-delete btn-delete-card text-uppercase rounded-2 p-3" @click="submit(card.id)">Delete Card</button>
                         </div>
                     </template>
                 </div>
-                <h2 v-else class="text-center text-white my-4 fs-5">You don't own any debit cards.</h2>
+                <h2 v-else class="text-center text-white my-4 fs-5">You don't own any active debit cards.</h2>
                 <div class="text-center" v-if="activeDebitCards.length < 3">
                     <a href="./create-cards.html" class="green-btn rounded-2 my-4 d-inline-block">Create card</a>
                 </div>

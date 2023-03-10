@@ -3,10 +3,10 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            client:      {},
-            cards:       [],
-            creditCards: [],
-            debitCards:  [],
+            client:            {},
+            cards:             [],
+            creditCards:       [],
+            debitCards:        [],
             activeCreditCards: [],
             activeDebitCards:  []
         }
@@ -20,10 +20,10 @@ createApp({
                 .then(response => {
                     this.client      = response.data
                     this.cards       = response.data.cards
-                    this.creditCards = this.filterCards(this.cards, "CREDIT")
-                    this.debitCards  = this.filterCards(this.cards, "DEBIT")
-                    this.activeCreditCards = this.creditCards.filter(card => card.expired == false)
-                    this.activeDebitCards  = this.debitCards.filter(card => card.expired == false)
+                    // this.creditCards = this.filterCards(this.cards, "CREDIT")
+                    // this.debitCards  = this.filterCards(this.cards, "DEBIT")
+                    this.activeCreditCards = this.cards.filter(card => !card.expired && card.type === "CREDIT")
+                    this.activeDebitCards  = this.cards.filter(card => !card.expired && card.type === "DEBIT")
                 })
                 .catch(error => console.log(error))
         },
@@ -47,6 +47,48 @@ createApp({
         },
         filterCards(cards, filter) {
             return this.cards.filter(card => card.type == filter)
+        },
+        deleteCard(id) {
+            axios.patch(`/api/clients/current/cards/${id}`)
+                .then(response => {
+                    console.log(response)
+                    this.loadData()
+                    Swal.fire({
+                        icon:              'success',
+                        title:             `Card deleted`,
+                        background:        "var(--secondary-color)",
+                        confirmButtonColor: 'var(--primary-color)',
+                        color:             "#FFFFFF",
+                    })
+                })
+                .catch(error => console.log(error))
+        },
+        submit(id) {
+            Swal.fire({
+                title:             'Are you sure?',
+                text:              "You won't be able to revert this.",
+                icon:              'warning',
+                showCancelButton:  true,
+                confirmButtonColor: 'var(--primary-color)',
+                cancelButtonColor: '#E41D66',
+                confirmButtonText:  'Confirm',
+                background:        "#1F2023",
+                color:             "#FFFFFF"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.deleteCard(id)
+                } else {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
+                        icon:             'error',
+                        title:            `No cards were deleted`,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
+                    })
+                }
+            })
         },
         signOutUser(e) {
             e.preventDefault()
