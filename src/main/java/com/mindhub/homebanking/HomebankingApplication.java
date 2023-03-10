@@ -43,11 +43,11 @@ public class HomebankingApplication {
 			Account account2 = new Account("VIN002", LocalDateTime.now().plusDays(1), 7500, AccountType.SAVINGS);
 			Account account3 = new Account("VIN003", LocalDateTime.now().plusDays(1), 8500, AccountType.CHECKING);
 
-			Transaction transaction1 = new Transaction(CREDIT, 7510.25, "Test transaction", LocalDateTime.now().plusMinutes(75));
-			Transaction transaction2 = new Transaction(DEBIT, -1500.99, "Test transaction 2", LocalDateTime.now().plusMinutes(30));
-			Transaction transaction3 = new Transaction(DEBIT, -1580.69, "Test transaction 3", LocalDateTime.now().plusDays(20));
-			Transaction transaction4 = new Transaction(CREDIT, 2580.69, "Test transaction 4", LocalDateTime.now());
-			Transaction transaction5 = new Transaction(DEBIT, -4580.69, "Test transaction 5", LocalDateTime.now().plusDays(10));
+//			Transaction transaction1 = new Transaction(CREDIT, 7510.25, "Test transaction", LocalDateTime.now().plusMinutes(75));
+//			Transaction transaction2 = new Transaction(DEBIT, -1500.99, "Test transaction 2", LocalDateTime.now().plusMinutes(30));
+//			Transaction transaction3 = new Transaction(DEBIT, -1580.69, "Test transaction 3", LocalDateTime.now().plusDays(20));
+//			Transaction transaction4 = new Transaction(CREDIT, 2580.69, "Test transaction 4", LocalDateTime.now());
+//			Transaction transaction5 = new Transaction(DEBIT, -4580.69, "Test transaction 5", LocalDateTime.now().plusDays(10));
 
 			Loan loan1 = new Loan("Mortgage", 500_000, List.of(12,24,36,48,60), (float) 0.25);
 			Loan loan2 = new Loan("Personal", 100_000, List.of(6,12,24), (float) 0.15);
@@ -87,17 +87,17 @@ public class HomebankingApplication {
 			loan2.addClientLoan(clientLoan3);
 			loan3.addClientLoan(clientLoan4);
 
-			account1.addTransaction(transaction1);
-			account1.addTransaction(transaction2);
-			account1.addTransaction(transaction3);
-			account3.addTransaction(transaction4);
-			account3.addTransaction(transaction5);
+//			account1.addTransaction(transaction1);
+//			account1.addTransaction(transaction2);
+//			account1.addTransaction(transaction3);
+//			account3.addTransaction(transaction4);
+//			account3.addTransaction(transaction5);
 
 			clientRepository.saveAll(List.of(client1, client2, client3));
 
 			accountRepository.saveAll(List.of(account1, account2, account3));
 
-			transactionRepository.saveAll(List.of(transaction1, transaction2, transaction3, transaction4, transaction5));
+//			transactionRepository.saveAll(List.of(transaction1, transaction2, transaction3, transaction4, transaction5));
 
 			loanRepository.saveAll(List.of(loan1, loan2, loan3));
 

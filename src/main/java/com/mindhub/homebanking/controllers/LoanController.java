@@ -100,7 +100,7 @@ public class LoanController {
             double interest = requestedLoanAmount * loanRepository.findById(requestedLoanId).get().getInterestPercentage();
             ClientLoan clientLoan = new ClientLoan(requestedLoanAmount + interest, requestedLoanPayments);
             Loan loan = loanRepository.findById(requestedLoanId).orElse(null);
-            Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now());
+            Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now(), (destinationAccount.getBalance() + requestedLoanAmount));
             loan.addClientLoan(clientLoan);
             client.addClientLoan(clientLoan);
             destinationAccount.addTransaction(transaction);
