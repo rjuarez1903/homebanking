@@ -59,7 +59,7 @@ public class HomebankingApplication {
 			ClientLoan clientLoan4 = new ClientLoan(200_000.0, (byte) 36);
 
 			LocalDateTime creation = LocalDateTime.now().minusYears(5);
-			LocalDateTime expiration = creation.plusYears(5).plusMinutes(2);
+			LocalDateTime expiration = creation.plusYears(4).plusMinutes(2);
 
 			Card card1 = new Card(CardType.CREDIT, CardColor.GOLD, "1111222233334444", "123", creation, expiration, client1);
 			Card card2 = new Card(CardType.CREDIT, CardColor.SILVER, "4444333322221111", "456", LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
