@@ -654,7 +654,7 @@ ul .dropdown-item:hover {
     transform: skewX(-15deg) translateX(90px);
 }
 
-.card{
+.card {
     margin: 0 auto;
     width: 22rem;
     height: 15.625rem;
@@ -837,6 +837,7 @@ ul .dropdown-item:hover {
     background: transparent;
     perspective: 1000;
 }
+
 .card:hover .flip {
     transform: rotateY(180deg);
 }
