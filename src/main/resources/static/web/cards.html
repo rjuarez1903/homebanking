@@ -134,7 +134,7 @@
                 </div>
 
                 <h2 class="fs-5 text-white"><span class="fw-bold">Cards</span> / Debit Cards</h2>
-                <div class="d-flex justify-content-center flex-wrap" v-if="activeDebitCards.length > 0">
+                <div class="d-flex justify-content-center flex-wrap gap-4" v-if="activeDebitCards.length > 0">
                     <template v-for="card of activeDebitCards">
                         <div class="d-flex flex-column align-items-center">
                             <div class="card my-4">
@@ -144,7 +144,7 @@
                                         <div class="strip-top"
                                              :class="card.color.toLowerCase()"></div>
                                         <img class="card-logo" src="./assets/mh-logo.png" alt="MindHub Logo" width="50">
-                                        <div class="investor">{{ card.color }}</div>
+                                        <div class="investor">{{ card.color }} <span class="expired">{{ card.expired ? ' EXPIRED ' : ' '}}</span></div>
                                         <div class="chip">
                                             <div class="chip-line"></div>
                                             <div class="chip-line"></div>

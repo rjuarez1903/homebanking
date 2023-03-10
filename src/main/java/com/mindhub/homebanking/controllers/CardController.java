@@ -72,7 +72,7 @@ public class CardController {
 
             if (selectedCard != null) {
                 if (activeClientCards.contains(selectedCard)) {
-                    selectedCard.setExpired(true);
+                    selectedCard.setActive(false);
                     cardRepository.save(selectedCard);
                     return new ResponseEntity<>("Card deleted", HttpStatus.OK);
                 } else if (inactiveClientCards.contains(selectedCard)){

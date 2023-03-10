@@ -19,6 +19,7 @@ public class Card {
     private LocalDateTime fromDate;
     private LocalDateTime thruDate;
     private Boolean expired;
+    private Boolean active;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -33,6 +34,7 @@ public class Card {
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
+        this.active = true;
         this.expired = LocalDateTime.now().isAfter(this.thruDate);
     }
 
@@ -70,6 +72,10 @@ public class Card {
 
     public Boolean isExpired() {
         return expired;
+    }
+
+    public Boolean isActive() {
+        return active;
     }
 
     public Client getClient() {
@@ -110,5 +116,9 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

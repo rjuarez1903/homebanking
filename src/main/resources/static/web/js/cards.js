@@ -22,8 +22,8 @@ createApp({
                     this.cards       = response.data.cards
                     // this.creditCards = this.filterCards(this.cards, "CREDIT")
                     // this.debitCards  = this.filterCards(this.cards, "DEBIT")
-                    this.activeCreditCards = this.cards.filter(card => !card.expired && card.type === "CREDIT")
-                    this.activeDebitCards  = this.cards.filter(card => !card.expired && card.type === "DEBIT")
+                    this.activeCreditCards = this.cards.filter(card => card.active && card.type === "CREDIT")
+                    this.activeDebitCards  = this.cards.filter(card => card.active && card.type === "DEBIT")
                 })
                 .catch(error => console.log(error))
         },
@@ -46,7 +46,7 @@ createApp({
             return `${month}/${year}`
         },
         filterCards(cards, filter) {
-            return this.cards.filter(card => card.type == filter)
+            return this.cards.filter(card => card.type === filter)
         },
         deleteCard(id) {
             axios.patch(`/api/clients/current/cards/${id}`)
@@ -61,7 +61,18 @@ createApp({
                         color:             "#FFFFFF",
                     })
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    console.log(error)
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer:            2000,
+                        timerProgressBar: true,
+                        icon:             'error',
+                        title:            `${error.response.data}`,
+                        background:       "var(--secondary-color)",
+                        color:            "#FFFFFF",
+                    })
+                })
         },
         submit(id) {
             Swal.fire({
