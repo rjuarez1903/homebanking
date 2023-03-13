@@ -97,17 +97,23 @@ public class LoanController {
                 return new ResponseEntity<>("Account doesn't belong to client.", HttpStatus.FORBIDDEN);
             }
 
-            double interest = requestedLoanAmount * loanRepository.findById(requestedLoanId).get().getInterestPercentage();
-            ClientLoan clientLoan = new ClientLoan(requestedLoanAmount + interest, requestedLoanPayments);
             Loan loan = loanRepository.findById(requestedLoanId).orElse(null);
-            Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now(), (destinationAccount.getBalance() + requestedLoanAmount));
-            loan.addClientLoan(clientLoan);
-            client.addClientLoan(clientLoan);
-            destinationAccount.addTransaction(transaction);
-            destinationAccount.setBalance(destinationAccount.getBalance() + requestedLoanAmount);
-            transactionRepository.save(transaction);
-            clientLoanRepository.save(clientLoan);
-            return new ResponseEntity<>("Loan approved.", HttpStatus.CREATED);
+            System.out.println(loan.getName());
+            if (!client.getEmail().equals("admin@admin.com") && loan.getName().equals("Special")) {
+                return new ResponseEntity<>("You don't have to permission to apply for this loan.", HttpStatus.FORBIDDEN);
+            } else {
+                double interest = requestedLoanAmount * loanRepository.findById(requestedLoanId).get().getInterestPercentage();
+                ClientLoan clientLoan = new ClientLoan(requestedLoanAmount + interest, requestedLoanPayments);
+                Transaction transaction = new Transaction(TransactionType.CREDIT, requestedLoanAmount, requestedLoan.getName() + " loan approved", LocalDateTime.now(), (destinationAccount.getBalance() + requestedLoanAmount));
+                loan.addClientLoan(clientLoan);
+                client.addClientLoan(clientLoan);
+                destinationAccount.addTransaction(transaction);
+                destinationAccount.setBalance(destinationAccount.getBalance() + requestedLoanAmount);
+                transactionRepository.save(transaction);
+                clientLoanRepository.save(clientLoan);
+                return new ResponseEntity<>("Loan approved.", HttpStatus.CREATED);
+            }
+
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

@@ -8,12 +8,9 @@ createApp({
     data() {
         return {
             client:             {},
-            admin:              false,
             accounts:           [],
             v$:                 useVuelidate(),
             loans:              [],
-            loan:               "",
-            loanId:             "",
             payments:           "",
             loanAmount:         "",
             destinationAccount: "",
@@ -41,14 +38,11 @@ createApp({
                 .then(response => {
                     this.client   = response.data
                     this.accounts = this.client.accounts
-                    if (this.client.email === "admin@admin.com") {
-                        this.admin = true
-                    }
                 })
                 .catch(error => console.log(error))
             axios('/api/loans')
                 .then(response => {
-                    this.loans   = response.data.slice(0,-1)
+                    this.loans   = response.data
                 })
                 .catch(error => console.log(error))
         },
@@ -78,13 +72,13 @@ createApp({
             }, 1000)
         },
         getLoanPayments() {
-            const currentLoan = this.loans.filter(loan => loan.id === this.loanId)
+            const currentLoan = this.loans.filter(loan => loan.name === "Special")
             if (currentLoan.length > 0) {
                 return currentLoan[0].payments
             }
         },
         showMaxAmount() {
-            const currentLoan = this.loans.filter(loan => loan.id === this.loanId)
+            const currentLoan = this.loans.filter(loan => loan.name === "Special")
             if (currentLoan.length > 0) {
                 return currentLoan[0].maxAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
             }
@@ -95,7 +89,7 @@ createApp({
         applyForLoan() {
             axios.post('/api/loans',
                 {
-                    id:                       this.loanId,
+                    id:                       4,
                     amount:                   this.loanAmount,
                     payments:                 this.payments,
                     destinationAccountNumber: this.destinationAccount
@@ -165,12 +159,11 @@ createApp({
         },
         validateForm(e) {
             e.preventDefault()
-            this.v$.loanId.$touch();
+            // this.v$.loanId.$touch();
             this.v$.payments.$touch();
             this.v$.loanAmount.$touch();
             this.v$.destinationAccount.$touch();
-            if (!this.v$.loanId.$invalid
-                && !this.v$.payments.$invalid
+            if (!this.v$.payments.$invalid
                 && !this.v$.loanAmount.$invalid
                 && !this.v$.destinationAccount.$invalid) {
                 this.submitForm()

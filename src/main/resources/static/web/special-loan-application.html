@@ -72,15 +72,11 @@
       <main class="col-12 col-md-12 col-lg-10">
         <div class="form rounded-4">
           <form class="p-4" @submit.prevent>
-            <h5 class="text-center text-white mb-4 form-heading fw-bold">Fill out the form to apply for a loan</h5>
-            <label for="loanType" class="text-white">Loan</label>
-            <select class="form-select" id="loanType" aria-label="Choose loan type" v-model="loanId" @change="resetPaymentValues">
-              <option value="">Choose loan type</option>
-              <template v-for="loan of loans">
-                <option :value="loan.id">{{ loan.name }}</option>
-              </template>
-            </select>
-            <small class="text-warning d-block" v-if="v$.loanId.$error">{{ v$.loanId.$errors[0].$message }}</small>
+            <h5 class="text-center text-white mb-4 form-heading fw-bold">Fill out the form to apply for special a loan</h5>
+            <div>
+              <label for="loanId" class="text-white mt-4">Loan</label>
+              <input type="text" id="loanId" class="form-control" value="Special Loan" disabled>
+            </div>
 
             <label for="payments" class="text-white mt-4">Payments</label>
             <select class="form-select" id="payments" aria-label="Choose payments" v-model="payments">
@@ -115,13 +111,10 @@
 
             <div class="text-center mt-4">
               <small class="text-warning text-center mt-2 d-block" v-if="loanAppError">{{ errorMessage }}</small>
-              <button @click="validateForm" class="green-btn mt-4 rounded-2">Apply</button>
+              <button @click="validateForm" class="green-btn mt-4 rounded-2 ">Apply</button>
             </div>
 
           </form>
-        </div>
-        <div v-if="admin" class="text-center mt-4">
-          <a href="./special-loan-application.html" class="btn btn-special text-uppercase rounded-2 p-3">Get Special Loan</a>
         </div>
       </main>
     </div>
@@ -154,6 +147,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@vuelidate/validators"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/loan.js"></script>
+<script src="js/special-loan.js"></script>
 </body>
 </html>

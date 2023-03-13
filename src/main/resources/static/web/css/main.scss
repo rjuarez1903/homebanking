@@ -505,12 +505,14 @@ pre::-webkit-scrollbar-thumb {
     background-color: var(--border-color);
 }
 
-.btn-delete {
+.btn-delete, 
+.btn-special {
     color: #FFF;
     background-color: #E41D66;
 }
 
-.btn-delete:hover {
+.btn-delete:hover,
+.btn-special:hover {
     border: 1px solid #E41D66;
     color: #E41D66;
 }
@@ -1074,6 +1076,7 @@ select,
 #externalDestinationAccount,
 #destinationAccount,
 #loanAmount,
+#loanId:disabled,
 textarea {
     outline: none;
     box-shadow: none !important;
