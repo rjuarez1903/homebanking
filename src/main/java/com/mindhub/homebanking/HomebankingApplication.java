@@ -52,6 +52,7 @@ public class HomebankingApplication {
 			Loan loan1 = new Loan("Mortgage", 500_000, List.of(12,24,36,48,60), (float) 0.25);
 			Loan loan2 = new Loan("Personal", 100_000, List.of(6,12,24), (float) 0.15);
 			Loan loan3 = new Loan("Car", 300_000, List.of(6,12,24,36), (float) 0.20);
+			Loan loan4 = new Loan("Special", 200_000, List.of(6,12), (float) 0.10);
 
 			ClientLoan clientLoan1 = new ClientLoan(400_000.0, (byte) 60);
 			ClientLoan clientLoan2 = new ClientLoan(50_000.0, (byte) 12);
@@ -99,7 +100,7 @@ public class HomebankingApplication {
 
 //			transactionRepository.saveAll(List.of(transaction1, transaction2, transaction3, transaction4, transaction5));
 
-			loanRepository.saveAll(List.of(loan1, loan2, loan3));
+			loanRepository.saveAll(List.of(loan1, loan2, loan3, loan4));
 
 			clientLoanRepository.saveAll(List.of(clientLoan1, clientLoan2, clientLoan3, clientLoan4));
 
