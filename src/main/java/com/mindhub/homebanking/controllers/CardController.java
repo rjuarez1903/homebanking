@@ -76,7 +76,7 @@ public class CardController {
                     cardRepository.save(selectedCard);
                     return new ResponseEntity<>("Card deleted", HttpStatus.OK);
                 } else if (inactiveClientCards.contains(selectedCard)){
-                    return new ResponseEntity<>("Card is already expired", HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity<>("Can't delete expired card", HttpStatus.BAD_REQUEST);
                 } else {
                     return new ResponseEntity<>("Card doesn't belong to client", HttpStatus.FORBIDDEN);
                 }
