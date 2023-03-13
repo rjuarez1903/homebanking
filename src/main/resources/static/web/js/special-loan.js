@@ -23,9 +23,8 @@ createApp({
     },
     validations() {
         return {
-            loanId:             { required },
-            payments:           { required },
-            loanAmount:         {
+            payments:   { required },
+            loanAmount: {
                 required,
                 minValue: minValue(1),
             },
@@ -83,6 +82,12 @@ createApp({
                 return currentLoan[0].maxAmount.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
             }
         },
+        showInterest() {
+            const currentLoan = this.loans.filter(loan => loan.name === "Special")
+            if (currentLoan.length > 0) {
+                return currentLoan[0].interestPercentage * 100
+            }
+        },
         showBalance() {
             return this.accounts.filter(account => account.number === this.destinationAccount)[0].balance.toLocaleString('de-DE', { style: 'currency', currency: 'USD' })
         },
@@ -131,10 +136,18 @@ createApp({
             this.payments = ""
         },
         submitForm() {
+            const currentLoan = this.loans.filter(loan => loan.name === "Special")
+            const htmlContent =
+                `
+                 <p>You will get: <span class="fw-bold fs-4">${(parseInt(this.loanAmount)).toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}</span></p>
+                 <p>You will pay: <span class="fw-bold fs-4">${(parseInt(this.loanAmount) + parseInt(this.loanAmount) * currentLoan[0].interestPercentage).toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}</span></p>
+                 <p>Payments: <span class="fw-bold fs-4">${this.payments}</span></p>
+                 <p>Monthly payment: <span class="fw-bold fs-4">${(parseInt(this.loanAmount) / this.payments).toLocaleString('de-DE', { style: 'currency', currency: 'USD' })}</span></p>
+                `
             Swal.fire({
                 title:             'Are you sure?',
-                text:              "You won't be able to revert this.",
                 icon:              'warning',
+                html:              htmlContent,
                 showCancelButton:  true,
                 confirmButtonColor: 'var(--primary-color)',
                 cancelButtonColor: '#d33',
@@ -159,7 +172,6 @@ createApp({
         },
         validateForm(e) {
             e.preventDefault()
-            // this.v$.loanId.$touch();
             this.v$.payments.$touch();
             this.v$.loanAmount.$touch();
             this.v$.destinationAccount.$touch();

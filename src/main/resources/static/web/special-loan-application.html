@@ -60,7 +60,7 @@
             </li>
             <li class="nav-item d-md-flex align-items-center gap-2 mb-lg-3 active-custom-lg">
               <i class="fa-solid fa-landmark hide-mobile active-custom"></i>
-              <a href="#" class="nav-link active-custom">Loan Application</a>
+              <a href="./loan-application.html" class="nav-link active-custom">Loan Application</a>
             </li>
             <li class="nav-item gap-2 hide-tablet">
               <a href="#" class="nav-link" @click="signOutUser">Sign out</a>
@@ -89,7 +89,8 @@
 
             <div>
               <label for="loanAmount" class="text-white mt-4">Amount</label>
-              <small v-if="loanId != ''" class="d-block text-white">Max amount: {{ showMaxAmount() }}</small>
+              <small class="d-block text-white">Max amount: {{ showMaxAmount() }}</small>
+              <small class="d-block text-white">Interest: {{ showInterest() }}%</small>
               <input type="text" id="loanAmount" class="form-control" v-model="loanAmount">
               <small class="text-warning d-block" v-if="v$.loanAmount.$error">{{ v$.loanAmount.$errors[0].$message }}</small>
             </div>
